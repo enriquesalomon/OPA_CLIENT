@@ -74,7 +74,14 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\ExamMaster.vb" />
     <Compile Include="Class\Login.vb" />
+    <Compile Include="Forms\FrmExamMaster.Designer.vb">
+      <DependentUpon>FrmExamMaster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmExamMaster.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\FrmLogin.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +115,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\FrmExamMaster.resx">
+      <DependentUpon>FrmExamMaster.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmLogin.resx">
       <DependentUpon>FrmLogin.vb</DependentUpon>
     </EmbeddedResource>
