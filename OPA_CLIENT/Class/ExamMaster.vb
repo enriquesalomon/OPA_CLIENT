@@ -40,9 +40,7 @@ Public Class ExamMaster
             ldataset.Clear()
             runServer()
             mycommand = MysqlConn.CreateCommand
-
             mycommand.CommandText = "Select * from  ope.exam"
-
             myadapter.SelectCommand = mycommand
             myadapter.Fill(ldataset, "exam")
             mydataTable = ldataset.Tables("exam")
@@ -54,17 +52,17 @@ Public Class ExamMaster
             FrmExamMaster.DataGridView1.Columns(0).Width = 90
             FrmExamMaster.DataGridView1.Columns(0).Name = "id"
 
-            FrmExamMaster.DataGridView1.Columns(1).HeaderText = "EXAMCATID"
-            FrmExamMaster.DataGridView1.Columns(1).Width = 90
-            FrmExamMaster.DataGridView1.Columns(1).Name = "examcategoryid"
+            FrmExamMaster.DataGridView1.Columns(1).HeaderText = "EXAMINATION CODE"
+            FrmExamMaster.DataGridView1.Columns(1).Width = 800
+            FrmExamMaster.DataGridView1.Columns(1).Name = "examcode"
 
-            FrmExamMaster.DataGridView1.Columns(2).HeaderText = "CLASSID"
-            FrmExamMaster.DataGridView1.Columns(2).Width = 130
-            FrmExamMaster.DataGridView1.Columns(2).Name = "classnameid"
+            FrmExamMaster.DataGridView1.Columns(2).HeaderText = "STATUS"
+            FrmExamMaster.DataGridView1.Columns(2).Width = 100
+            FrmExamMaster.DataGridView1.Columns(2).Name = "status"
 
-            FrmExamMaster.DataGridView1.Columns(3).HeaderText = "SY"
-            FrmExamMaster.DataGridView1.Columns(3).Width = 90
-            FrmExamMaster.DataGridView1.Columns(3).Name = "sy"
+            FrmExamMaster.DataGridView1.Columns(3).HeaderText = "ACTION"
+            FrmExamMaster.DataGridView1.Columns(3).Width = 70
+            FrmExamMaster.DataGridView1.Columns(3).Name = "action"
 
 
             Dim id, examcategoryid, classnameid, sy As String
@@ -84,7 +82,23 @@ Public Class ExamMaster
                     'temptime3 = Mid(mrow("TimeofExam"), 9, 10).ToString
                     'schedtime = temptime1 & Space(2) & "-" & Space(2) & temptime2 & Space(1) & temptime3
 
-                    Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryid").ToString, mrow("classnameid").ToString, mrow("sy").ToString}
+                    xtable.Rows.Clear()
+                    xdataset.Clear()
+                    runServer()
+                    mycommand = MysqlConn.CreateCommand
+                    mycommand.CommandText = "Select  * from examcategory where id  ='" & id & "'"
+                    myadapter.SelectCommand = mycommand
+                    myadapter.Fill(xdataset, "examcategory")
+                    xtable = xdataset.Tables("examcategory")
+                    Dim examcategoryname As String = ""
+                    If xtable.Rows.Count > 0 Then
+                        For Each str As DataRow In xtable.Rows
+                            examcategoryname = CDbl(str("examcategoryname"))
+                        Next
+                    End If
+                    xtable.Rows.Clear()
+                    xdataset.Clear()
+                    Dim row As String() = New String() {mrow("id").ToString, examcategoryname.ToString, mrow("classnameid").ToString, mrow("sy").ToString}
                     FrmExamMaster.DataGridView1.Rows.Add(row)
                 Next
 

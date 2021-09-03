@@ -15,4 +15,6 @@ Module GlobalVariable
     Public mydataset, ndataset As New DataSet
     Public mydataTable, ntable As New DataTable
 
+    Public adataset, xdataset, pdataset, cdataset As New DataSet
+    Public xtable, atable, pdatatable, cdatable As New DataTable
 End Module
