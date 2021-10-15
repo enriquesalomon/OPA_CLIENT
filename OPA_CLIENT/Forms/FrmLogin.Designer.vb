@@ -112,9 +112,9 @@ Partial Class FrmLogin
         Me.Label6.ForeColor = System.Drawing.Color.White
         Me.Label6.Location = New System.Drawing.Point(93, 75)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(99, 18)
+        Me.Label6.Size = New System.Drawing.Size(101, 18)
         Me.Label6.TabIndex = 222
-        Me.Label6.Text = "Password     :"
+        Me.Label6.Text = "Pin Code       :"
         '
         'txtusername
         '
@@ -134,9 +134,9 @@ Partial Class FrmLogin
         Me.Label10.ForeColor = System.Drawing.Color.White
         Me.Label10.Location = New System.Drawing.Point(93, 45)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(97, 18)
+        Me.Label10.Size = New System.Drawing.Size(102, 18)
         Me.Label10.TabIndex = 221
-        Me.Label10.Text = "Username    :"
+        Me.Label10.Text = "Student No.   :"
         '
         'FrmLogin
         '

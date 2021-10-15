@@ -2,9 +2,11 @@
 Public Class Login
 
     Public Sub verifyUser()
+        'Try
+
         nickname = ""
         Globaluserid = ""
-        query = "Select * from user where username= '" & FrmLogin.txtusername.Text & "' and password= '" & FrmLogin.txtpassword.Text & "'"
+        query = "Select * from student where opeusername= '" & FrmLogin.txtusername.Text & "' and opepassword= '" & FrmLogin.txtpassword.Text & "'"
         runServer()
         MysqlConn.Open()
         COMMAND = New MySqlCommand(query, MysqlConn)
@@ -13,8 +15,8 @@ Public Class Login
         bSource.DataSource = dbDataset
         READER = COMMAND.ExecuteReader
         While READER.Read()
-            nickname = READER("nickname").ToString
-            Globaluserid = READER("id").ToString
+                nickname = READER("firstname").ToString
+                Globaluserid = READER("id").ToString
             'userinfo = READER("fname").ToString & " " & READER("lname").ToString
 
         End While
@@ -31,5 +33,8 @@ Public Class Login
             FrmLogin.txtusername.Focus()
         End If
 
+        'Catch ex As Exception
+
+        'End Try
     End Sub
 End Class
