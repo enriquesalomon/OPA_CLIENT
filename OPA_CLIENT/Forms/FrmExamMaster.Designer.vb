@@ -42,9 +42,9 @@ Partial Class FrmExamMaster
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGridView1.BackgroundColor = System.Drawing.Color.White
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(12, 48)
+        Me.DataGridView1.Location = New System.Drawing.Point(12, 47)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(776, 366)
+        Me.DataGridView1.Size = New System.Drawing.Size(776, 367)
         Me.DataGridView1.TabIndex = 0
         '
         'Panel1

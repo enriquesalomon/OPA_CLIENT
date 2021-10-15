@@ -41,4 +41,13 @@
             .Show()
         End With
     End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        With FrmExamResult
+            .TopLevel = False
+            Panel5.Controls.Add(FrmExamResult)
+            .BringToFront()
+            .Show()
+        End With
+    End Sub
 End Class
