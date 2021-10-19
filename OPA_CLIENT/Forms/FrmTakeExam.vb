@@ -7,6 +7,22 @@
     Private Sub FrmTakeExam_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lblexamtitle.Text = FrmExamMaster.examcode
 
+        lblquestion.Top = (lblquestion.Parent.Height \ 2) - (lblquestion.Height \ 2)
+        lblquestion.Left = (lblquestion.Parent.Width \ 2) - (lblquestion.Width \ 2)
+
+        RadioButton1.Top = (RadioButton1.Parent.Height \ 2) - (RadioButton1.Height \ 2)
+        RadioButton1.Left = (RadioButton1.Parent.Width \ 2) - (RadioButton1.Width \ 2)
+
+        RadioButton2.Top = (RadioButton2.Parent.Height \ 2) - (RadioButton2.Height \ 2)
+        RadioButton2.Left = (RadioButton2.Parent.Width \ 2) - (RadioButton2.Width \ 2)
+
+        RadioButton3.Top = (RadioButton3.Parent.Height \ 2) - (RadioButton3.Height \ 2)
+        RadioButton3.Left = (RadioButton3.Parent.Width \ 2) - (RadioButton3.Width \ 2)
+
+
+        RadioButton4.Top = (RadioButton4.Parent.Height \ 2) - (RadioButton4.Height \ 2)
+        RadioButton4.Left = (RadioButton4.Parent.Width \ 2) - (RadioButton4.Width \ 2)
+
     End Sub
 
     Private Sub btnstart_Click(sender As Object, e As EventArgs) Handles btnstart.Click
