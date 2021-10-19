@@ -6,7 +6,13 @@
 
     Private Sub FrmTakeExam_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lblexamtitle.Text = FrmExamMaster.examcode
+
+    End Sub
+
+    Private Sub btnstart_Click(sender As Object, e As EventArgs) Handles btnstart.Click
         Timer1.Enabled = True
+        btnstart.Enabled = False
+        btnsubmit.Enabled = True
     End Sub
 
     Private Sub gettime()

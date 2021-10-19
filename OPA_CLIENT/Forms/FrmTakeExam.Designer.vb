@@ -27,11 +27,16 @@ Partial Class FrmTakeExam
         Me.btnLogout = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel5 = New System.Windows.Forms.Panel()
-        Me.lbltimer = New System.Windows.Forms.Label()
         Me.lblexamtitle = New System.Windows.Forms.Label()
+        Me.lbltimer = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.btnstart = New System.Windows.Forms.Button()
+        Me.btnsubmit = New System.Windows.Forms.Button()
+        Me.panelquestionmain = New System.Windows.Forms.Panel()
         Me.Panel2.SuspendLayout()
         Me.Panel5.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel2
@@ -85,19 +90,6 @@ Partial Class FrmTakeExam
         Me.Panel5.Size = New System.Drawing.Size(1069, 55)
         Me.Panel5.TabIndex = 4
         '
-        'lbltimer
-        '
-        Me.lbltimer.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lbltimer.AutoSize = True
-        Me.lbltimer.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbltimer.ForeColor = System.Drawing.Color.Red
-        Me.lbltimer.Location = New System.Drawing.Point(900, 9)
-        Me.lbltimer.Name = "lbltimer"
-        Me.lbltimer.Size = New System.Drawing.Size(127, 33)
-        Me.lbltimer.TabIndex = 0
-        Me.lbltimer.Text = "00:00:00"
-        '
         'lblexamtitle
         '
         Me.lblexamtitle.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -112,15 +104,77 @@ Partial Class FrmTakeExam
         Me.lblexamtitle.Text = "Exam Title"
         Me.lblexamtitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'lbltimer
+        '
+        Me.lbltimer.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbltimer.AutoSize = True
+        Me.lbltimer.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbltimer.ForeColor = System.Drawing.Color.Red
+        Me.lbltimer.Location = New System.Drawing.Point(900, 9)
+        Me.lbltimer.Name = "lbltimer"
+        Me.lbltimer.Size = New System.Drawing.Size(127, 33)
+        Me.lbltimer.TabIndex = 0
+        Me.lbltimer.Text = "00:00:00"
+        '
         'Timer1
         '
         Me.Timer1.Interval = 1000
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.Controls.Add(Me.btnsubmit)
+        Me.Panel1.Controls.Add(Me.btnstart)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel1.Location = New System.Drawing.Point(0, 512)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1069, 66)
+        Me.Panel1.TabIndex = 5
+        '
+        'btnstart
+        '
+        Me.btnstart.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.btnstart.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnstart.FlatAppearance.BorderSize = 0
+        Me.btnstart.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnstart.Location = New System.Drawing.Point(0, 0)
+        Me.btnstart.Name = "btnstart"
+        Me.btnstart.Size = New System.Drawing.Size(189, 66)
+        Me.btnstart.TabIndex = 0
+        Me.btnstart.Text = "START"
+        Me.btnstart.UseVisualStyleBackColor = False
+        '
+        'btnsubmit
+        '
+        Me.btnsubmit.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.btnsubmit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnsubmit.Enabled = False
+        Me.btnsubmit.FlatAppearance.BorderSize = 0
+        Me.btnsubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnsubmit.Location = New System.Drawing.Point(880, 0)
+        Me.btnsubmit.Name = "btnsubmit"
+        Me.btnsubmit.Size = New System.Drawing.Size(189, 66)
+        Me.btnsubmit.TabIndex = 1
+        Me.btnsubmit.Text = "SUBMIT"
+        Me.btnsubmit.UseVisualStyleBackColor = False
+        '
+        'panelquestionmain
+        '
+        Me.panelquestionmain.BackColor = System.Drawing.Color.White
+        Me.panelquestionmain.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.panelquestionmain.Location = New System.Drawing.Point(0, 90)
+        Me.panelquestionmain.Name = "panelquestionmain"
+        Me.panelquestionmain.Size = New System.Drawing.Size(1069, 422)
+        Me.panelquestionmain.TabIndex = 6
         '
         'FrmTakeExam
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1069, 642)
+        Me.ClientSize = New System.Drawing.Size(1069, 578)
+        Me.Controls.Add(Me.panelquestionmain)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel5)
         Me.Controls.Add(Me.Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -131,6 +185,7 @@ Partial Class FrmTakeExam
         Me.Panel2.PerformLayout()
         Me.Panel5.ResumeLayout(False)
         Me.Panel5.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -142,4 +197,8 @@ Partial Class FrmTakeExam
     Friend WithEvents lbltimer As Label
     Friend WithEvents lblexamtitle As Label
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents btnsubmit As Button
+    Friend WithEvents btnstart As Button
+    Friend WithEvents panelquestionmain As Panel
 End Class

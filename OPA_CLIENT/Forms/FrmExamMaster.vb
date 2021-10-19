@@ -24,7 +24,7 @@
         If e.ColumnIndex = 3 Then
             If MessageBox.Show("Are you sure you want to proceed? " & vbNewLine & " " & vbNewLine & "", " Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = Windows.Forms.DialogResult.Yes Then
                 LoadData()
-
+                FrmTakeExam.ShowDialog()
             End If
 
         End If
