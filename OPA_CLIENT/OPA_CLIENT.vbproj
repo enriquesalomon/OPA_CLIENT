@@ -116,6 +116,12 @@
     <Compile Include="Forms\FrmTakeExam.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\FrmTakeExam1.Designer.vb">
+      <DependentUpon>FrmTakeExam1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmTakeExam1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Module\GlobalVariable.vb" />
     <Compile Include="Module\ModFunction.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -153,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmTakeExam.resx">
       <DependentUpon>FrmTakeExam.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmTakeExam1.resx">
+      <DependentUpon>FrmTakeExam1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
