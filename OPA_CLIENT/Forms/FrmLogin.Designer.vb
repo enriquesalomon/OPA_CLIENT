@@ -29,8 +29,8 @@ Partial Class FrmLogin
         Me.txtpassword = New System.Windows.Forms.TextBox()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Label6 = New System.Windows.Forms.Label()
         Me.txtusername = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Panel4.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,6 +104,16 @@ Partial Class FrmLogin
         Me.PictureBox1.TabIndex = 218
         Me.PictureBox1.TabStop = False
         '
+        'txtusername
+        '
+        Me.txtusername.BackColor = System.Drawing.Color.White
+        Me.txtusername.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtusername.Location = New System.Drawing.Point(197, 44)
+        Me.txtusername.Name = "txtusername"
+        Me.txtusername.Size = New System.Drawing.Size(195, 22)
+        Me.txtusername.TabIndex = 219
+        Me.txtusername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'Label6
         '
         Me.Label6.AutoSize = True
@@ -115,16 +125,6 @@ Partial Class FrmLogin
         Me.Label6.Size = New System.Drawing.Size(101, 18)
         Me.Label6.TabIndex = 222
         Me.Label6.Text = "Pin Code       :"
-        '
-        'txtusername
-        '
-        Me.txtusername.BackColor = System.Drawing.Color.White
-        Me.txtusername.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtusername.Location = New System.Drawing.Point(197, 44)
-        Me.txtusername.Name = "txtusername"
-        Me.txtusername.Size = New System.Drawing.Size(195, 22)
-        Me.txtusername.TabIndex = 219
-        Me.txtusername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label10
         '
@@ -169,7 +169,7 @@ Partial Class FrmLogin
     Friend WithEvents txtpassword As TextBox
     Friend WithEvents Panel4 As Panel
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents Label6 As Label
     Friend WithEvents txtusername As TextBox
+    Friend WithEvents Label6 As Label
     Friend WithEvents Label10 As Label
 End Class

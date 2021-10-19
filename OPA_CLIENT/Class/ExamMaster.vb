@@ -8,7 +8,9 @@ Public Class ExamMaster
         Dim ldataset As New DataSet
         Dim schedtime As String
         Try
-            FrmExamMaster.DataGridView1.Rows.Clear()
+            'FrmExamMaster.DataGridView1.Font = New Font("Arial", 16, FontStyle.Regular)
+            FrmExamMaster.dtgList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            FrmExamMaster.dtgList.Rows.Clear()
             mydataTable.Rows.Clear()
             ldataset.Clear()
             runServer()
@@ -21,23 +23,23 @@ Public Class ExamMaster
             myadapter.Fill(ldataset, "exam")
             mydataTable = ldataset.Tables("exam")
 
-            FrmExamMaster.DataGridView1.RowsDefaultCellStyle.BackColor = Color.White
-            FrmExamMaster.DataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
-            FrmExamMaster.DataGridView1.ColumnCount = 3
-            FrmExamMaster.DataGridView1.Columns(0).HeaderText = "ID"
-            FrmExamMaster.DataGridView1.Columns(0).Width = 90
-            FrmExamMaster.DataGridView1.Columns(0).Name = "id"
+            FrmExamMaster.dtgList.RowsDefaultCellStyle.BackColor = Color.White
+            FrmExamMaster.dtgList.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
+            FrmExamMaster.dtgList.ColumnCount = 3
+            FrmExamMaster.dtgList.Columns(0).HeaderText = "ID"
+            FrmExamMaster.dtgList.Columns(0).Width = 90
+            FrmExamMaster.dtgList.Columns(0).Name = "id"
 
-            FrmExamMaster.DataGridView1.Columns(1).HeaderText = "EXAMINATION CODE"
-            FrmExamMaster.DataGridView1.Columns(1).Width = 500
-            FrmExamMaster.DataGridView1.Columns(1).Name = "examcode"
+            FrmExamMaster.dtgList.Columns(1).HeaderText = "EXAMINATION CODE"
+            FrmExamMaster.dtgList.Columns(1).Width = 500
+            FrmExamMaster.dtgList.Columns(1).Name = "examcode"
 
-            FrmExamMaster.DataGridView1.Columns(2).HeaderText = "STATUS"
-            FrmExamMaster.DataGridView1.Columns(2).Width = 100
-            FrmExamMaster.DataGridView1.Columns(2).Name = "status"
+            FrmExamMaster.dtgList.Columns(2).HeaderText = "STATUS"
+            FrmExamMaster.dtgList.Columns(2).Width = 100
+            FrmExamMaster.dtgList.Columns(2).Name = "status"
 
             Dim btn As New DataGridViewButtonColumn()
-            FrmExamMaster.DataGridView1.Columns.Add(btn)
+            FrmExamMaster.dtgList.Columns.Add(btn)
             btn.HeaderText = "ACTION"
             btn.Text = "TAKE"
             btn.Name = "btn"
@@ -49,7 +51,7 @@ Public Class ExamMaster
                 For Each mrow As DataRow In mydataTable.Rows
 
                     Dim row As String() = New String() {mrow("id").ToString, mrow("sy").ToString + " " + mrow("examcategoryname").ToString, "TAKEN"}
-                    FrmExamMaster.DataGridView1.Rows.Add(row)
+                    FrmExamMaster.dtgList.Rows.Add(row)
                 Next
 
             End If
