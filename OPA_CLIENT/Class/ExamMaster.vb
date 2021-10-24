@@ -5,11 +5,11 @@ Public Class ExamMaster
 
     Sub ExamList()
 
-        Dim ldataset As New DataSet
+        Dim ldataset, xdataset As New DataSet
         Dim schedtime As String
-        Try
-            'FrmExamMaster.DataGridView1.Font = New Font("Arial", 16, FontStyle.Regular)
-            FrmExamMaster.dtgList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        'Try
+        'FrmExamMaster.DataGridView1.Font = New Font("Arial", 16, FontStyle.Regular)
+        FrmExamMaster.dtgList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             FrmExamMaster.dtgList.Rows.Clear()
             mydataTable.Rows.Clear()
             ldataset.Clear()
@@ -23,27 +23,32 @@ Public Class ExamMaster
             myadapter.Fill(ldataset, "exam")
             mydataTable = ldataset.Tables("exam")
 
-            FrmExamMaster.dtgList.RowsDefaultCellStyle.BackColor = Color.White
-            FrmExamMaster.dtgList.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
-            FrmExamMaster.dtgList.ColumnCount = 4
-            FrmExamMaster.dtgList.Columns(0).HeaderText = "ID"
-            FrmExamMaster.dtgList.Columns(0).Width = 90
-            FrmExamMaster.dtgList.Columns(0).Name = "id"
+        FrmExamMaster.dtgList.RowsDefaultCellStyle.BackColor = Color.White
+        FrmExamMaster.dtgList.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
+        FrmExamMaster.dtgList.ColumnCount = 5
+        FrmExamMaster.dtgList.Columns(0).HeaderText = "ID"
+        FrmExamMaster.dtgList.Columns(0).Width = 90
+        FrmExamMaster.dtgList.Columns(0).Name = "id"
 
-            FrmExamMaster.dtgList.Columns(1).HeaderText = "EXAMINATION CODE"
-            FrmExamMaster.dtgList.Columns(1).Width = 500
-            FrmExamMaster.dtgList.Columns(1).Name = "examcode"
+        FrmExamMaster.dtgList.Columns(1).HeaderText = "EXAMINATION CODE"
+        FrmExamMaster.dtgList.Columns(1).Width = 500
+        FrmExamMaster.dtgList.Columns(1).Name = "examcode"
 
-            FrmExamMaster.dtgList.Columns(2).HeaderText = "TYPE"
-            FrmExamMaster.dtgList.Columns(2).Width = 100
-            FrmExamMaster.dtgList.Columns(2).Name = "type"
+        FrmExamMaster.dtgList.Columns(2).HeaderText = "SUBJECT"
+        FrmExamMaster.dtgList.Columns(2).Width = 200
+        FrmExamMaster.dtgList.Columns(2).Name = "subject"
 
 
-            FrmExamMaster.dtgList.Columns(3).HeaderText = "STATUS"
-            FrmExamMaster.dtgList.Columns(3).Width = 100
-            FrmExamMaster.dtgList.Columns(3).Name = "status"
+        FrmExamMaster.dtgList.Columns(3).HeaderText = "TYPE"
+        FrmExamMaster.dtgList.Columns(3).Width = 100
+        FrmExamMaster.dtgList.Columns(3).Name = "type"
 
-            Dim btn As New DataGridViewButtonColumn()
+
+        FrmExamMaster.dtgList.Columns(4).HeaderText = "STATUS"
+        FrmExamMaster.dtgList.Columns(4).Width = 100
+        FrmExamMaster.dtgList.Columns(4).Name = "status"
+
+        Dim btn As New DataGridViewButtonColumn()
             FrmExamMaster.dtgList.Columns.Add(btn)
             btn.HeaderText = "ACTION"
             btn.Text = "TAKE"
@@ -55,15 +60,35 @@ Public Class ExamMaster
             If mydataTable.Rows.Count > 0 Then
                 For Each mrow As DataRow In mydataTable.Rows
 
-                    Dim row As String() = New String() {mrow("id").ToString, mrow("sy").ToString + " " + mrow("examcategoryname").ToString, mrow("examtype").ToString, mrow("status").ToString}
-                    FrmExamMaster.dtgList.Rows.Add(row)
+                    Dim examsubjectname As String = ""
+                    xdataTable.Rows.Clear()
+                    xdataset.Clear()
+                    runServer()
+                    MysqlConn.Open()
+                    mycommand = MysqlConn.CreateCommand
+                mycommand.CommandText = "Select  * from  (examsubject inner join subjects on examsubject.subjectid = subjects.id) WHERE examsubject.examid='" & mrow("id").ToString & "'"
+
+                myadapter.SelectCommand = mycommand
+                    myadapter.Fill(xdataset, "examsubject")
+                    xdataTable = xdataset.Tables("examsubject")
+                    If xdataTable.Rows.Count > 0 Then
+                        For Each str As DataRow In xdataTable.Rows
+                        examsubjectname = str("subjectname").ToString
+                        examtotalquestion = str("totalquestion")
+                    Next
+                    End If
+                    xdataTable.Rows.Clear()
+                    xdataset.Clear()
+
+                Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString + " " + mrow("sy").ToString, examsubjectname.ToString, mrow("examtype").ToString, mrow("status").ToString}
+                FrmExamMaster.dtgList.Rows.Add(row)
                 Next
 
             End If
 
-        Catch ex As Exception
-            MsgBox("Error: " & ex.Source & ": " & ex.Message, MsgBoxStyle.OkOnly, "Data Error !!")
-        End Try
+        'Catch ex As Exception
+        '    MsgBox("Error: " & ex.Source & ": " & ex.Message, MsgBoxStyle.OkOnly, "Data Error !!")
+        'End Try
     End Sub
 
     Sub ExamListCount()

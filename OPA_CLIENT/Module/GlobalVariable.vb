@@ -8,6 +8,9 @@ Module GlobalVariable
     Public Globaluserid, GlobalitemID, GlobalCatID As String
     Public userinfo, usertype, nickname As String
     Public query As String
+    Public examcode, examid, examtype, subject As String
+    Public examtotalquestion As Integer
+
 
     Public mycommand As New MySqlCommand
     Public myadapter As New MySqlDataAdapter
@@ -16,5 +19,5 @@ Module GlobalVariable
     Public mydataTable, ntable As New DataTable
 
     Public adataset, xdataset, pdataset, cdataset As New DataSet
-    Public xtable, atable, pdatatable, cdatable As New DataTable
+    Public xdataTable, atable, pdatatable, cdatable As New DataTable
 End Module

@@ -6,7 +6,8 @@ Public Class FrmTakeExam
     End Sub
 
     Private Sub FrmTakeExam_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        lblexamtitle.Text = FrmExamMaster.examcode
+        GroupBox1.Visible = False
+        lblexamtitle.Text = examcode
         AnswerList()
         'lblquestion.Top = (lblquestion.Parent.Height \ 2) - (lblquestion.Height \ 2)
         'lblquestion.Left = (lblquestion.Parent.Width \ 2) - (lblquestion.Width \ 2)
@@ -23,7 +24,7 @@ Public Class FrmTakeExam
 
         'RadioButton4.Top = (RadioButton4.Parent.Height \ 2) - (RadioButton4.Height \ 2)
         'RadioButton4.Left = (RadioButton4.Parent.Width \ 2) - (RadioButton4.Width \ 2)
-
+        FrmExamStart.ShowDialog()
     End Sub
     Sub AnswerList()
 
@@ -32,7 +33,7 @@ Public Class FrmTakeExam
         Try
             'FrmExamMaster.DataGridView1.Font = New Font("Arial", 16, FontStyle.Regular)
             'dtgListAnswer.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-            dtgListAnswer.Rows.Clear()
+            dtgList.Rows.Clear()
             mydataTable.Rows.Clear()
             ldataset.Clear()
             runServer()
@@ -45,16 +46,16 @@ Public Class FrmTakeExam
             myadapter.Fill(ldataset, "exam")
             mydataTable = ldataset.Tables("exam")
 
-            dtgListAnswer.RowsDefaultCellStyle.BackColor = Color.White
-            dtgListAnswer.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
-            dtgListAnswer.ColumnCount = 2
-            dtgListAnswer.Columns(0).HeaderText = "NO."
-            dtgListAnswer.Columns(0).Width = 50
-            dtgListAnswer.Columns(0).Name = "num"
+            dtgList.RowsDefaultCellStyle.BackColor = Color.White
+            dtgList.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
+            dtgList.ColumnCount = 2
+            dtgList.Columns(0).HeaderText = "#"
+            dtgList.Columns(0).Width = 50
+            dtgList.Columns(0).Name = "num"
 
-            dtgListAnswer.Columns(1).HeaderText = "ANSWER"
-            dtgListAnswer.Columns(1).Width = 100
-            dtgListAnswer.Columns(1).Name = "answer"
+            dtgList.Columns(1).HeaderText = "ANSWER"
+            dtgList.Columns(1).Width = 200
+            dtgList.Columns(1).Name = "answer"
 
 
 
@@ -101,7 +102,7 @@ Public Class FrmTakeExam
         End While
         READER.Close()
         MysqlConn.Close()
-        lblquestion.Text = question
+        txtQuestion.Text = question
         RadioButton1.Text = opt1
         RadioButton2.Text = opt2
         RadioButton3.Text = opt3
@@ -111,10 +112,7 @@ Public Class FrmTakeExam
 
     End Sub
     Private Sub btnstart_Click(sender As Object, e As EventArgs) Handles btnstart.Click
-        Timer1.Enabled = True
-        btnstart.Enabled = False
-        btnsubmit.Enabled = True
-        getExamQuestion()
+
     End Sub
 
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged

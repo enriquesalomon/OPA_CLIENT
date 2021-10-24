@@ -23,8 +23,8 @@ Partial Class FrmTakeExam
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.btnLogout = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -36,23 +36,23 @@ Partial Class FrmTakeExam
         Me.btnsubmit = New System.Windows.Forms.Button()
         Me.btnstart = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.lblquestion = New System.Windows.Forms.Label()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtQuestion = New System.Windows.Forms.TextBox()
+        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.RadioButton4 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
+        Me.lblquestion = New System.Windows.Forms.Label()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.dtgListAnswer = New System.Windows.Forms.DataGridView()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.dtgList = New System.Windows.Forms.DataGridView()
         Me.Panel2.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.Panel3.SuspendLayout()
-        CType(Me.dtgListAnswer, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtgList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel2
@@ -158,7 +158,7 @@ Partial Class FrmTakeExam
         Me.btnsubmit.Name = "btnsubmit"
         Me.btnsubmit.Size = New System.Drawing.Size(189, 66)
         Me.btnsubmit.TabIndex = 1
-        Me.btnsubmit.Text = "SUBMIT"
+        Me.btnsubmit.Text = "NEXT"
         Me.btnsubmit.UseVisualStyleBackColor = False
         '
         'btnstart
@@ -171,7 +171,7 @@ Partial Class FrmTakeExam
         Me.btnstart.Name = "btnstart"
         Me.btnstart.Size = New System.Drawing.Size(189, 66)
         Me.btnstart.TabIndex = 0
-        Me.btnstart.Text = "START"
+        Me.btnstart.Text = "BACK"
         Me.btnstart.UseVisualStyleBackColor = False
         '
         'GroupBox1
@@ -186,17 +186,58 @@ Partial Class FrmTakeExam
         Me.GroupBox1.TabIndex = 7
         Me.GroupBox1.TabStop = False
         '
-        'lblquestion
+        'GroupBox2
         '
-        Me.lblquestion.AutoSize = True
-        Me.lblquestion.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblquestion.ForeColor = System.Drawing.Color.Black
-        Me.lblquestion.Location = New System.Drawing.Point(27, 45)
-        Me.lblquestion.Name = "lblquestion"
-        Me.lblquestion.Size = New System.Drawing.Size(140, 33)
-        Me.lblquestion.TabIndex = 3
-        Me.lblquestion.Text = "Question:"
-        Me.lblquestion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.GroupBox2.BackColor = System.Drawing.Color.White
+        Me.GroupBox2.Controls.Add(Me.Label2)
+        Me.GroupBox2.Controls.Add(Me.txtQuestion)
+        Me.GroupBox2.Controls.Add(Me.RadioButton3)
+        Me.GroupBox2.Controls.Add(Me.RadioButton4)
+        Me.GroupBox2.Controls.Add(Me.RadioButton2)
+        Me.GroupBox2.Controls.Add(Me.lblquestion)
+        Me.GroupBox2.Controls.Add(Me.RadioButton1)
+        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox2.Location = New System.Drawing.Point(316, 16)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(934, 613)
+        Me.GroupBox2.TabIndex = 0
+        Me.GroupBox2.TabStop = False
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Black
+        Me.Label2.Location = New System.Drawing.Point(47, 225)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(120, 33)
+        Me.Label2.TabIndex = 5
+        Me.Label2.Text = "Answer:"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'txtQuestion
+        '
+        Me.txtQuestion.BackColor = System.Drawing.Color.White
+        Me.txtQuestion.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtQuestion.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtQuestion.Location = New System.Drawing.Point(202, 45)
+        Me.txtQuestion.Multiline = True
+        Me.txtQuestion.Name = "txtQuestion"
+        Me.txtQuestion.ReadOnly = True
+        Me.txtQuestion.Size = New System.Drawing.Size(693, 125)
+        Me.txtQuestion.TabIndex = 4
+        Me.txtQuestion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'RadioButton3
+        '
+        Me.RadioButton3.AutoSize = True
+        Me.RadioButton3.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton3.Location = New System.Drawing.Point(202, 409)
+        Me.RadioButton3.Name = "RadioButton3"
+        Me.RadioButton3.Size = New System.Drawing.Size(143, 37)
+        Me.RadioButton3.TabIndex = 1
+        Me.RadioButton3.Text = "Option 3"
+        Me.RadioButton3.UseVisualStyleBackColor = True
         '
         'RadioButton4
         '
@@ -220,16 +261,17 @@ Partial Class FrmTakeExam
         Me.RadioButton2.Text = "Option 2"
         Me.RadioButton2.UseVisualStyleBackColor = True
         '
-        'RadioButton3
+        'lblquestion
         '
-        Me.RadioButton3.AutoSize = True
-        Me.RadioButton3.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton3.Location = New System.Drawing.Point(202, 409)
-        Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(143, 37)
-        Me.RadioButton3.TabIndex = 1
-        Me.RadioButton3.Text = "Option 3"
-        Me.RadioButton3.UseVisualStyleBackColor = True
+        Me.lblquestion.AutoSize = True
+        Me.lblquestion.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblquestion.ForeColor = System.Drawing.Color.Black
+        Me.lblquestion.Location = New System.Drawing.Point(27, 45)
+        Me.lblquestion.Name = "lblquestion"
+        Me.lblquestion.Size = New System.Drawing.Size(140, 33)
+        Me.lblquestion.TabIndex = 3
+        Me.lblquestion.Text = "Question:"
+        Me.lblquestion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'RadioButton1
         '
@@ -242,93 +284,56 @@ Partial Class FrmTakeExam
         Me.RadioButton1.Text = "Option 1"
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
-        'GroupBox2
-        '
-        Me.GroupBox2.BackColor = System.Drawing.Color.White
-        Me.GroupBox2.Controls.Add(Me.Label2)
-        Me.GroupBox2.Controls.Add(Me.TextBox1)
-        Me.GroupBox2.Controls.Add(Me.RadioButton3)
-        Me.GroupBox2.Controls.Add(Me.RadioButton4)
-        Me.GroupBox2.Controls.Add(Me.RadioButton2)
-        Me.GroupBox2.Controls.Add(Me.lblquestion)
-        Me.GroupBox2.Controls.Add(Me.RadioButton1)
-        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox2.Location = New System.Drawing.Point(316, 16)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(934, 613)
-        Me.GroupBox2.TabIndex = 0
-        Me.GroupBox2.TabStop = False
-        '
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.SystemColors.AppWorkspace
-        Me.Panel3.Controls.Add(Me.dtgListAnswer)
+        Me.Panel3.Controls.Add(Me.dtgList)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel3.Location = New System.Drawing.Point(3, 16)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(313, 613)
         Me.Panel3.TabIndex = 1
         '
-        'dtgListAnswer
+        'dtgList
         '
-        Me.dtgListAnswer.AllowUserToAddRows = False
-        Me.dtgListAnswer.AllowUserToDeleteRows = False
-        Me.dtgListAnswer.AllowUserToResizeColumns = False
-        Me.dtgListAnswer.AllowUserToResizeRows = False
-        Me.dtgListAnswer.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dtgListAnswer.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.dtgListAnswer.ColumnHeadersHeight = 32
-        Me.dtgListAnswer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.dtgListAnswer.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dtgListAnswer.EnableHeadersVisualStyles = False
-        Me.dtgListAnswer.GridColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.dtgListAnswer.Location = New System.Drawing.Point(0, 0)
-        Me.dtgListAnswer.MultiSelect = False
-        Me.dtgListAnswer.Name = "dtgListAnswer"
-        Me.dtgListAnswer.ReadOnly = True
-        Me.dtgListAnswer.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        Me.dtgListAnswer.RowHeadersVisible = False
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White
-        Me.dtgListAnswer.RowsDefaultCellStyle = DataGridViewCellStyle2
-        Me.dtgListAnswer.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtgListAnswer.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black
-        Me.dtgListAnswer.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.DodgerBlue
-        Me.dtgListAnswer.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White
-        Me.dtgListAnswer.RowTemplate.Height = 25
-        Me.dtgListAnswer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dtgListAnswer.Size = New System.Drawing.Size(313, 613)
-        Me.dtgListAnswer.TabIndex = 610
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(202, 45)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(693, 101)
-        Me.TextBox1.TabIndex = 4
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(47, 225)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(120, 33)
-        Me.Label2.TabIndex = 5
-        Me.Label2.Text = "Answer:"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.dtgList.AllowUserToAddRows = False
+        Me.dtgList.AllowUserToDeleteRows = False
+        Me.dtgList.AllowUserToResizeColumns = False
+        Me.dtgList.AllowUserToResizeRows = False
+        Me.dtgList.BackgroundColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dtgList.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        Me.dtgList.ColumnHeadersHeight = 32
+        Me.dtgList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.dtgList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dtgList.EnableHeadersVisualStyles = False
+        Me.dtgList.GridColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.dtgList.Location = New System.Drawing.Point(0, 0)
+        Me.dtgList.MultiSelect = False
+        Me.dtgList.Name = "dtgList"
+        Me.dtgList.ReadOnly = True
+        Me.dtgList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        Me.dtgList.RowHeadersVisible = False
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White
+        Me.dtgList.RowsDefaultCellStyle = DataGridViewCellStyle4
+        Me.dtgList.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtgList.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black
+        Me.dtgList.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.DodgerBlue
+        Me.dtgList.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White
+        Me.dtgList.RowTemplate.Height = 25
+        Me.dtgList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dtgList.Size = New System.Drawing.Size(313, 613)
+        Me.dtgList.TabIndex = 610
         '
         'FrmTakeExam
         '
@@ -351,7 +356,7 @@ Partial Class FrmTakeExam
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.Panel3.ResumeLayout(False)
-        CType(Me.dtgListAnswer, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtgList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -373,7 +378,7 @@ Partial Class FrmTakeExam
     Friend WithEvents Panel1 As Panel
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents Panel3 As Panel
-    Friend WithEvents dtgListAnswer As DataGridView
+    Friend WithEvents dtgList As DataGridView
     Friend WithEvents Label2 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtQuestion As TextBox
 End Class
