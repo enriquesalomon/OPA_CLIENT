@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmTakeExam
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,9 +20,11 @@ Partial Class FrmTakeExam
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.btnLogout = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -35,21 +37,22 @@ Partial Class FrmTakeExam
         Me.btnstart = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.lblquestion = New System.Windows.Forms.Label()
-        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.RadioButton4 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.dtgListAnswer = New System.Windows.Forms.DataGridView()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel2.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer1.Panel1.SuspendLayout()
-        Me.SplitContainer1.Panel2.SuspendLayout()
-        Me.SplitContainer1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.Panel3.SuspendLayout()
+        CType(Me.dtgListAnswer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel2
@@ -59,7 +62,7 @@ Partial Class FrmTakeExam
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1069, 35)
+        Me.Panel2.Size = New System.Drawing.Size(1253, 35)
         Me.Panel2.TabIndex = 1
         '
         'btnLogout
@@ -70,7 +73,7 @@ Partial Class FrmTakeExam
         Me.btnLogout.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnLogout.ForeColor = System.Drawing.Color.DimGray
         Me.btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnLogout.Location = New System.Drawing.Point(976, 0)
+        Me.btnLogout.Location = New System.Drawing.Point(1160, 0)
         Me.btnLogout.Name = "btnLogout"
         Me.btnLogout.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
         Me.btnLogout.Size = New System.Drawing.Size(93, 35)
@@ -99,7 +102,7 @@ Partial Class FrmTakeExam
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel5.Location = New System.Drawing.Point(0, 35)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(1069, 55)
+        Me.Panel5.Size = New System.Drawing.Size(1253, 55)
         Me.Panel5.TabIndex = 4
         '
         'lblexamtitle
@@ -123,7 +126,7 @@ Partial Class FrmTakeExam
         Me.lbltimer.AutoSize = True
         Me.lbltimer.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbltimer.ForeColor = System.Drawing.Color.Red
-        Me.lbltimer.Location = New System.Drawing.Point(900, 9)
+        Me.lbltimer.Location = New System.Drawing.Point(1084, 9)
         Me.lbltimer.Name = "lbltimer"
         Me.lbltimer.Size = New System.Drawing.Size(127, 33)
         Me.lbltimer.TabIndex = 0
@@ -135,12 +138,13 @@ Partial Class FrmTakeExam
         '
         'Panel1
         '
+        Me.Panel1.BackColor = System.Drawing.SystemColors.ControlLight
         Me.Panel1.Controls.Add(Me.btnsubmit)
         Me.Panel1.Controls.Add(Me.btnstart)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(0, 512)
+        Me.Panel1.Location = New System.Drawing.Point(316, 563)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1069, 66)
+        Me.Panel1.Size = New System.Drawing.Size(934, 66)
         Me.Panel1.TabIndex = 5
         '
         'btnsubmit
@@ -150,7 +154,7 @@ Partial Class FrmTakeExam
         Me.btnsubmit.Enabled = False
         Me.btnsubmit.FlatAppearance.BorderSize = 0
         Me.btnsubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnsubmit.Location = New System.Drawing.Point(880, 0)
+        Me.btnsubmit.Location = New System.Drawing.Point(745, 0)
         Me.btnsubmit.Name = "btnsubmit"
         Me.btnsubmit.Size = New System.Drawing.Size(189, 66)
         Me.btnsubmit.TabIndex = 1
@@ -172,11 +176,13 @@ Partial Class FrmTakeExam
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.SplitContainer1)
+        Me.GroupBox1.Controls.Add(Me.Panel1)
+        Me.GroupBox1.Controls.Add(Me.GroupBox2)
+        Me.GroupBox1.Controls.Add(Me.Panel3)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(0, 90)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1069, 422)
+        Me.GroupBox1.Size = New System.Drawing.Size(1253, 632)
         Me.GroupBox1.TabIndex = 7
         Me.GroupBox1.TabStop = False
         '
@@ -185,29 +191,18 @@ Partial Class FrmTakeExam
         Me.lblquestion.AutoSize = True
         Me.lblquestion.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblquestion.ForeColor = System.Drawing.Color.Black
-        Me.lblquestion.Location = New System.Drawing.Point(174, 170)
+        Me.lblquestion.Location = New System.Drawing.Point(27, 45)
         Me.lblquestion.Name = "lblquestion"
-        Me.lblquestion.Size = New System.Drawing.Size(132, 33)
+        Me.lblquestion.Size = New System.Drawing.Size(140, 33)
         Me.lblquestion.TabIndex = 3
-        Me.lblquestion.Text = "Question"
+        Me.lblquestion.Text = "Question:"
         Me.lblquestion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'RadioButton3
-        '
-        Me.RadioButton3.AutoSize = True
-        Me.RadioButton3.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton3.Location = New System.Drawing.Point(6, 257)
-        Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(143, 37)
-        Me.RadioButton3.TabIndex = 1
-        Me.RadioButton3.Text = "Option 3"
-        Me.RadioButton3.UseVisualStyleBackColor = True
         '
         'RadioButton4
         '
         Me.RadioButton4.AutoSize = True
         Me.RadioButton4.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton4.Location = New System.Drawing.Point(6, 360)
+        Me.RadioButton4.Location = New System.Drawing.Point(202, 493)
         Me.RadioButton4.Name = "RadioButton4"
         Me.RadioButton4.Size = New System.Drawing.Size(143, 37)
         Me.RadioButton4.TabIndex = 1
@@ -218,62 +213,129 @@ Partial Class FrmTakeExam
         '
         Me.RadioButton2.AutoSize = True
         Me.RadioButton2.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton2.Location = New System.Drawing.Point(6, 154)
+        Me.RadioButton2.Location = New System.Drawing.Point(202, 320)
         Me.RadioButton2.Name = "RadioButton2"
         Me.RadioButton2.Size = New System.Drawing.Size(143, 37)
         Me.RadioButton2.TabIndex = 1
         Me.RadioButton2.Text = "Option 2"
         Me.RadioButton2.UseVisualStyleBackColor = True
         '
+        'RadioButton3
+        '
+        Me.RadioButton3.AutoSize = True
+        Me.RadioButton3.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton3.Location = New System.Drawing.Point(202, 409)
+        Me.RadioButton3.Name = "RadioButton3"
+        Me.RadioButton3.Size = New System.Drawing.Size(143, 37)
+        Me.RadioButton3.TabIndex = 1
+        Me.RadioButton3.Text = "Option 3"
+        Me.RadioButton3.UseVisualStyleBackColor = True
+        '
         'RadioButton1
         '
         Me.RadioButton1.AutoSize = True
         Me.RadioButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton1.Location = New System.Drawing.Point(6, 35)
+        Me.RadioButton1.Location = New System.Drawing.Point(202, 225)
         Me.RadioButton1.Name = "RadioButton1"
         Me.RadioButton1.Size = New System.Drawing.Size(143, 37)
         Me.RadioButton1.TabIndex = 0
         Me.RadioButton1.Text = "Option 1"
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
-        'SplitContainer1
-        '
-        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer1.Location = New System.Drawing.Point(3, 16)
-        Me.SplitContainer1.Name = "SplitContainer1"
-        '
-        'SplitContainer1.Panel1
-        '
-        Me.SplitContainer1.Panel1.Controls.Add(Me.lblquestion)
-        '
-        'SplitContainer1.Panel2
-        '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.GroupBox2)
-        Me.SplitContainer1.Size = New System.Drawing.Size(1063, 403)
-        Me.SplitContainer1.SplitterDistance = 518
-        Me.SplitContainer1.TabIndex = 6
-        '
         'GroupBox2
         '
+        Me.GroupBox2.BackColor = System.Drawing.Color.White
+        Me.GroupBox2.Controls.Add(Me.Label2)
+        Me.GroupBox2.Controls.Add(Me.TextBox1)
+        Me.GroupBox2.Controls.Add(Me.RadioButton3)
         Me.GroupBox2.Controls.Add(Me.RadioButton4)
         Me.GroupBox2.Controls.Add(Me.RadioButton2)
-        Me.GroupBox2.Controls.Add(Me.RadioButton3)
+        Me.GroupBox2.Controls.Add(Me.lblquestion)
         Me.GroupBox2.Controls.Add(Me.RadioButton1)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox2.Location = New System.Drawing.Point(0, 0)
+        Me.GroupBox2.Location = New System.Drawing.Point(316, 16)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(541, 403)
+        Me.GroupBox2.Size = New System.Drawing.Size(934, 613)
         Me.GroupBox2.TabIndex = 0
         Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "GroupBox2"
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.SystemColors.AppWorkspace
+        Me.Panel3.Controls.Add(Me.dtgListAnswer)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel3.Location = New System.Drawing.Point(3, 16)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(313, 613)
+        Me.Panel3.TabIndex = 1
+        '
+        'dtgListAnswer
+        '
+        Me.dtgListAnswer.AllowUserToAddRows = False
+        Me.dtgListAnswer.AllowUserToDeleteRows = False
+        Me.dtgListAnswer.AllowUserToResizeColumns = False
+        Me.dtgListAnswer.AllowUserToResizeRows = False
+        Me.dtgListAnswer.BackgroundColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dtgListAnswer.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.dtgListAnswer.ColumnHeadersHeight = 32
+        Me.dtgListAnswer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.dtgListAnswer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dtgListAnswer.EnableHeadersVisualStyles = False
+        Me.dtgListAnswer.GridColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.dtgListAnswer.Location = New System.Drawing.Point(0, 0)
+        Me.dtgListAnswer.MultiSelect = False
+        Me.dtgListAnswer.Name = "dtgListAnswer"
+        Me.dtgListAnswer.ReadOnly = True
+        Me.dtgListAnswer.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        Me.dtgListAnswer.RowHeadersVisible = False
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White
+        Me.dtgListAnswer.RowsDefaultCellStyle = DataGridViewCellStyle2
+        Me.dtgListAnswer.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtgListAnswer.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black
+        Me.dtgListAnswer.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.DodgerBlue
+        Me.dtgListAnswer.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White
+        Me.dtgListAnswer.RowTemplate.Height = 25
+        Me.dtgListAnswer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dtgListAnswer.Size = New System.Drawing.Size(313, 613)
+        Me.dtgListAnswer.TabIndex = 610
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(202, 45)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(693, 101)
+        Me.TextBox1.TabIndex = 4
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Black
+        Me.Label2.Location = New System.Drawing.Point(47, 225)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(120, 33)
+        Me.Label2.TabIndex = 5
+        Me.Label2.Text = "Answer:"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'FrmTakeExam
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1069, 578)
+        Me.ClientSize = New System.Drawing.Size(1253, 722)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel5)
         Me.Controls.Add(Me.Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -286,13 +348,10 @@ Partial Class FrmTakeExam
         Me.Panel5.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
-        Me.SplitContainer1.Panel1.ResumeLayout(False)
-        Me.SplitContainer1.Panel1.PerformLayout()
-        Me.SplitContainer1.Panel2.ResumeLayout(False)
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.Panel3.ResumeLayout(False)
+        CType(Me.dtgListAnswer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -305,7 +364,6 @@ Partial Class FrmTakeExam
     Friend WithEvents btnsubmit As Button
     Friend WithEvents btnstart As Button
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents RadioButton1 As RadioButton
     Friend WithEvents RadioButton2 As RadioButton
     Friend WithEvents RadioButton4 As RadioButton
@@ -314,4 +372,8 @@ Partial Class FrmTakeExam
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel1 As Panel
     Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents dtgListAnswer As DataGridView
+    Friend WithEvents Label2 As Label
+    Friend WithEvents TextBox1 As TextBox
 End Class

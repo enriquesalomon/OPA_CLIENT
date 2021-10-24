@@ -7,9 +7,9 @@ Public Class FrmTakeExam
 
     Private Sub FrmTakeExam_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lblexamtitle.Text = FrmExamMaster.examcode
-
-        lblquestion.Top = (lblquestion.Parent.Height \ 2) - (lblquestion.Height \ 2)
-        lblquestion.Left = (lblquestion.Parent.Width \ 2) - (lblquestion.Width \ 2)
+        AnswerList()
+        'lblquestion.Top = (lblquestion.Parent.Height \ 2) - (lblquestion.Height \ 2)
+        'lblquestion.Left = (lblquestion.Parent.Width \ 2) - (lblquestion.Width \ 2)
 
         'RadioButton1.Top = (RadioButton1.Parent.Height \ 2) - (RadioButton1.Height \ 2)
         'RadioButton1.Left = (RadioButton1.Parent.Width \ 2) - (RadioButton1.Width \ 2)
@@ -24,6 +24,53 @@ Public Class FrmTakeExam
         'RadioButton4.Top = (RadioButton4.Parent.Height \ 2) - (RadioButton4.Height \ 2)
         'RadioButton4.Left = (RadioButton4.Parent.Width \ 2) - (RadioButton4.Width \ 2)
 
+    End Sub
+    Sub AnswerList()
+
+        Dim ldataset As New DataSet
+        Dim schedtime As String
+        Try
+            'FrmExamMaster.DataGridView1.Font = New Font("Arial", 16, FontStyle.Regular)
+            'dtgListAnswer.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            dtgListAnswer.Rows.Clear()
+            mydataTable.Rows.Clear()
+            ldataset.Clear()
+            runServer()
+            MysqlConn.Open()
+            mycommand = MysqlConn.CreateCommand
+
+            mycommand.CommandText = "Select  * from  (exam inner join examcategory on exam.examcategoryid = examcategory.id) "
+
+            myadapter.SelectCommand = mycommand
+            myadapter.Fill(ldataset, "exam")
+            mydataTable = ldataset.Tables("exam")
+
+            dtgListAnswer.RowsDefaultCellStyle.BackColor = Color.White
+            dtgListAnswer.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
+            dtgListAnswer.ColumnCount = 2
+            dtgListAnswer.Columns(0).HeaderText = "NO."
+            dtgListAnswer.Columns(0).Width = 50
+            dtgListAnswer.Columns(0).Name = "num"
+
+            dtgListAnswer.Columns(1).HeaderText = "ANSWER"
+            dtgListAnswer.Columns(1).Width = 100
+            dtgListAnswer.Columns(1).Name = "answer"
+
+
+
+
+            'If mydataTable.Rows.Count > 0 Then
+            '    For Each mrow As DataRow In mydataTable.Rows
+
+            '        Dim row As String() = New String() {mrow("id").ToString, mrow("sy").ToString + " " + mrow("examcategoryname").ToString, mrow("examtype").ToString, mrow("status").ToString}
+            '        FrmExamMaster.dtgList.Rows.Add(row)
+            '    Next
+
+            'End If
+
+        Catch ex As Exception
+            MsgBox("Error: " & ex.Source & ": " & ex.Message, MsgBoxStyle.OkOnly, "Data Error !!")
+        End Try
     End Sub
 
     Sub getExamQuestion()
@@ -111,6 +158,10 @@ Public Class FrmTakeExam
         'RadioButton2.Checked = False
         'RadioButton3.Checked = False
         'RadioButton4.Checked = True
+    End Sub
+
+    Private Sub btnsubmit_Click(sender As Object, e As EventArgs) Handles btnsubmit.Click
+
     End Sub
 
     Private Sub gettime()

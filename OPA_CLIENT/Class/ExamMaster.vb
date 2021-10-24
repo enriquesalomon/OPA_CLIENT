@@ -25,7 +25,7 @@ Public Class ExamMaster
 
             FrmExamMaster.dtgList.RowsDefaultCellStyle.BackColor = Color.White
             FrmExamMaster.dtgList.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
-            FrmExamMaster.dtgList.ColumnCount = 3
+            FrmExamMaster.dtgList.ColumnCount = 4
             FrmExamMaster.dtgList.Columns(0).HeaderText = "ID"
             FrmExamMaster.dtgList.Columns(0).Width = 90
             FrmExamMaster.dtgList.Columns(0).Name = "id"
@@ -34,9 +34,14 @@ Public Class ExamMaster
             FrmExamMaster.dtgList.Columns(1).Width = 500
             FrmExamMaster.dtgList.Columns(1).Name = "examcode"
 
-            FrmExamMaster.dtgList.Columns(2).HeaderText = "STATUS"
+            FrmExamMaster.dtgList.Columns(2).HeaderText = "TYPE"
             FrmExamMaster.dtgList.Columns(2).Width = 100
-            FrmExamMaster.dtgList.Columns(2).Name = "status"
+            FrmExamMaster.dtgList.Columns(2).Name = "type"
+
+
+            FrmExamMaster.dtgList.Columns(3).HeaderText = "STATUS"
+            FrmExamMaster.dtgList.Columns(3).Width = 100
+            FrmExamMaster.dtgList.Columns(3).Name = "status"
 
             Dim btn As New DataGridViewButtonColumn()
             FrmExamMaster.dtgList.Columns.Add(btn)
@@ -50,7 +55,7 @@ Public Class ExamMaster
             If mydataTable.Rows.Count > 0 Then
                 For Each mrow As DataRow In mydataTable.Rows
 
-                    Dim row As String() = New String() {mrow("id").ToString, mrow("sy").ToString + " " + mrow("examcategoryname").ToString, "TAKEN"}
+                    Dim row As String() = New String() {mrow("id").ToString, mrow("sy").ToString + " " + mrow("examcategoryname").ToString, mrow("examtype").ToString, mrow("status").ToString}
                     FrmExamMaster.dtgList.Rows.Add(row)
                 Next
 
