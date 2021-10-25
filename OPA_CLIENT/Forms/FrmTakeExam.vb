@@ -7,7 +7,7 @@ Public Class FrmTakeExam
 
     Private Sub FrmTakeExam_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         GroupBox1.Visible = False
-        lblexamtitle.Text = examcode
+        lblexamtitle.Text = examcode.ToUpper()
         AnswerList()
         'lblquestion.Top = (lblquestion.Parent.Height \ 2) - (lblquestion.Height \ 2)
         'lblquestion.Left = (lblquestion.Parent.Width \ 2) - (lblquestion.Width \ 2)
@@ -169,12 +169,13 @@ Public Class FrmTakeExam
             vv = 0
             tt = tt + 1
         End If
-        If tt = 2 Then
+        If tt = CInt(timelimit) Then
             vv = 0
             tt = 0
             lbltimer.Text = "00:00:00"
             lbltimer.Enabled = False
             MessageBox.Show("Time Ended")
+            Me.Dispose()
         End If
 
     End Sub

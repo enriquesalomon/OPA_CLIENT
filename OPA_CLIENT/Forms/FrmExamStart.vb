@@ -24,4 +24,8 @@ Public Class FrmExamStart
         FrmTakeExam.GroupBox1.Visible = True
         Me.Close()
     End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        FrmTakeExam.Dispose()
+    End Sub
 End Class

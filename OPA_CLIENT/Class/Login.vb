@@ -16,13 +16,14 @@ Public Class Login
         READER = COMMAND.ExecuteReader
         While READER.Read()
                 nickname = READER("firstname").ToString
-                Globaluserid = READER("id").ToString
+            Globaluserid = READER("id").ToString
             'userinfo = READER("fname").ToString & " " & READER("lname").ToString
 
         End While
         READER.Close()
         MysqlConn.Close()
         If Globaluserid <> "" Then
+
             FrmMain.ShowDialog()
             FrmLogin.txtpassword.Clear()
             FrmLogin.txtusername.Clear()

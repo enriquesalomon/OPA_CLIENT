@@ -50,4 +50,13 @@
             .Show()
         End With
     End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        With FrmChangeAccessCode
+            .TopLevel = False
+            Panel5.Controls.Add(FrmChangeAccessCode)
+            .BringToFront()
+            .Show()
+        End With
+    End Sub
 End Class

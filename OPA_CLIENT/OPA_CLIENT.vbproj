@@ -79,6 +79,12 @@
   <ItemGroup>
     <Compile Include="Class\ExamMaster.vb" />
     <Compile Include="Class\Login.vb" />
+    <Compile Include="Forms\FrmChangeAccessCode.Designer.vb">
+      <DependentUpon>FrmChangeAccessCode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmChangeAccessCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\FrmDashboard.Designer.vb">
       <DependentUpon>FrmDashboard.vb</DependentUpon>
     </Compile>
@@ -142,6 +148,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\FrmChangeAccessCode.resx">
+      <DependentUpon>FrmChangeAccessCode.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmDashboard.resx">
       <DependentUpon>FrmDashboard.vb</DependentUpon>
     </EmbeddedResource>

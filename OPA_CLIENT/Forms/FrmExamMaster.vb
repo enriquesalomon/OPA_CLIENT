@@ -15,7 +15,7 @@ Public Class FrmExamMaster
         Dim GridRow As DataGridViewRow = dtgList.CurrentRow
 
         For Each datagrd As DataGridViewRow In dtgList.SelectedRows
-            examcode = CStr(GridRow.Cells.Item("examcode").Value) + " - " + CStr(GridRow.Cells.Item("subject").Value) + " - " + CStr(GridRow.Cells.Item("type").Value)
+            examcode = CStr(GridRow.Cells.Item("examcode").Value) + " | " + CStr(GridRow.Cells.Item("subject").Value) + " | " + CStr(GridRow.Cells.Item("type").Value)
             examid = CStr(GridRow.Cells.Item("id").Value)
             'examtype = CStr(GridRow.Cells.Item("type").Value)
             'subject = CStr(GridRow.Cells.Item("subject").Value)
@@ -51,7 +51,7 @@ Public Class FrmExamMaster
 
     Private Sub dtgList_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtgList.CellClick
         examcode = ""
-        If e.ColumnIndex = 5 Then
+        If e.ColumnIndex = 6 Then
             If MessageBox.Show("Are you sure you want to proceed? " & vbNewLine & " " & vbNewLine & "", " Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = Windows.Forms.DialogResult.Yes Then
                 LoadData()
                 FrmTakeExam.ShowDialog()

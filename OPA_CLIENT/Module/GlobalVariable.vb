@@ -9,8 +9,8 @@ Module GlobalVariable
     Public userinfo, usertype, nickname As String
     Public query As String
     Public examcode, examid, examtype, subject As String
-    Public examtotalquestion As Integer
-
+    Public examtotalquestion As Integerak
+    Public timelimit As String
 
     Public mycommand As New MySqlCommand
     Public myadapter As New MySqlDataAdapter

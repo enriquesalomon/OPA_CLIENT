@@ -25,7 +25,7 @@ Public Class ExamMaster
 
         FrmExamMaster.dtgList.RowsDefaultCellStyle.BackColor = Color.White
         FrmExamMaster.dtgList.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
-        FrmExamMaster.dtgList.ColumnCount = 5
+        FrmExamMaster.dtgList.ColumnCount = 6
         FrmExamMaster.dtgList.Columns(0).HeaderText = "ID"
         FrmExamMaster.dtgList.Columns(0).Width = 90
         FrmExamMaster.dtgList.Columns(0).Name = "id"
@@ -44,9 +44,14 @@ Public Class ExamMaster
         FrmExamMaster.dtgList.Columns(3).Name = "type"
 
 
-        FrmExamMaster.dtgList.Columns(4).HeaderText = "STATUS"
+        FrmExamMaster.dtgList.Columns(4).HeaderText = "TIMI LIMIT(Mins)"
         FrmExamMaster.dtgList.Columns(4).Width = 100
-        FrmExamMaster.dtgList.Columns(4).Name = "status"
+        FrmExamMaster.dtgList.Columns(4).Name = "timelimit"
+
+
+        FrmExamMaster.dtgList.Columns(5).HeaderText = "STATUS"
+        FrmExamMaster.dtgList.Columns(5).Width = 100
+        FrmExamMaster.dtgList.Columns(5).Name = "status"
 
         Dim btn As New DataGridViewButtonColumn()
             FrmExamMaster.dtgList.Columns.Add(btn)
@@ -60,8 +65,9 @@ Public Class ExamMaster
             If mydataTable.Rows.Count > 0 Then
                 For Each mrow As DataRow In mydataTable.Rows
 
-                    Dim examsubjectname As String = ""
-                    xdataTable.Rows.Clear()
+                Dim examsubjectname As String = ""
+
+                xdataTable.Rows.Clear()
                     xdataset.Clear()
                     runServer()
                     MysqlConn.Open()
@@ -75,12 +81,13 @@ Public Class ExamMaster
                         For Each str As DataRow In xdataTable.Rows
                         examsubjectname = str("subjectname").ToString
                         examtotalquestion = str("totalquestion")
+                        timelimit = str("timelimit")
                     Next
                     End If
                     xdataTable.Rows.Clear()
                     xdataset.Clear()
 
-                Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString + " " + mrow("sy").ToString, examsubjectname.ToString, mrow("examtype").ToString, mrow("status").ToString}
+                Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString + " " + mrow("sy").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, mrow("status").ToString}
                 FrmExamMaster.dtgList.Rows.Add(row)
                 Next
 
@@ -96,7 +103,7 @@ Public Class ExamMaster
 
         Dim num As Integer
         num = 0
-        Globaluserid = ""
+        'Globaluserid = ""
         query = "Select COUNT(*) as num from exam"
         runServer()
         MysqlConn.Open()

@@ -219,14 +219,13 @@ Partial Class FrmTakeExam
         '
         Me.txtQuestion.BackColor = System.Drawing.Color.White
         Me.txtQuestion.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtQuestion.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtQuestion.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtQuestion.Location = New System.Drawing.Point(202, 45)
         Me.txtQuestion.Multiline = True
         Me.txtQuestion.Name = "txtQuestion"
         Me.txtQuestion.ReadOnly = True
-        Me.txtQuestion.Size = New System.Drawing.Size(693, 125)
+        Me.txtQuestion.Size = New System.Drawing.Size(693, 152)
         Me.txtQuestion.TabIndex = 4
-        Me.txtQuestion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'RadioButton3
         '
