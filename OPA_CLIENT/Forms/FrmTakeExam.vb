@@ -2,8 +2,10 @@
 Public Class FrmTakeExam
     Dim ss, tt, vv As Integer
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
-        MyExam.ExamList()
+
+        MsgBox(Globaluserid.ToString)
         Me.Close()
+        MyExam.ExamList()
 
     End Sub
 
@@ -11,33 +13,18 @@ Public Class FrmTakeExam
         GroupBox1.Visible = False
         lblexamtitle.Text = examcode.ToUpper()
         AnswerList()
-        'lblquestion.Top = (lblquestion.Parent.Height \ 2) - (lblquestion.Height \ 2)
-        'lblquestion.Left = (lblquestion.Parent.Width \ 2) - (lblquestion.Width \ 2)
-
-        'RadioButton1.Top = (RadioButton1.Parent.Height \ 2) - (RadioButton1.Height \ 2)
-        'RadioButton1.Left = (RadioButton1.Parent.Width \ 2) - (RadioButton1.Width \ 2)
-
-        'RadioButton2.Top = (RadioButton2.Parent.Height \ 2) - (RadioButton2.Height \ 2)
-        'RadioButton2.Left = (RadioButton2.Parent.Width \ 2) - (RadioButton2.Width \ 2)
-
-        'RadioButton3.Top = (RadioButton3.Parent.Height \ 2) - (RadioButton3.Height \ 2)
-        'RadioButton3.Left = (RadioButton3.Parent.Width \ 2) - (RadioButton3.Width \ 2)
-
-
-        'RadioButton4.Top = (RadioButton4.Parent.Height \ 2) - (RadioButton4.Height \ 2)
-        'RadioButton4.Left = (RadioButton4.Parent.Width \ 2) - (RadioButton4.Width \ 2)
         FrmExamStart.ShowDialog()
     End Sub
     Sub AnswerList()
 
-        Dim ldataset As New DataSet
-        Dim schedtime As String
+
+
         Try
             'FrmExamMaster.DataGridView1.Font = New Font("Arial", 16, FontStyle.Regular)
             'dtgListAnswer.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             dtgList.Rows.Clear()
-            mydataTable.Rows.Clear()
-            ldataset.Clear()
+            xdataTable.Rows.Clear()
+            xdataset.Clear()
             runServer()
             MysqlConn.Open()
             mycommand = MysqlConn.CreateCommand
@@ -45,8 +32,8 @@ Public Class FrmTakeExam
             mycommand.CommandText = "Select  * from  (exam inner join examcategory on exam.examcategoryid = examcategory.id) "
 
             myadapter.SelectCommand = mycommand
-            myadapter.Fill(ldataset, "exam")
-            mydataTable = ldataset.Tables("exam")
+            myadapter.Fill(xdataset, "exam")
+            mydataTable = xdataset.Tables("exam")
 
             dtgList.RowsDefaultCellStyle.BackColor = Color.White
             dtgList.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
@@ -136,7 +123,7 @@ Public Class FrmTakeExam
     Sub getExamQuestion()
 
 
-        Globaluserid = ""
+
         query = "Select  COUNT(*) as totalcount from  (examsubject inner join examquestion on examquestion.examsubjectid = examsubject.id) WHERE examquestion.examid='" & examid & "'"
         runServer()
         MysqlConn.Open()
@@ -163,7 +150,7 @@ Public Class FrmTakeExam
 
         Dim num As Integer
         num = 0
-        Globaluserid = ""
+
         query = "Select * from examquestion where examsubjectid='" & subjectid & "' AND examid='" & examid & "' AND num='" & questnum & "'"
         runServer()
         MysqlConn.Open()
@@ -256,8 +243,15 @@ Public Class FrmTakeExam
         'RadioButton3.Checked = False
         'RadioButton4.Checked = True
     End Sub
+    Sub deselectradtionbutton()
+        RadioButton1.Checked = False
+        RadioButton2.Checked = False
+        RadioButton3.Checked = False
+        RadioButton4.Checked = False
+    End Sub
 
     Private Sub btnsubmit_Click(sender As Object, e As EventArgs) Handles btnsubmit.Click
+        deselectradtionbutton()
 
         questnum += 1
         If questnum > totalquestions Then
@@ -270,7 +264,7 @@ Public Class FrmTakeExam
 
         Dim num As Integer
         num = 0
-        Globaluserid = ""
+
         query = "Select * from examquestion where examsubjectid='" & subjectid & "' AND examid='" & examid & "' AND num='" & questnum & "'"
         runServer()
         MysqlConn.Open()
@@ -301,7 +295,7 @@ Public Class FrmTakeExam
     End Sub
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
-
+        deselectradtionbutton()
         questnum -= 1
         If questnum = 0 Then
             MsgBox("NO MORE QUESTION")
@@ -313,7 +307,7 @@ Public Class FrmTakeExam
 
         Dim num As Integer
         num = 0
-        Globaluserid = ""
+
         query = "Select * from examquestion where examsubjectid='" & subjectid & "' AND examid='" & examid & "' AND num='" & questnum & "'"
         runServer()
         MysqlConn.Open()
@@ -342,25 +336,49 @@ Public Class FrmTakeExam
         xdataset.Clear()
     End Sub
 
+    Public tspn As New TimeSpan()
     Private Sub gettime()
+        tspn = tspn.Subtract(New TimeSpan(0, 0, 1))
 
 
-        lbltimer.Text = Format(stringServer, "00:") & Format(tt, "00:") & Format(vv, "00")
-        vv = vv + 1
-        If vv > 59 Then
-            vv = 0
-            tt = tt + 1
-        End If
-        If tt = CInt(timelimit) Then
-            vv = 0
-            tt = 0
-            lbltimer.Text = "00:00:00"
 
+        lbltimer.Text = String.Format(" {0} mins : {1} secs", tspn.Minutes, tspn.Seconds)
+
+        If tspn.Minutes = 0 AndAlso tspn.Seconds = 0 Then
+            Timer1.Stop()
             MessageBox.Show("Time Ended")
-            lbltimer.Enabled = False
-            lbltimer.Text = "00:00:00"
-            Me.Dispose()
+
         End If
+
+        'ok---------------------------
+        'lbltimer.Text = Format(stringServer, "00:") & Format(timelimit, "00:") & Format(vv, "00")
+        'vv = vv + 1
+        'If vv > 59 Then
+        '    vv = 0
+        '    tt = tt + 1
+        'End If
+        'If tt = CInt(timelimit) Then
+        '    vv = 0
+        '    tt = 0
+        '    lbltimer.Text = "00:00:00"
+
+        '    MessageBox.Show("Time Ended")
+        '    lbltimer.Enabled = False
+        '    lbltimer.Text = "00:00:00"
+        '    Me.Dispose()
+        'End If
+
+        'Current = Current - 1
+        'lbltimer.Text = Current.ToString
+
+        'If lbltimer.Text = "0" Then
+
+        '    Timer1.Stop()
+
+        '    MessageBox.Show("Countdown Finished")
+
+        'End If
+
 
     End Sub
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick

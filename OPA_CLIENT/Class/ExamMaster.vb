@@ -6,7 +6,6 @@ Public Class ExamMaster
     Sub ExamList()
 
         Dim ldataset, xdataset As New DataSet
-        Dim schedtime As String
         'Try
         'FrmExamMaster.DataGridView1.Font = New Font("Arial", 16, FontStyle.Regular)
         FrmExamMaster.dtgList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
@@ -17,9 +16,11 @@ Public Class ExamMaster
             MysqlConn.Open()
             mycommand = MysqlConn.CreateCommand
 
-            mycommand.CommandText = "Select  * from  (exam inner join examcategory on exam.examcategoryid = examcategory.id) "
+        'mycommand.CommandText = "Select  * from  (exam inner join examcategory on exam.examcategoryid = examcategory.id)"
+        mycommand.CommandText = "SELECT e.id as id,ec.examcategoryname as examcategoryname,e.sy as sy,e.examtype as examtype,e.status as status FROM exam e INNER JOIN examcategory ec ON e.examcategoryid=ec.id INNER JOIN examinee ex ON ex.examid=e.id WHERE ex.studentid='" & Globaluserid & "'"
 
-            myadapter.SelectCommand = mycommand
+
+        myadapter.SelectCommand = mycommand
             myadapter.Fill(ldataset, "exam")
             mydataTable = ldataset.Tables("exam")
 
@@ -87,8 +88,9 @@ Public Class ExamMaster
                     End If
                     xdataTable.Rows.Clear()
                     xdataset.Clear()
-
                 Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString + " " + mrow("sy").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, mrow("status").ToString}
+
+                'Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString + " " + mrow("sy").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, mrow("status").ToString}
                 FrmExamMaster.dtgList.Rows.Add(row)
                 Next
 

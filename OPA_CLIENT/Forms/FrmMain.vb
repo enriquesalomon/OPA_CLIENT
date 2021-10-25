@@ -11,6 +11,7 @@
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         With FrmExamMaster
             .TopLevel = False
+            MyExam.ExamList()
             Panel5.Controls.Add(FrmExamMaster)
             .BringToFront()
             .Show()
@@ -58,5 +59,9 @@
             .BringToFront()
             .Show()
         End With
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+
     End Sub
 End Class

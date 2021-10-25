@@ -17,7 +17,13 @@ Public Class FrmExamStart
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        FrmTakeExam.Timer1.Enabled = True
+        If IsNumeric(timelimit) AndAlso CInt(timelimit) > 0 Then
+            FrmTakeExam.tspn = New TimeSpan(0, CInt(timelimit), 0)
+            FrmTakeExam.Timer1.Enabled = True
+        Else
+            MessageBox.Show("Please enter a numeric value in the text box", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+        'FrmTakeExam.Timer1.Enabled = True
         FrmTakeExam.btnBack.Enabled = True
         FrmTakeExam.btnsubmit.Enabled = True
         FrmTakeExam.getAnswersTable()
