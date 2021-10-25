@@ -6,7 +6,7 @@ Public Class Login
 
         nickname = ""
         Globaluserid = ""
-        query = "Select * from student where opeusername= '" & FrmLogin.txtusername.Text & "' and opepassword= '" & FrmLogin.txtpassword.Text & "'"
+        query = "Select * from student where studentno= '" & FrmLogin.txtusername.Text & "' and opepassword= '" & FrmLogin.txtpassword.Text & "'"
         runServer()
         MysqlConn.Open()
         COMMAND = New MySqlCommand(query, MysqlConn)
@@ -29,7 +29,7 @@ Public Class Login
             FrmLogin.txtpassword.Clear()
             FrmLogin.txtusername.Clear()
         Else
-            MsgBox("Invalid Username/Password")
+            MsgBox("Invalid StudentNo/Access Code")
             FrmLogin.txtpassword.Clear()
             FrmLogin.txtusername.Clear()
             FrmLogin.txtusername.Focus()

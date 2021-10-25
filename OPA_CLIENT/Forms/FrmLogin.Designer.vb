@@ -124,7 +124,7 @@ Partial Class FrmLogin
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(101, 18)
         Me.Label6.TabIndex = 222
-        Me.Label6.Text = "Pin Code       :"
+        Me.Label6.Text = "Access Code:"
         '
         'Label10
         '
