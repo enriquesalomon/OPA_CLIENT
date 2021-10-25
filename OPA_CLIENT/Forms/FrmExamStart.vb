@@ -18,7 +18,7 @@ Public Class FrmExamStart
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         FrmTakeExam.Timer1.Enabled = True
-        FrmTakeExam.btnstart.Enabled = True
+        FrmTakeExam.btnBack.Enabled = True
         FrmTakeExam.btnsubmit.Enabled = True
         FrmTakeExam.getExamQuestion()
         FrmTakeExam.GroupBox1.Visible = True

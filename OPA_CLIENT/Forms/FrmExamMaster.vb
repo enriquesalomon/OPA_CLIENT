@@ -15,8 +15,12 @@ Public Class FrmExamMaster
         Dim GridRow As DataGridViewRow = dtgList.CurrentRow
 
         For Each datagrd As DataGridViewRow In dtgList.SelectedRows
+
+
             examcode = CStr(GridRow.Cells.Item("examcode").Value) + " | " + CStr(GridRow.Cells.Item("subject").Value) + " | " + CStr(GridRow.Cells.Item("type").Value)
             examid = CStr(GridRow.Cells.Item("id").Value)
+
+
             'examtype = CStr(GridRow.Cells.Item("type").Value)
             'subject = CStr(GridRow.Cells.Item("subject").Value)
 
@@ -39,6 +43,7 @@ Public Class FrmExamMaster
             'READER.Close()
             'MysqlConn.Close()
         Next datagrd
+
 
 
         Dim num As Integer = 0
@@ -76,69 +81,60 @@ Public Class FrmExamMaster
         xdataset.Clear()
 
 
-
-
-        'If examtype = "Essay" Then
-        '    Dim num As Integer
-        '    num = 0
-        '    Globaluserid = ""
-        '    query = "Select COUNT(*) as num from examquestion_essay"
-        '    runServer()
-        '    MysqlConn.Open()
-        '    COMMAND = New MySqlCommand(query, MysqlConn)
-        '    SDA.SelectCommand = COMMAND
-        '    SDA.Fill(dbDataset)
-        '    bSource.DataSource = dbDataset
-        '    READER = COMMAND.ExecuteReader
-        '    While READER.Read()
-        '        num = READER("num").ToString
-
-
-        '    End While
-        '    READER.Close()
-        '    MysqlConn.Close()
-        'End If
-        'If examtype = "Multiple Choice" Then
-
-        'End If
-        'If examtype = "True or False" Then
-
-        'End If
     End Sub
 
     Private Sub dtgList_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtgList.CellClick
-        examcode = ""
+
         If e.ColumnIndex = 6 Then
 
-            LoadData()
 
-            ''CHECK IF THERE IS A QUESTIONS
+            Dim GridRow As DataGridViewRow = dtgList.CurrentRow
+            Dim examstatus As String = ""
+            For Each datagrd As DataGridViewRow In dtgList.SelectedRows
 
-            Dim hasquestionsnuymber As Integer = 0
-            query = "Select  COUNT(*) as totalcount from  (examsubject inner join examquestion on examquestion.examsubjectid = examsubject.id) WHERE examquestion.examid='" & examid & "'"
-            runServer()
-            MysqlConn.Open()
-            COMMAND = New MySqlCommand(query, MysqlConn)
-            SDA.SelectCommand = COMMAND
-            SDA.Fill(dbDataset)
-            bSource.DataSource = dbDataset
-            READER = COMMAND.ExecuteReader
-            While READER.Read()
-                hasquestionsnuymber = READER("totalcount").ToString
-            End While
-            READER.Close()
-            MysqlConn.Close()
+                examstatus = CStr(GridRow.Cells.Item("status").Value)
 
-            If hasquestionsnuymber < 1 Then
-                MsgBox("No question")
-                Exit Sub
+            Next datagrd
+
+            If examstatus = "CLOSED" Then
+
+
+                If MessageBox.Show("EXAM IS ALREADY CLOSED" & vbNewLine & " " & vbNewLine & "", " Information", MessageBoxButtons.OK, MessageBoxIcon.Information) = Windows.Forms.DialogResult.OK Then
+                    Exit Sub
+                End If
+
+
 
             Else
-                If MessageBox.Show("Are you sure you want to proceed? " & vbNewLine & " " & vbNewLine & "", " Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = Windows.Forms.DialogResult.Yes Then
 
-                    FrmTakeExam.ShowDialog()
+
+                LoadData()
+                ''CHECK IF THERE IS A QUESTIONS
+                Dim hasquestionsnuymber As Integer = 0
+                query = "Select  COUNT(*) as totalcount from  (examsubject inner join examquestion on examquestion.examsubjectid = examsubject.id) WHERE examquestion.examid='" & examid & "'"
+                runServer()
+                MysqlConn.Open()
+                COMMAND = New MySqlCommand(query, MysqlConn)
+                SDA.SelectCommand = COMMAND
+                SDA.Fill(dbDataset)
+                bSource.DataSource = dbDataset
+                READER = COMMAND.ExecuteReader
+                While READER.Read()
+                    hasquestionsnuymber = READER("totalcount").ToString
+                End While
+                READER.Close()
+                MysqlConn.Close()
+
+                If hasquestionsnuymber < 1 Then
+                    MsgBox("No question")
+                Else
+                    If MessageBox.Show("Are you sure you want to proceed? " & vbNewLine & " " & vbNewLine & "", " Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = Windows.Forms.DialogResult.Yes Then
+                        FrmTakeExam.ShowDialog()
+                    End If
                 End If
             End If
+
+
 
 
 

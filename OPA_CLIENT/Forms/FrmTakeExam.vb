@@ -75,6 +75,12 @@ Public Class FrmTakeExam
     End Sub
     Dim questnum As Integer = 0
     Dim totalquestions As Integer = 0
+
+    Dim question As String = ""
+    Dim opt1 As String = ""
+    Dim opt2 As String = ""
+    Dim opt3 As String = ""
+    Dim opt4 As String = ""
     Sub getExamQuestion()
 
 
@@ -101,11 +107,7 @@ Public Class FrmTakeExam
         End If
 
 
-        Dim question As String = ""
-        Dim opt1 As String = ""
-        Dim opt2 As String = ""
-        Dim opt3 As String = ""
-        Dim opt4 As String = ""
+
 
         Dim num As Integer
         num = 0
@@ -158,9 +160,7 @@ Public Class FrmTakeExam
         'xdataset.Clear()
 
     End Sub
-    Private Sub btnstart_Click(sender As Object, e As EventArgs) Handles btnstart.Click
 
-    End Sub
 
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
         'If RadioButton1.Checked = False Then
@@ -206,10 +206,93 @@ Public Class FrmTakeExam
     End Sub
 
     Private Sub btnsubmit_Click(sender As Object, e As EventArgs) Handles btnsubmit.Click
-        getExamQuestion()
+
+        questnum += 1
+        If questnum > totalquestions Then
+            questnum -= 1
+            MsgBox("NO MORE QUESTION")
+        End If
+
+
+
+
+        Dim num As Integer
+        num = 0
+        Globaluserid = ""
+        query = "Select * from examquestion where examsubjectid='" & subjectid & "' AND examid='" & examid & "' AND num='" & questnum & "'"
+        runServer()
+        MysqlConn.Open()
+        COMMAND = New MySqlCommand(query, MysqlConn)
+        SDA.SelectCommand = COMMAND
+        SDA.Fill(dbDataset)
+        bSource.DataSource = dbDataset
+        READER = COMMAND.ExecuteReader
+        While READER.Read()
+            question = READER("questiontitle").ToString
+            opt1 = READER("option1").ToString
+            opt2 = READER("option2").ToString
+            opt3 = READER("option3").ToString
+            opt4 = READER("option4").ToString
+
+        End While
+        READER.Close()
+        MysqlConn.Close()
+        txtQuestion.Text = question
+        RadioButton1.Text = opt1
+        RadioButton2.Text = opt2
+        RadioButton3.Text = opt3
+        RadioButton4.Text = opt4
+
+        xdataTable.Rows.Clear()
+        xdataset.Clear()
+
+    End Sub
+
+    Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
+
+        questnum -= 1
+        If questnum = 0 Then
+            MsgBox("NO MORE QUESTION")
+            questnum += 1
+        End If
+
+
+
+
+        Dim num As Integer
+        num = 0
+        Globaluserid = ""
+        query = "Select * from examquestion where examsubjectid='" & subjectid & "' AND examid='" & examid & "' AND num='" & questnum & "'"
+        runServer()
+        MysqlConn.Open()
+        COMMAND = New MySqlCommand(query, MysqlConn)
+        SDA.SelectCommand = COMMAND
+        SDA.Fill(dbDataset)
+        bSource.DataSource = dbDataset
+        READER = COMMAND.ExecuteReader
+        While READER.Read()
+            question = READER("questiontitle").ToString
+            opt1 = READER("option1").ToString
+            opt2 = READER("option2").ToString
+            opt3 = READER("option3").ToString
+            opt4 = READER("option4").ToString
+
+        End While
+        READER.Close()
+        MysqlConn.Close()
+        txtQuestion.Text = question
+        RadioButton1.Text = opt1
+        RadioButton2.Text = opt2
+        RadioButton3.Text = opt3
+        RadioButton4.Text = opt4
+
+        xdataTable.Rows.Clear()
+        xdataset.Clear()
     End Sub
 
     Private Sub gettime()
+
+
         lbltimer.Text = Format(stringServer, "00:") & Format(tt, "00:") & Format(vv, "00")
         vv = vv + 1
         If vv > 59 Then
@@ -220,8 +303,10 @@ Public Class FrmTakeExam
             vv = 0
             tt = 0
             lbltimer.Text = "00:00:00"
-            lbltimer.Enabled = False
+
             MessageBox.Show("Time Ended")
+            lbltimer.Enabled = False
+            lbltimer.Text = "00:00:00"
             Me.Dispose()
         End If
 
