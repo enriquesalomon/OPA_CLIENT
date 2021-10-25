@@ -67,28 +67,52 @@ Public Class ExamMaster
                 For Each mrow As DataRow In mydataTable.Rows
 
                 Dim examsubjectname As String = ""
-
                 xdataTable.Rows.Clear()
-                    xdataset.Clear()
-                    runServer()
-                    MysqlConn.Open()
-                    mycommand = MysqlConn.CreateCommand
+                xdataset.Clear()
+                runServer()
+                MysqlConn.Open()
+                mycommand = MysqlConn.CreateCommand
                 mycommand.CommandText = "Select  * from  (examsubject inner join subjects on examsubject.subjectid = subjects.id) WHERE examsubject.examid='" & mrow("id").ToString & "'"
 
                 myadapter.SelectCommand = mycommand
-                    myadapter.Fill(xdataset, "examsubject")
-                    xdataTable = xdataset.Tables("examsubject")
-                    If xdataTable.Rows.Count > 0 Then
-                        For Each str As DataRow In xdataTable.Rows
+                myadapter.Fill(xdataset, "examsubject")
+                xdataTable = xdataset.Tables("examsubject")
+                If xdataTable.Rows.Count > 0 Then
+                    For Each str As DataRow In xdataTable.Rows
                         examsubjectname = str("subjectname").ToString
                         examtotalquestion = str("totalquestion")
                         timelimit = str("timelimit")
 
                     Next
-                    End If
-                    xdataTable.Rows.Clear()
-                    xdataset.Clear()
-                Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString + " " + mrow("sy").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, mrow("status").ToString}
+                End If
+                xdataTable.Rows.Clear()
+                xdataset.Clear()
+
+                Dim examstatus As String = ""
+                xdataTable.Rows.Clear()
+                xdataset.Clear()
+                runServer()
+                MysqlConn.Open()
+                mycommand = MysqlConn.CreateCommand
+                mycommand.CommandText = "Select  * from  examinee WHERE examid='" & mrow("id").ToString & "' and studentid='" & Globaluserid & "'"
+
+                myadapter.SelectCommand = mycommand
+                myadapter.Fill(xdataset, "examinee")
+                xdataTable = xdataset.Tables("examinee")
+                If xdataTable.Rows.Count > 0 Then
+                    For Each str As DataRow In xdataTable.Rows
+                        examstatus = str("status").ToString
+                    Next
+                End If
+                xdataTable.Rows.Clear()
+                xdataset.Clear()
+
+                If examstatus = "" Then
+                    examstatus = mrow("status").ToString
+                End If
+
+
+                Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString + " " + mrow("sy").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, examstatus.ToString}
 
                 'Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString + " " + mrow("sy").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, mrow("status").ToString}
                 FrmExamMaster.dtgList.Rows.Add(row)

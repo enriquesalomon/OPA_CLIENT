@@ -55,7 +55,7 @@ Partial Class FrmMain
         '
         'Panel1
         '
-        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(76, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(43, Byte), Integer))
         Me.Panel1.Controls.Add(Me.Button6)
         Me.Panel1.Controls.Add(Me.Button5)
         Me.Panel1.Controls.Add(Me.Button4)
@@ -223,7 +223,7 @@ Partial Class FrmMain
         '
         'Panel2
         '
-        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(196, Byte), Integer), CType(CType(15, Byte), Integer))
         Me.Panel2.Controls.Add(Me.btnLogout)
         Me.Panel2.Controls.Add(Me.Label1)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top

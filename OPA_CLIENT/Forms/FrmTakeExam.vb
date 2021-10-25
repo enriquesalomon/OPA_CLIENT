@@ -3,16 +3,32 @@ Public Class FrmTakeExam
     Dim ss, tt, vv As Integer
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
 
-        MsgBox(Globaluserid.ToString)
+        If MessageBox.Show("Are you sure you want to Exit the Exam?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            UpdateExamRecordToClose()
+            MsgBox(" Examination Assessment Recorded", MsgBoxStyle.Information)
+        Else
+            Exit Sub
+        End If
         Me.Close()
         MyExam.ExamList()
 
+    End Sub
+
+    Sub UpdateExamRecordToClose()
+        runServer()
+        MysqlConn.Open()
+        'query = "insert into exam_answer_multiplechoice (studentid,studentno,examid,examsubjectid,questionnum,answer,answerdescription) values ('" & Globaluserid & "','" & studentno & "','" & examid & "','" & subjectid & "','" & questnum & "','" & "" & "','" & "" & "')"
+        query = "update examinee set status='" & "CLOSED" & "',datetaken='" & Date.Now.ToShortDateString & "',startime='" & timelimit & "',timeend='" & tspn.Minutes.ToString + ":" + tspn.Seconds.ToString & "' where examid='" & examid & "' AND studentid='" & Globaluserid & "'"
+        COMMAND = New MySqlCommand(query, MysqlConn)
+        READER = COMMAND.ExecuteReader
+        MysqlConn.Close()
     End Sub
 
     Private Sub FrmTakeExam_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         GroupBox1.Visible = False
         lblexamtitle.Text = examcode.ToUpper()
         AnswerList()
+       
         FrmExamStart.ShowDialog()
     End Sub
     Sub AnswerList()
@@ -78,7 +94,7 @@ Public Class FrmTakeExam
             Dim ldataset, xdataset As New DataSet
 
             dtgList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-            FrmExamMaster.dtgList.Rows.Clear()
+            dtgList.Rows.Clear()
             mydataTable.Rows.Clear()
             ldataset.Clear()
             runServer()
@@ -249,17 +265,110 @@ Public Class FrmTakeExam
         RadioButton3.Checked = False
         RadioButton4.Checked = False
     End Sub
+    Sub GetAnswers_UpdateAnswer_multiplechoices()
+        Dim answer As String = ""
+        query = "Select * from exam_answer_multiplechoice where studentid= '" & Globaluserid & "' and examid= '" & examid & "' and examsubjectid= '" & subjectid & "'"
+        runServer()
+        MysqlConn.Open()
+        COMMAND = New MySqlCommand(query, MysqlConn)
+        SDA.SelectCommand = COMMAND
+        SDA.Fill(dbDataset)
+        bSource.DataSource = dbDataset
+        READER = COMMAND.ExecuteReader
+        While READER.Read()
+            answer = READER("answer").ToString
+        End While
+        READER.Close()
+        MysqlConn.Close()
+
+        Select Case answer
+            Case "A"
+                RadioButton1.Checked = True
+            Case "B"
+                RadioButton2.Checked = True
+            Case "C"
+                RadioButton3.Checked = True
+            Case "D"
+                RadioButton4.Checked = True
+            Case Else
+
+        End Select
+
+    End Sub
+    Dim noanswer As Boolean
+    Sub UpdateAnswer_multiplechoices()
+        Select Case True
+            Case RadioButton1.Checked
+                runServer()
+                MysqlConn.Open()
+                query = "update exam_answer_multiplechoice set answer='" & "A" & "',answerdescription='" & RadioButton1.Text & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "'"
+                COMMAND = New MySqlCommand(query, MysqlConn)
+                READER = COMMAND.ExecuteReader
+                MysqlConn.Close()
+            Case RadioButton2.Checked
+                runServer()
+                MysqlConn.Open()
+                query = "update exam_answer_multiplechoice set answer='" & "B" & "',answerdescription='" & RadioButton2.Text & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "'"
+                COMMAND = New MySqlCommand(query, MysqlConn)
+                READER = COMMAND.ExecuteReader
+                MysqlConn.Close()
+            Case RadioButton3.Checked
+                runServer()
+                MysqlConn.Open()
+                query = "update exam_answer_multiplechoice set answer='" & "C" & "',answerdescription='" & RadioButton3.Text & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "'"
+                COMMAND = New MySqlCommand(query, MysqlConn)
+                READER = COMMAND.ExecuteReader
+                MysqlConn.Close()
+            Case RadioButton4.Checked
+                runServer()
+                MysqlConn.Open()
+                query = "update exam_answer_multiplechoice set answer='" & "D" & "',answerdescription='" & RadioButton4.Text & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "'"
+                COMMAND = New MySqlCommand(query, MysqlConn)
+                READER = COMMAND.ExecuteReader
+                MysqlConn.Close()
+            Case Else
+
+                Exit Sub
+        End Select
+
+    End Sub
+
 
     Private Sub btnsubmit_Click(sender As Object, e As EventArgs) Handles btnsubmit.Click
-        deselectradtionbutton()
 
+
+        If examtype = "Multiple Choice" Then
+            'GetAnswers_UpdateAnswer_multiplechoices()
+            UpdateAnswer_multiplechoices()
+
+        ElseIf examtype = "Essay" Then
+
+        ElseIf examtype = "True or False" Then
+
+
+        End If
+        getAnswersTable()
+        If noanswer = True Then
+            Exit Sub
+        End If
+
+        If RadioButton1.Checked = False And RadioButton2.Checked = False And RadioButton3.Checked = False And RadioButton4.Checked = False Then
+            MessageBox.Show("No Answer Selected, Please choose your Answer to Proceed to the next question.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        End If
         questnum += 1
         If questnum > totalquestions Then
             questnum -= 1
             MsgBox("NO MORE QUESTION")
+            MsgBox(" Examination Assessment Recorded", MsgBoxStyle.Information)
+            UpdateExamRecordToClose()
+            Me.Close()
+            MyExam.ExamList()
         End If
 
 
+
+        deselectradtionbutton()
 
 
         Dim num As Integer
@@ -295,6 +404,18 @@ Public Class FrmTakeExam
     End Sub
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
+
+        'If examtype = "Multiple Choice" Then
+        '    GetAnswers_UpdateAnswer_multiplechoices()
+        '    UpdateAnswer_multiplechoices()
+
+        'ElseIf examtype = "Essay" Then
+
+        'ElseIf examtype = "True or False" Then
+
+
+        'End If
+
         deselectradtionbutton()
         questnum -= 1
         If questnum = 0 Then

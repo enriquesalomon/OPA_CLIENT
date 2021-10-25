@@ -24,7 +24,7 @@ Public Class Login
         READER.Close()
         MysqlConn.Close()
         If Globaluserid <> "" Then
-
+            MsgBox(" Access Granted", MsgBoxStyle.Information)
             FrmMain.ShowDialog()
             FrmLogin.txtpassword.Clear()
             FrmLogin.txtusername.Clear()

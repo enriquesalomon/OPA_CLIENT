@@ -28,11 +28,12 @@ Partial Class FrmExamStart
         '
         'Button1
         '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(76, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(43, Byte), Integer))
         Me.Button1.Dock = System.Windows.Forms.DockStyle.Left
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.White
         Me.Button1.Location = New System.Drawing.Point(0, 0)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(332, 174)
@@ -42,11 +43,12 @@ Partial Class FrmExamStart
         '
         'Button2
         '
-        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(196, Byte), Integer), CType(CType(15, Byte), Integer))
         Me.Button2.Dock = System.Windows.Forms.DockStyle.Left
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.ForeColor = System.Drawing.Color.White
         Me.Button2.Location = New System.Drawing.Point(332, 0)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(332, 174)

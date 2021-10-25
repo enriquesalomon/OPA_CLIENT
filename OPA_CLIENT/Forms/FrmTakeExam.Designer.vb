@@ -23,8 +23,9 @@ Partial Class FrmTakeExam
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmTakeExam))
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.btnLogout = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -36,7 +37,7 @@ Partial Class FrmTakeExam
         Me.btnsubmit = New System.Windows.Forms.Button()
         Me.btnBack = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.GroupBoxRatioButton = New System.Windows.Forms.GroupBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtQuestion = New System.Windows.Forms.TextBox()
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
@@ -50,13 +51,14 @@ Partial Class FrmTakeExam
         Me.Panel5.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
+        Me.GroupBoxRatioButton.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.dtgList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel2
         '
+        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(196, Byte), Integer), CType(CType(15, Byte), Integer))
         Me.Panel2.Controls.Add(Me.btnLogout)
         Me.Panel2.Controls.Add(Me.Label1)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
@@ -71,7 +73,7 @@ Partial Class FrmTakeExam
         Me.btnLogout.FlatAppearance.BorderSize = 0
         Me.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnLogout.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnLogout.ForeColor = System.Drawing.Color.DimGray
+        Me.btnLogout.ForeColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(185, Byte), Integer))
         Me.btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnLogout.Location = New System.Drawing.Point(1160, 0)
         Me.btnLogout.Name = "btnLogout"
@@ -87,8 +89,8 @@ Partial Class FrmTakeExam
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(12, 5)
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(185, Byte), Integer))
+        Me.Label1.Location = New System.Drawing.Point(12, 8)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(252, 19)
         Me.Label1.TabIndex = 0
@@ -137,7 +139,7 @@ Partial Class FrmTakeExam
         '
         'Panel1
         '
-        Me.Panel1.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.Panel1.BackColor = System.Drawing.Color.White
         Me.Panel1.Controls.Add(Me.btnsubmit)
         Me.Panel1.Controls.Add(Me.btnBack)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -148,35 +150,41 @@ Partial Class FrmTakeExam
         '
         'btnsubmit
         '
-        Me.btnsubmit.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.btnsubmit.BackColor = System.Drawing.Color.Transparent
+        Me.btnsubmit.BackgroundImage = CType(resources.GetObject("btnsubmit.BackgroundImage"), System.Drawing.Image)
+        Me.btnsubmit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.btnsubmit.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnsubmit.Enabled = False
         Me.btnsubmit.FlatAppearance.BorderSize = 0
         Me.btnsubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnsubmit.Location = New System.Drawing.Point(767, 0)
+        Me.btnsubmit.Location = New System.Drawing.Point(797, 0)
         Me.btnsubmit.Name = "btnsubmit"
-        Me.btnsubmit.Size = New System.Drawing.Size(189, 66)
+        Me.btnsubmit.Size = New System.Drawing.Size(159, 66)
         Me.btnsubmit.TabIndex = 1
-        Me.btnsubmit.Text = "NEXT"
+        Me.btnsubmit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnsubmit.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
         Me.btnsubmit.UseVisualStyleBackColor = False
         '
         'btnBack
         '
-        Me.btnBack.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.btnBack.BackColor = System.Drawing.Color.Transparent
+        Me.btnBack.BackgroundImage = CType(resources.GetObject("btnBack.BackgroundImage"), System.Drawing.Image)
+        Me.btnBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.btnBack.Dock = System.Windows.Forms.DockStyle.Left
         Me.btnBack.FlatAppearance.BorderSize = 0
         Me.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnBack.Location = New System.Drawing.Point(0, 0)
         Me.btnBack.Name = "btnBack"
-        Me.btnBack.Size = New System.Drawing.Size(189, 66)
+        Me.btnBack.Size = New System.Drawing.Size(145, 66)
         Me.btnBack.TabIndex = 0
-        Me.btnBack.Text = "BACK"
+        Me.btnBack.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnBack.UseVisualStyleBackColor = False
+        Me.btnBack.Visible = False
         '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.Panel1)
-        Me.GroupBox1.Controls.Add(Me.GroupBox2)
+        Me.GroupBox1.Controls.Add(Me.GroupBoxRatioButton)
         Me.GroupBox1.Controls.Add(Me.Panel3)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(0, 90)
@@ -185,22 +193,22 @@ Partial Class FrmTakeExam
         Me.GroupBox1.TabIndex = 7
         Me.GroupBox1.TabStop = False
         '
-        'GroupBox2
+        'GroupBoxRatioButton
         '
-        Me.GroupBox2.BackColor = System.Drawing.Color.White
-        Me.GroupBox2.Controls.Add(Me.Label2)
-        Me.GroupBox2.Controls.Add(Me.txtQuestion)
-        Me.GroupBox2.Controls.Add(Me.RadioButton3)
-        Me.GroupBox2.Controls.Add(Me.RadioButton4)
-        Me.GroupBox2.Controls.Add(Me.RadioButton2)
-        Me.GroupBox2.Controls.Add(Me.lblquestion)
-        Me.GroupBox2.Controls.Add(Me.RadioButton1)
-        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox2.Location = New System.Drawing.Point(294, 16)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(956, 613)
-        Me.GroupBox2.TabIndex = 0
-        Me.GroupBox2.TabStop = False
+        Me.GroupBoxRatioButton.BackColor = System.Drawing.Color.White
+        Me.GroupBoxRatioButton.Controls.Add(Me.Label2)
+        Me.GroupBoxRatioButton.Controls.Add(Me.txtQuestion)
+        Me.GroupBoxRatioButton.Controls.Add(Me.RadioButton3)
+        Me.GroupBoxRatioButton.Controls.Add(Me.RadioButton4)
+        Me.GroupBoxRatioButton.Controls.Add(Me.RadioButton2)
+        Me.GroupBoxRatioButton.Controls.Add(Me.lblquestion)
+        Me.GroupBoxRatioButton.Controls.Add(Me.RadioButton1)
+        Me.GroupBoxRatioButton.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBoxRatioButton.Location = New System.Drawing.Point(294, 16)
+        Me.GroupBoxRatioButton.Name = "GroupBoxRatioButton"
+        Me.GroupBoxRatioButton.Size = New System.Drawing.Size(956, 613)
+        Me.GroupBoxRatioButton.TabIndex = 0
+        Me.GroupBoxRatioButton.TabStop = False
         '
         'Label2
         '
@@ -299,14 +307,14 @@ Partial Class FrmTakeExam
         Me.dtgList.AllowUserToResizeColumns = False
         Me.dtgList.AllowUserToResizeRows = False
         Me.dtgList.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dtgList.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dtgList.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.dtgList.ColumnHeadersHeight = 32
         Me.dtgList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dtgList.Dock = System.Windows.Forms.DockStyle.Fill
@@ -319,12 +327,12 @@ Partial Class FrmTakeExam
         Me.dtgList.ReadOnly = True
         Me.dtgList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
         Me.dtgList.RowHeadersVisible = False
-        DataGridViewCellStyle10.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White
-        Me.dtgList.RowsDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White
+        Me.dtgList.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.dtgList.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtgList.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black
         Me.dtgList.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.DodgerBlue
@@ -352,8 +360,8 @@ Partial Class FrmTakeExam
         Me.Panel5.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
+        Me.GroupBoxRatioButton.ResumeLayout(False)
+        Me.GroupBoxRatioButton.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         CType(Me.dtgList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -375,7 +383,7 @@ Partial Class FrmTakeExam
     Friend WithEvents lblquestion As Label
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents GroupBoxRatioButton As GroupBox
     Friend WithEvents Panel3 As Panel
     Friend WithEvents dtgList As DataGridView
     Friend WithEvents Label2 As Label
