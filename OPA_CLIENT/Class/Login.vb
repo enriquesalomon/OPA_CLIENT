@@ -17,6 +17,7 @@ Public Class Login
         While READER.Read()
                 nickname = READER("firstname").ToString
             Globaluserid = READER("id").ToString
+            studentno = READER("studentno").ToString
             'userinfo = READER("fname").ToString & " " & READER("lname").ToString
 
         End While

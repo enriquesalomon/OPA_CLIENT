@@ -311,6 +311,7 @@ Partial Class FrmTakeExam
         Me.dtgList.ColumnHeadersHeight = 32
         Me.dtgList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dtgList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dtgList.Enabled = False
         Me.dtgList.EnableHeadersVisualStyles = False
         Me.dtgList.GridColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.dtgList.Location = New System.Drawing.Point(0, 0)

@@ -2,7 +2,9 @@
 Public Class FrmTakeExam
     Dim ss, tt, vv As Integer
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
+        MyExam.ExamList()
         Me.Close()
+
     End Sub
 
     Private Sub FrmTakeExam_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -81,6 +83,56 @@ Public Class FrmTakeExam
     Dim opt2 As String = ""
     Dim opt3 As String = ""
     Dim opt4 As String = ""
+
+
+    Sub getAnswersTable()
+
+        If examtype = "Multiple Choice" Then
+            Dim ldataset, xdataset As New DataSet
+
+            dtgList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            FrmExamMaster.dtgList.Rows.Clear()
+            mydataTable.Rows.Clear()
+            ldataset.Clear()
+            runServer()
+            MysqlConn.Open()
+            mycommand = MysqlConn.CreateCommand
+
+            mycommand.CommandText = "Select  * from exam_answer_multiplechoice WHERE examsubjectid='" & subjectid & "' AND examid='" & examid & "' AND studentid='" & Globaluserid & "' ORDER BY questionnum ASC"
+
+            myadapter.SelectCommand = mycommand
+            myadapter.Fill(ldataset, "exam_answer_multiplechoice")
+            mydataTable = ldataset.Tables("exam_answer_multiplechoice")
+
+            dtgList.RowsDefaultCellStyle.BackColor = Color.White
+            dtgList.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
+            dtgList.ColumnCount = 3
+            dtgList.Columns(0).HeaderText = "ID"
+            dtgList.Columns(0).Width = 0
+            dtgList.Columns(0).Name = "id"
+
+            dtgList.Columns(1).HeaderText = "Question #"
+            dtgList.Columns(1).Width = 500
+            dtgList.Columns(1).Name = "questnum"
+
+            dtgList.Columns(2).HeaderText = "Answer"
+            dtgList.Columns(2).Width = 200
+            dtgList.Columns(2).Name = "answer"
+
+
+            If mydataTable.Rows.Count > 0 Then
+                For Each mrow As DataRow In mydataTable.Rows
+                    Dim row As String() = New String() {mrow("id").ToString, mrow("questionnum").ToString, mrow("answer").ToString}
+                    dtgList.Rows.Add(row)
+                Next
+
+            End If
+        End If
+
+
+
+    End Sub
+
     Sub getExamQuestion()
 
 

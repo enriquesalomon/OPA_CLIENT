@@ -82,7 +82,7 @@ Public Class FrmExamMaster
 
 
     End Sub
-
+    Dim totalquestion As Integer
     Private Sub dtgList_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtgList.CellClick
 
         If e.ColumnIndex = 6 Then
@@ -93,6 +93,7 @@ Public Class FrmExamMaster
             For Each datagrd As DataGridViewRow In dtgList.SelectedRows
 
                 examstatus = CStr(GridRow.Cells.Item("status").Value)
+                examtype = CStr(GridRow.Cells.Item("type").Value)
 
             Next datagrd
 
@@ -121,6 +122,7 @@ Public Class FrmExamMaster
                 READER = COMMAND.ExecuteReader
                 While READER.Read()
                     hasquestionsnuymber = READER("totalcount").ToString
+                    totalquestion = hasquestionsnuymber
                 End While
                 READER.Close()
                 MysqlConn.Close()
@@ -129,6 +131,8 @@ Public Class FrmExamMaster
                     MsgBox("No question")
                 Else
                     If MessageBox.Show("Are you sure you want to proceed? " & vbNewLine & " " & vbNewLine & "", " Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = Windows.Forms.DialogResult.Yes Then
+                        generateExamAnswerDb()
+
                         FrmTakeExam.ShowDialog()
                     End If
                 End If
@@ -139,5 +143,110 @@ Public Class FrmExamMaster
 
 
         End If
+    End Sub
+
+    Sub generateExamAnswerDb()
+        If examtype = "Multiple Choice" Then
+            Dim num As Integer = 0
+            query = "Select COUNT(*) as num from exam_answer_multiplechoice where studentid= '" & Globaluserid & "' and examid= '" & examid & "' and examsubjectid= '" & subjectid & "'"
+            runServer()
+            MysqlConn.Open()
+            COMMAND = New MySqlCommand(query, MysqlConn)
+            SDA.SelectCommand = COMMAND
+            SDA.Fill(dbDataset)
+            bSource.DataSource = dbDataset
+            READER = COMMAND.ExecuteReader
+            While READER.Read()
+                num = READER("num").ToString
+            End While
+            READER.Close()
+            MysqlConn.Close()
+            If num = 0 Then
+                Dim questnum As Integer = 1
+                While questnum <= totalquestion
+                    runServer()
+                    MysqlConn.Open()
+                    query = "insert into exam_answer_multiplechoice (studentid,studentno,examid,examsubjectid,questionnum,answer,answerdescription) values ('" & Globaluserid & "','" & studentno & "','" & examid & "','" & subjectid & "','" & questnum & "','" & "" & "','" & "" & "')"
+                    COMMAND = New MySqlCommand(query, MysqlConn)
+                    READER = COMMAND.ExecuteReader
+                    MysqlConn.Close()
+                    questnum += 1
+                End While
+            End If
+        End If
+
+
+
+        If examtype = "Essay" Then
+            Dim num As Integer = 0
+            query = "Select COUNT(*) as num from exam_answer_essay where studentid= '" & Globaluserid & "' and examid= '" & examid & "' and examsubjectid= '" & subjectid & "'"
+            runServer()
+            MysqlConn.Open()
+            COMMAND = New MySqlCommand(query, MysqlConn)
+            SDA.SelectCommand = COMMAND
+            SDA.Fill(dbDataset)
+            bSource.DataSource = dbDataset
+            READER = COMMAND.ExecuteReader
+            While READER.Read()
+                num = READER("num").ToString
+            End While
+            READER.Close()
+            MysqlConn.Close()
+
+            If num = 0 Then
+                Dim questnum As Integer = 1
+                While questnum <= totalquestion
+                    runServer()
+                    MysqlConn.Open()
+                    query = "insert into exam_answer_essay (studentid,studentno,examid,examsubjectid,questionnum,answer,answerdescription) values ('" & Globaluserid & "','" & studentno & "','" & examid & "','" & subjectid & "','" & questnum & "','" & "" & "','" & "" & "')"
+                    COMMAND = New MySqlCommand(query, MysqlConn)
+                    READER = COMMAND.ExecuteReader
+                    MysqlConn.Close()
+                    questnum += 1
+                End While
+            End If
+        End If
+
+        If examtype = "True or False" Then
+            Dim num As Integer = 0
+            query = "Select COUNT(*) as num from exam_answer_truefalse where studentid= '" & Globaluserid & "' and examid= '" & examid & "' and examsubjectid= '" & subjectid & "'"
+            runServer()
+            MysqlConn.Open()
+            COMMAND = New MySqlCommand(query, MysqlConn)
+            SDA.SelectCommand = COMMAND
+            SDA.Fill(dbDataset)
+            bSource.DataSource = dbDataset
+            READER = COMMAND.ExecuteReader
+            While READER.Read()
+                num = READER("num").ToString
+            End While
+            READER.Close()
+            MysqlConn.Close()
+
+            If num = 0 Then
+                Dim questnum As Integer = 1
+                While questnum <= totalquestion
+                    runServer()
+                    MysqlConn.Open()
+                    query = "insert into exam_answer_truefalse (studentid,studentno,examid,examsubjectid,questionnum,answer,answerdescription) values ('" & Globaluserid & "','" & studentno & "','" & examid & "','" & subjectid & "','" & questnum & "','" & "" & "','" & "" & "')"
+                    COMMAND = New MySqlCommand(query, MysqlConn)
+                    READER = COMMAND.ExecuteReader
+                    MysqlConn.Close()
+                    questnum += 1
+                End While
+            End If
+        End If
+
+
+
+
+
+
+
+
+    End Sub
+
+    Private Sub dtgList_CellBorderStyleChanged(sender As Object, e As EventArgs) Handles dtgList.CellBorderStyleChanged
+
     End Sub
 End Class

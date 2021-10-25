@@ -5,7 +5,7 @@ Module GlobalVariable
 
     Public globalDefaultID As String
     Public path, globalClock As String
-    Public Globaluserid, GlobalitemID, GlobalCatID As String
+    Public Globaluserid, studentno As String
     Public userinfo, usertype, nickname As String
     Public query As String
     Public examcode, examid, subjectid, examtype, subject As String
