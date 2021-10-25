@@ -82,6 +82,7 @@ Public Class ExamMaster
                         examsubjectname = str("subjectname").ToString
                         examtotalquestion = str("totalquestion")
                         timelimit = str("timelimit")
+
                     Next
                     End If
                     xdataTable.Rows.Clear()

@@ -8,8 +8,8 @@ Module GlobalVariable
     Public Globaluserid, GlobalitemID, GlobalCatID As String
     Public userinfo, usertype, nickname As String
     Public query As String
-    Public examcode, examid, examtype, subject As String
-    Public examtotalquestion As Integerak
+    Public examcode, examid, subjectid, examtype, subject As String
+    Public examtotalquestion As Integer
     Public timelimit As String
 
     Public mycommand As New MySqlCommand

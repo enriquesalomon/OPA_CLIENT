@@ -73,8 +73,34 @@ Public Class FrmTakeExam
             MsgBox("Error: " & ex.Source & ": " & ex.Message, MsgBoxStyle.OkOnly, "Data Error !!")
         End Try
     End Sub
-
+    Dim questnum As Integer = 0
+    Dim totalquestions As Integer = 0
     Sub getExamQuestion()
+
+
+        Globaluserid = ""
+        query = "Select  COUNT(*) as totalcount from  (examsubject inner join examquestion on examquestion.examsubjectid = examsubject.id) WHERE examquestion.examid='" & examid & "'"
+        runServer()
+        MysqlConn.Open()
+        COMMAND = New MySqlCommand(query, MysqlConn)
+        SDA.SelectCommand = COMMAND
+        SDA.Fill(dbDataset)
+        bSource.DataSource = dbDataset
+        READER = COMMAND.ExecuteReader
+        While READER.Read()
+            totalquestions = READER("totalcount").ToString
+        End While
+        READER.Close()
+        MysqlConn.Close()
+
+
+
+        questnum += 1
+        If questnum > totalquestions Then
+            MsgBox("NO MORE QUESTION")
+        End If
+
+
         Dim question As String = ""
         Dim opt1 As String = ""
         Dim opt2 As String = ""
@@ -84,7 +110,7 @@ Public Class FrmTakeExam
         Dim num As Integer
         num = 0
         Globaluserid = ""
-        query = "Select * from examquestion where id='10'"
+        query = "Select * from examquestion where examsubjectid='" & subjectid & "' AND examid='" & examid & "' AND num='" & questnum & "'"
         runServer()
         MysqlConn.Open()
         COMMAND = New MySqlCommand(query, MysqlConn)
@@ -108,7 +134,28 @@ Public Class FrmTakeExam
         RadioButton3.Text = opt3
         RadioButton4.Text = opt4
 
+        xdataTable.Rows.Clear()
+        xdataset.Clear()
 
+
+
+        'runServer()
+        'MysqlConn.Open()
+        'mycommand = MysqlConn.CreateCommand
+        'mycommand.CommandText = "Select  * from  (examsubject inner join examquestion on examquestion.examsubjectid = examsubject.id) WHERE examquestion.examid='" & examid & "'"
+
+        'myadapter.SelectCommand = mycommand
+        'myadapter.Fill(xdataset, "examsubject")
+        'xdataTable = xdataset.Tables("examsubject")
+        'If xdataTable.Rows.Count > 0 Then
+        '    For Each str As DataRow In xdataTable.Rows
+        '        'examsubjectname = str("subjectname").ToString
+        '        examtotalquestion = str("totalquestion")
+        '        timelimit = str("timelimit")
+        '    Next
+        'End If
+        'xdataTable.Rows.Clear()
+        'xdataset.Clear()
 
     End Sub
     Private Sub btnstart_Click(sender As Object, e As EventArgs) Handles btnstart.Click
@@ -159,7 +206,7 @@ Public Class FrmTakeExam
     End Sub
 
     Private Sub btnsubmit_Click(sender As Object, e As EventArgs) Handles btnsubmit.Click
-
+        getExamQuestion()
     End Sub
 
     Private Sub gettime()
