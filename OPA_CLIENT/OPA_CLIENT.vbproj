@@ -116,10 +116,16 @@
     <Compile Include="Forms\FrmMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FrmTakeExam.Designer.vb">
-      <DependentUpon>FrmTakeExam.vb</DependentUpon>
+    <Compile Include="Forms\FrmTakeExamEssay.Designer.vb">
+      <DependentUpon>FrmTakeExamEssay.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmTakeExam.vb">
+    <Compile Include="Forms\FrmTakeExamEssay.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmTakeExamMultipleChoice.Designer.vb">
+      <DependentUpon>FrmTakeExamMultipleChoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmTakeExamMultipleChoice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FrmExamStart.Designer.vb">
@@ -166,8 +172,11 @@
     <EmbeddedResource Include="Forms\FrmMain.resx">
       <DependentUpon>FrmMain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmTakeExam.resx">
-      <DependentUpon>FrmTakeExam.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmTakeExamEssay.resx">
+      <DependentUpon>FrmTakeExamEssay.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmTakeExamMultipleChoice.resx">
+      <DependentUpon>FrmTakeExamMultipleChoice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmExamStart.resx">
       <DependentUpon>FrmExamStart.vb</DependentUpon>

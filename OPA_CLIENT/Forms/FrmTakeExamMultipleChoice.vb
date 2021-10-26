@@ -1,5 +1,5 @@
 ﻿Imports MySql.Data.MySqlClient
-Public Class FrmTakeExam
+Public Class FrmTakeExamMultipleChoice
     Dim ss, tt, vv As Integer
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
 
@@ -28,7 +28,7 @@ Public Class FrmTakeExam
         GroupBox1.Visible = False
         lblexamtitle.Text = examcode.ToUpper()
         AnswerList()
-       
+
         FrmExamStart.ShowDialog()
     End Sub
     Sub AnswerList()

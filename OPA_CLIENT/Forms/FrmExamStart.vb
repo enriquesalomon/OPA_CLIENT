@@ -17,22 +17,42 @@ Public Class FrmExamStart
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If IsNumeric(timelimit) AndAlso CInt(timelimit) > 0 Then
-            FrmTakeExam.tspn = New TimeSpan(0, CInt(timelimit), 0)
-            FrmTakeExam.Timer1.Enabled = True
-        Else
-            MessageBox.Show("Please enter a numeric value in the text box", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        If examtype = "Multiple Choice" Then
+            If IsNumeric(timelimit) AndAlso CInt(timelimit) > 0 Then
+                FrmTakeExamMultipleChoice.tspn = New TimeSpan(0, CInt(timelimit), 0)
+                FrmTakeExamMultipleChoice.Timer1.Enabled = True
+            Else
+                MessageBox.Show("Please enter a numeric value in the text box", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+            'FrmTakeExam.Timer1.Enabled = True
+            FrmTakeExamMultipleChoice.btnBack.Enabled = True
+            FrmTakeExamMultipleChoice.btnsubmit.Enabled = True
+            FrmTakeExamMultipleChoice.getAnswersTable()
+            FrmTakeExamMultipleChoice.getExamQuestion()
+            FrmTakeExamMultipleChoice.GroupBox1.Visible = True
+            Me.Close()
+
         End If
-        'FrmTakeExam.Timer1.Enabled = True
-        FrmTakeExam.btnBack.Enabled = True
-        FrmTakeExam.btnsubmit.Enabled = True
-        FrmTakeExam.getAnswersTable()
-        FrmTakeExam.getExamQuestion()
-        FrmTakeExam.GroupBox1.Visible = True
-        Me.Close()
+
+        If examtype = "Essay" Then
+            If IsNumeric(timelimit) AndAlso CInt(timelimit) > 0 Then
+                FrmTakeExamEssay.tspn = New TimeSpan(0, CInt(timelimit), 0)
+                FrmTakeExamEssay.Timer1.Enabled = True
+            Else
+                MessageBox.Show("Please enter a numeric value in the text box", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+            'FrmTakeExam.Timer1.Enabled = True
+            FrmTakeExamEssay.btnBack.Enabled = True
+            FrmTakeExamEssay.btnsubmit.Enabled = True
+            'FrmTakeExamEssay.getAnswersTable()
+            FrmTakeExamEssay.getExamQuestion()
+            FrmTakeExamEssay.GroupBox2.Visible = True
+            Me.Close()
+
+        End If
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        FrmTakeExam.Dispose()
+        FrmTakeExamMultipleChoice.Dispose()
     End Sub
 End Class
