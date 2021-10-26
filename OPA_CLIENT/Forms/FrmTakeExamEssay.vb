@@ -125,7 +125,15 @@ Public Class FrmTakeExamEssay
     End Sub
 
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
+
+        If MessageBox.Show("Are you sure you want to Exit the Exam?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            UpdateExamRecordToClose()
+            MsgBox(" Examination Assessment Recorded", MsgBoxStyle.Information)
+        Else
+            Exit Sub
+        End If
         Me.Close()
+        MyExam.ExamList()
     End Sub
     Dim noanswer As Boolean
     Sub UpdateAnswer_Essay()

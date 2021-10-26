@@ -174,6 +174,43 @@ Public Class FrmExamMaster
             End If
 
 
+            If examtype = "True or False" Then
+
+
+                If examstatus = "CLOSED" Then
+                    If MessageBox.Show("EXAM IS ALREADY CLOSED" & vbNewLine & " " & vbNewLine & "", " Information", MessageBoxButtons.OK, MessageBoxIcon.Information) = Windows.Forms.DialogResult.OK Then
+                        Exit Sub
+                    End If
+                Else
+                    LoadData()
+                    ''CHECK IF THERE IS A QUESTIONS
+                    Dim hasquestionsnuymber As Integer = 0
+                    query = "Select COUNT(*) as totalcount from  (examsubject inner join examquestion_truefalse on examquestion_truefalse.examsubjectid = examsubject.id) WHERE examquestion_truefalse.examid='" & examid & "'"
+                    runServer()
+                    MysqlConn.Open()
+                    COMMAND = New MySqlCommand(query, MysqlConn)
+                    SDA.SelectCommand = COMMAND
+                    SDA.Fill(dbDataset)
+                    bSource.DataSource = dbDataset
+                    READER = COMMAND.ExecuteReader
+                    While READER.Read()
+                        hasquestionsnuymber = READER("totalcount").ToString
+                        totalquestion = hasquestionsnuymber
+                    End While
+                    READER.Close()
+                    MysqlConn.Close()
+
+                    If hasquestionsnuymber < 1 Then
+                        MsgBox("No question")
+                    Else
+                        If MessageBox.Show("Are you sure you want to proceed? " & vbNewLine & " " & vbNewLine & "", " Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = Windows.Forms.DialogResult.Yes Then
+                            generateExamAnswerDb()
+
+                            FrmTakeExamMultipleChoice.ShowDialog()
+                        End If
+                    End If
+                End If
+            End If
 
 
 

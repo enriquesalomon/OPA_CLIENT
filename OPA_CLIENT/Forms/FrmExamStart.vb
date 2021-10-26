@@ -54,5 +54,6 @@ Public Class FrmExamStart
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         FrmTakeExamMultipleChoice.Dispose()
+        FrmTakeExamEssay.Dispose()
     End Sub
 End Class

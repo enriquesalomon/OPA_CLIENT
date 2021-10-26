@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FrmTakeExamMultipleChoice
+Partial Class FrmTakeExamTrueFalse
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,8 +22,7 @@ Partial Class FrmTakeExamMultipleChoice
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmTakeExamMultipleChoice))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmTakeExamTrueFalse))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel2 = New System.Windows.Forms.Panel()
@@ -32,27 +31,24 @@ Partial Class FrmTakeExamMultipleChoice
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.lblexamtitle = New System.Windows.Forms.Label()
         Me.lbltimer = New System.Windows.Forms.Label()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.btnsubmit = New System.Windows.Forms.Button()
-        Me.btnBack = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.GroupBoxRatioButton = New System.Windows.Forms.GroupBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtQuestion = New System.Windows.Forms.TextBox()
-        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton4 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.lblquestion = New System.Windows.Forms.Label()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.dtgList = New System.Windows.Forms.DataGridView()
         Me.Panel2.SuspendLayout()
         Me.Panel5.SuspendLayout()
-        Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        Me.GroupBoxRatioButton.SuspendLayout()
         Me.Panel3.SuspendLayout()
+        Me.GroupBoxRatioButton.SuspendLayout()
+        Me.Panel4.SuspendLayout()
         CType(Me.dtgList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -64,8 +60,8 @@ Partial Class FrmTakeExamMultipleChoice
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1253, 35)
-        Me.Panel2.TabIndex = 1
+        Me.Panel2.Size = New System.Drawing.Size(1177, 35)
+        Me.Panel2.TabIndex = 7
         '
         'btnLogout
         '
@@ -75,7 +71,7 @@ Partial Class FrmTakeExamMultipleChoice
         Me.btnLogout.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnLogout.ForeColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(185, Byte), Integer))
         Me.btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnLogout.Location = New System.Drawing.Point(1160, 0)
+        Me.btnLogout.Location = New System.Drawing.Point(1084, 0)
         Me.btnLogout.Name = "btnLogout"
         Me.btnLogout.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
         Me.btnLogout.Size = New System.Drawing.Size(93, 35)
@@ -104,8 +100,8 @@ Partial Class FrmTakeExamMultipleChoice
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel5.Location = New System.Drawing.Point(0, 35)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(1253, 55)
-        Me.Panel5.TabIndex = 4
+        Me.Panel5.Size = New System.Drawing.Size(1177, 55)
+        Me.Panel5.TabIndex = 9
         '
         'lblexamtitle
         '
@@ -126,87 +122,81 @@ Partial Class FrmTakeExamMultipleChoice
         Me.lbltimer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lbltimer.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbltimer.ForeColor = System.Drawing.Color.Red
-        Me.lbltimer.Location = New System.Drawing.Point(951, 9)
+        Me.lbltimer.Location = New System.Drawing.Point(875, 9)
         Me.lbltimer.Name = "lbltimer"
         Me.lbltimer.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.lbltimer.Size = New System.Drawing.Size(302, 33)
         Me.lbltimer.TabIndex = 0
         Me.lbltimer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Timer1
-        '
-        Me.Timer1.Interval = 1000
-        '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.Color.White
-        Me.Panel1.Controls.Add(Me.btnsubmit)
-        Me.Panel1.Controls.Add(Me.btnBack)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(294, 563)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(956, 66)
-        Me.Panel1.TabIndex = 5
-        '
-        'btnsubmit
-        '
-        Me.btnsubmit.BackColor = System.Drawing.Color.Transparent
-        Me.btnsubmit.BackgroundImage = CType(resources.GetObject("btnsubmit.BackgroundImage"), System.Drawing.Image)
-        Me.btnsubmit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btnsubmit.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btnsubmit.Enabled = False
-        Me.btnsubmit.FlatAppearance.BorderSize = 0
-        Me.btnsubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnsubmit.Location = New System.Drawing.Point(797, 0)
-        Me.btnsubmit.Name = "btnsubmit"
-        Me.btnsubmit.Size = New System.Drawing.Size(159, 66)
-        Me.btnsubmit.TabIndex = 1
-        Me.btnsubmit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnsubmit.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
-        Me.btnsubmit.UseVisualStyleBackColor = False
-        '
-        'btnBack
-        '
-        Me.btnBack.BackColor = System.Drawing.Color.Transparent
-        Me.btnBack.BackgroundImage = CType(resources.GetObject("btnBack.BackgroundImage"), System.Drawing.Image)
-        Me.btnBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btnBack.Dock = System.Windows.Forms.DockStyle.Left
-        Me.btnBack.FlatAppearance.BorderSize = 0
-        Me.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnBack.Location = New System.Drawing.Point(0, 0)
-        Me.btnBack.Name = "btnBack"
-        Me.btnBack.Size = New System.Drawing.Size(145, 66)
-        Me.btnBack.TabIndex = 0
-        Me.btnBack.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnBack.UseVisualStyleBackColor = False
-        Me.btnBack.Visible = False
-        '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.Panel1)
-        Me.GroupBox1.Controls.Add(Me.GroupBoxRatioButton)
         Me.GroupBox1.Controls.Add(Me.Panel3)
+        Me.GroupBox1.Controls.Add(Me.GroupBoxRatioButton)
+        Me.GroupBox1.Controls.Add(Me.Panel4)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(0, 90)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1253, 632)
-        Me.GroupBox1.TabIndex = 7
+        Me.GroupBox1.Size = New System.Drawing.Size(1177, 611)
+        Me.GroupBox1.TabIndex = 10
         Me.GroupBox1.TabStop = False
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.White
+        Me.Panel3.Controls.Add(Me.Button1)
+        Me.Panel3.Controls.Add(Me.Button2)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel3.Location = New System.Drawing.Point(294, 542)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(880, 66)
+        Me.Panel3.TabIndex = 5
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Button1.BackgroundImage = CType(resources.GetObject("Button1.BackgroundImage"), System.Drawing.Image)
+        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button1.Enabled = False
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Location = New System.Drawing.Point(721, 0)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(159, 66)
+        Me.Button1.TabIndex = 1
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.Transparent
+        Me.Button2.BackgroundImage = CType(resources.GetObject("Button2.BackgroundImage"), System.Drawing.Image)
+        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Button2.FlatAppearance.BorderSize = 0
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Location = New System.Drawing.Point(0, 0)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(145, 66)
+        Me.Button2.TabIndex = 0
+        Me.Button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Button2.UseVisualStyleBackColor = False
+        Me.Button2.Visible = False
         '
         'GroupBoxRatioButton
         '
         Me.GroupBoxRatioButton.BackColor = System.Drawing.Color.White
         Me.GroupBoxRatioButton.Controls.Add(Me.Label2)
         Me.GroupBoxRatioButton.Controls.Add(Me.txtQuestion)
-        Me.GroupBoxRatioButton.Controls.Add(Me.RadioButton3)
-        Me.GroupBoxRatioButton.Controls.Add(Me.RadioButton4)
         Me.GroupBoxRatioButton.Controls.Add(Me.RadioButton2)
         Me.GroupBoxRatioButton.Controls.Add(Me.lblquestion)
         Me.GroupBoxRatioButton.Controls.Add(Me.RadioButton1)
         Me.GroupBoxRatioButton.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBoxRatioButton.Location = New System.Drawing.Point(294, 16)
         Me.GroupBoxRatioButton.Name = "GroupBoxRatioButton"
-        Me.GroupBoxRatioButton.Size = New System.Drawing.Size(956, 613)
+        Me.GroupBoxRatioButton.Size = New System.Drawing.Size(880, 592)
         Me.GroupBoxRatioButton.TabIndex = 0
         Me.GroupBoxRatioButton.TabStop = False
         '
@@ -215,7 +205,7 @@ Partial Class FrmTakeExamMultipleChoice
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(47, 225)
+        Me.Label2.Location = New System.Drawing.Point(47, 285)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(209, 33)
         Me.Label2.TabIndex = 5
@@ -234,37 +224,15 @@ Partial Class FrmTakeExamMultipleChoice
         Me.txtQuestion.Size = New System.Drawing.Size(693, 152)
         Me.txtQuestion.TabIndex = 4
         '
-        'RadioButton3
-        '
-        Me.RadioButton3.AutoSize = True
-        Me.RadioButton3.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton3.Location = New System.Drawing.Point(286, 409)
-        Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(143, 37)
-        Me.RadioButton3.TabIndex = 1
-        Me.RadioButton3.Text = "Option 3"
-        Me.RadioButton3.UseVisualStyleBackColor = True
-        '
-        'RadioButton4
-        '
-        Me.RadioButton4.AutoSize = True
-        Me.RadioButton4.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton4.Location = New System.Drawing.Point(286, 493)
-        Me.RadioButton4.Name = "RadioButton4"
-        Me.RadioButton4.Size = New System.Drawing.Size(143, 37)
-        Me.RadioButton4.TabIndex = 1
-        Me.RadioButton4.Text = "Option 4"
-        Me.RadioButton4.UseVisualStyleBackColor = True
-        '
         'RadioButton2
         '
         Me.RadioButton2.AutoSize = True
         Me.RadioButton2.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton2.Location = New System.Drawing.Point(286, 320)
+        Me.RadioButton2.Location = New System.Drawing.Point(286, 423)
         Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(143, 37)
+        Me.RadioButton2.Size = New System.Drawing.Size(105, 37)
         Me.RadioButton2.TabIndex = 1
-        Me.RadioButton2.Text = "Option 2"
+        Me.RadioButton2.Text = "False"
         Me.RadioButton2.UseVisualStyleBackColor = True
         '
         'lblquestion
@@ -272,7 +240,7 @@ Partial Class FrmTakeExamMultipleChoice
         Me.lblquestion.AutoSize = True
         Me.lblquestion.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblquestion.ForeColor = System.Drawing.Color.Black
-        Me.lblquestion.Location = New System.Drawing.Point(116, 45)
+        Me.lblquestion.Location = New System.Drawing.Point(116, 44)
         Me.lblquestion.Name = "lblquestion"
         Me.lblquestion.Size = New System.Drawing.Size(140, 33)
         Me.lblquestion.TabIndex = 3
@@ -283,22 +251,22 @@ Partial Class FrmTakeExamMultipleChoice
         '
         Me.RadioButton1.AutoSize = True
         Me.RadioButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton1.Location = New System.Drawing.Point(286, 225)
+        Me.RadioButton1.Location = New System.Drawing.Point(286, 285)
         Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(143, 37)
+        Me.RadioButton1.Size = New System.Drawing.Size(93, 37)
         Me.RadioButton1.TabIndex = 0
-        Me.RadioButton1.Text = "Option 1"
+        Me.RadioButton1.Text = "True"
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
-        'Panel3
+        'Panel4
         '
-        Me.Panel3.BackColor = System.Drawing.SystemColors.AppWorkspace
-        Me.Panel3.Controls.Add(Me.dtgList)
-        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel3.Location = New System.Drawing.Point(3, 16)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(291, 613)
-        Me.Panel3.TabIndex = 1
+        Me.Panel4.BackColor = System.Drawing.SystemColors.AppWorkspace
+        Me.Panel4.Controls.Add(Me.dtgList)
+        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel4.Location = New System.Drawing.Point(3, 16)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(291, 592)
+        Me.Panel4.TabIndex = 1
         '
         'dtgList
         '
@@ -339,53 +307,50 @@ Partial Class FrmTakeExamMultipleChoice
         Me.dtgList.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White
         Me.dtgList.RowTemplate.Height = 25
         Me.dtgList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dtgList.Size = New System.Drawing.Size(291, 613)
+        Me.dtgList.Size = New System.Drawing.Size(291, 592)
         Me.dtgList.TabIndex = 610
         '
-        'FrmTakeExamMultipleChoice
+        'FrmTakeExamTrueFalse
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1253, 722)
+        Me.ClientSize = New System.Drawing.Size(1177, 701)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Panel5)
         Me.Controls.Add(Me.Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "FrmTakeExamMultipleChoice"
-        Me.Text = "FrmTakeExam"
+        Me.Name = "FrmTakeExamTrueFalse"
+        Me.Text = "FrmTakeExamTrueFalse"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.Panel5.ResumeLayout(False)
         Me.Panel5.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
+        Me.Panel3.ResumeLayout(False)
         Me.GroupBoxRatioButton.ResumeLayout(False)
         Me.GroupBoxRatioButton.PerformLayout()
-        Me.Panel3.ResumeLayout(False)
+        Me.Panel4.ResumeLayout(False)
         CType(Me.dtgList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
+    Friend WithEvents Panel2 As Panel
     Friend WithEvents btnLogout As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents Panel5 As Panel
-    Friend WithEvents lbltimer As Label
     Friend WithEvents lblexamtitle As Label
-    Friend WithEvents Timer1 As Timer
-    Friend WithEvents btnsubmit As Button
-    Friend WithEvents btnBack As Button
+    Friend WithEvents lbltimer As Label
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents RadioButton1 As RadioButton
-    Friend WithEvents RadioButton2 As RadioButton
-    Friend WithEvents RadioButton4 As RadioButton
-    Friend WithEvents RadioButton3 As RadioButton
-    Friend WithEvents lblquestion As Label
-    Friend WithEvents Panel2 As Panel
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents GroupBoxRatioButton As GroupBox
     Friend WithEvents Panel3 As Panel
-    Friend WithEvents dtgList As DataGridView
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
+    Friend WithEvents GroupBoxRatioButton As GroupBox
     Friend WithEvents Label2 As Label
     Friend WithEvents txtQuestion As TextBox
+    Friend WithEvents RadioButton2 As RadioButton
+    Friend WithEvents lblquestion As Label
+    Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents dtgList As DataGridView
 End Class
