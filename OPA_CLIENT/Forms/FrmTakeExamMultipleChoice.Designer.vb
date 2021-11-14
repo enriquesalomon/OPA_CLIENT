@@ -34,7 +34,7 @@ Partial Class FrmTakeExamMultipleChoice
         Me.lbltimer = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.btnsubmit = New System.Windows.Forms.Button()
+        Me.btnsubmits = New System.Windows.Forms.Button()
         Me.btnBack = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBoxRatioButton = New System.Windows.Forms.GroupBox()
@@ -140,7 +140,7 @@ Partial Class FrmTakeExamMultipleChoice
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
-        Me.Panel1.Controls.Add(Me.btnsubmit)
+        Me.Panel1.Controls.Add(Me.btnsubmits)
         Me.Panel1.Controls.Add(Me.btnBack)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel1.Location = New System.Drawing.Point(294, 563)
@@ -148,22 +148,22 @@ Partial Class FrmTakeExamMultipleChoice
         Me.Panel1.Size = New System.Drawing.Size(956, 66)
         Me.Panel1.TabIndex = 5
         '
-        'btnsubmit
+        'btnsubmits
         '
-        Me.btnsubmit.BackColor = System.Drawing.Color.Transparent
-        Me.btnsubmit.BackgroundImage = CType(resources.GetObject("btnsubmit.BackgroundImage"), System.Drawing.Image)
-        Me.btnsubmit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btnsubmit.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btnsubmit.Enabled = False
-        Me.btnsubmit.FlatAppearance.BorderSize = 0
-        Me.btnsubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnsubmit.Location = New System.Drawing.Point(797, 0)
-        Me.btnsubmit.Name = "btnsubmit"
-        Me.btnsubmit.Size = New System.Drawing.Size(159, 66)
-        Me.btnsubmit.TabIndex = 1
-        Me.btnsubmit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnsubmit.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
-        Me.btnsubmit.UseVisualStyleBackColor = False
+        Me.btnsubmits.BackColor = System.Drawing.Color.Transparent
+        Me.btnsubmits.BackgroundImage = CType(resources.GetObject("btnsubmits.BackgroundImage"), System.Drawing.Image)
+        Me.btnsubmits.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnsubmits.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnsubmits.Enabled = False
+        Me.btnsubmits.FlatAppearance.BorderSize = 0
+        Me.btnsubmits.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnsubmits.Location = New System.Drawing.Point(797, 0)
+        Me.btnsubmits.Name = "btnsubmits"
+        Me.btnsubmits.Size = New System.Drawing.Size(159, 66)
+        Me.btnsubmits.TabIndex = 1
+        Me.btnsubmits.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnsubmits.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
+        Me.btnsubmits.UseVisualStyleBackColor = False
         '
         'btnBack
         '
@@ -373,7 +373,7 @@ Partial Class FrmTakeExamMultipleChoice
     Friend WithEvents lbltimer As Label
     Friend WithEvents lblexamtitle As Label
     Friend WithEvents Timer1 As Timer
-    Friend WithEvents btnsubmit As Button
+    Friend WithEvents btnsubmits As Button
     Friend WithEvents btnBack As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents RadioButton1 As RadioButton

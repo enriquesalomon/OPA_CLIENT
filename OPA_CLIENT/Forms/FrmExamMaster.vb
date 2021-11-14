@@ -62,30 +62,30 @@ Public Class FrmExamMaster
         MysqlConn.Close()
 
 
-        xdataTable.Rows.Clear()
-        xdataset.Clear()
-        runServer()
-        MysqlConn.Open()
-        mycommand = MysqlConn.CreateCommand
-        mycommand.CommandText = "Select  * from  (examsubject inner join subjects on examsubject.subjectid = subjects.id) WHERE examsubject.examid='" & examid.ToString & "'"
+        'xdataTable.Rows.Clear()
+        'xdataset.Clear()
+        'runServer()
+        'MysqlConn.Open()
+        'mycommand = MysqlConn.CreateCommand
+        'mycommand.CommandText = "Select  * from  (examsubject inner join subjects on examsubject.subjectid = subjects.id) WHERE examsubject.examid='" & examid.ToString & "'"
 
-        myadapter.SelectCommand = mycommand
-        myadapter.Fill(xdataset, "examsubject")
-        xdataTable = xdataset.Tables("examsubject")
-        If xdataTable.Rows.Count > 0 Then
-            For Each str As DataRow In xdataTable.Rows
-                subjectid = str("id")
-            Next
-        End If
-        xdataTable.Rows.Clear()
-        xdataset.Clear()
+        'myadapter.SelectCommand = mycommand
+        'myadapter.Fill(xdataset, "examsubject")
+        'xdataTable = xdataset.Tables("examsubject")
+        'If xdataTable.Rows.Count > 0 Then
+        '    For Each str As DataRow In xdataTable.Rows
+        '        subjectid = str("id")
+        '    Next
+        'End If
+        'xdataTable.Rows.Clear()
+        'xdataset.Clear()
 
 
     End Sub
     Dim totalquestion As Integer
     Private Sub dtgList_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtgList.CellClick
 
-        If e.ColumnIndex = 6 Then
+        If e.ColumnIndex = 7 Then
 
 
             Dim GridRow As DataGridViewRow = dtgList.CurrentRow
@@ -94,9 +94,14 @@ Public Class FrmExamMaster
 
                 examstatus = CStr(GridRow.Cells.Item("status").Value)
                 examtype = CStr(GridRow.Cells.Item("type").Value)
+                examid = CStr(GridRow.Cells.Item("id").Value)
+                examineeexamid = CStr(GridRow.Cells.Item("examineeid").Value)
 
             Next datagrd
-
+            If CInt(GridRow.Cells.Item("id").Value) < 1 Then
+                MsgBox("Cannot Proceed to Exam, No time limit has been set")
+                Exit Sub
+            End If
             If examtype = "Multiple Choice" Then
 
 
@@ -108,7 +113,7 @@ Public Class FrmExamMaster
                     LoadData()
                     ''CHECK IF THERE IS A QUESTIONS
                     Dim hasquestionsnuymber As Integer = 0
-                    query = "Select  COUNT(*) as totalcount from  (examsubject inner join examquestion on examquestion.examsubjectid = examsubject.id) WHERE examquestion.examid='" & examid & "'"
+                    query = "Select  COUNT(*) as totalcount from  (examsubject inner join examquestion on examquestion.examsubjectid = examsubject.id ) WHERE examquestion.examsubjectid='" & examid & "'"
                     runServer()
                     MysqlConn.Open()
                     COMMAND = New MySqlCommand(query, MysqlConn)
@@ -185,6 +190,8 @@ Public Class FrmExamMaster
                     LoadData()
                     ''CHECK IF THERE IS A QUESTIONS
                     Dim hasquestionsnuymber As Integer = 0
+
+
                     query = "Select COUNT(*) as totalcount from  (examsubject inner join examquestion_truefalse on examquestion_truefalse.examsubjectid = examsubject.id) WHERE examquestion_truefalse.examid='" & examid & "'"
                     runServer()
                     MysqlConn.Open()
@@ -220,6 +227,7 @@ Public Class FrmExamMaster
 
     Sub generateExamAnswerDb()
         If examtype = "Multiple Choice" Then
+            Dim correctanswer As String = ""
             Dim num As Integer = 0
             query = "Select COUNT(*) as num from exam_answer_multiplechoice where studentid= '" & Globaluserid & "' and examid= '" & examid & "' and examsubjectid= '" & subjectid & "'"
             runServer()
@@ -237,9 +245,35 @@ Public Class FrmExamMaster
             If num = 0 Then
                 Dim questnum As Integer = 1
                 While questnum <= totalquestion
+
+
+                    xdataTable.Rows.Clear()
+                    xdataset.Clear()
                     runServer()
                     MysqlConn.Open()
-                    query = "insert into exam_answer_multiplechoice (studentid,studentno,examid,examsubjectid,questionnum,answer,answerdescription) values ('" & Globaluserid & "','" & studentno & "','" & examid & "','" & subjectid & "','" & questnum & "','" & "" & "','" & "" & "')"
+                    mycommand = MysqlConn.CreateCommand
+                    mycommand.CommandText = "Select  * from  (subjects inner join exammaster on subjects.id = exammaster.subjectid) WHERE exammaster.examid='" & examineeexamid & "'"
+
+                    myadapter.SelectCommand = mycommand
+                    myadapter.Fill(xdataset, "exammaster")
+                    xdataTable = xdataset.Tables("exammaster")
+                    If xdataTable.Rows.Count > 0 Then
+                        For Each str As DataRow In xdataTable.Rows
+
+                            examtype = str("examtype").ToString
+                            subjectid = str("subjectid").ToString
+
+                        Next
+                    End If
+                    xdataTable.Rows.Clear()
+                    xdataset.Clear()
+
+
+
+
+                    runServer()
+                    MysqlConn.Open()
+                    query = "insert into exam_answer_multiplechoice (studentid,studentno,examid,examsubjectid,questionnum,Correct,examquestionid) values ('" & Globaluserid & "','" & studentno & "','" & examid & "','" & subjectid & "','" & questnum & "','" & "" & "','" & "" & "')"
                     COMMAND = New MySqlCommand(query, MysqlConn)
                     READER = COMMAND.ExecuteReader
                     MysqlConn.Close()

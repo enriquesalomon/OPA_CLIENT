@@ -18,7 +18,7 @@ Public Class FrmTakeExamMultipleChoice
         runServer()
         MysqlConn.Open()
         'query = "insert into exam_answer_multiplechoice (studentid,studentno,examid,examsubjectid,questionnum,answer,answerdescription) values ('" & Globaluserid & "','" & studentno & "','" & examid & "','" & subjectid & "','" & questnum & "','" & "" & "','" & "" & "')"
-        query = "update examinee set status='" & "CLOSED" & "',datetaken='" & Date.Now.ToShortDateString & "',startime='" & timelimit & "',timeend='" & tspn.Minutes.ToString + ":" + tspn.Seconds.ToString & "' where examid='" & examid & "' AND studentid='" & Globaluserid & "'"
+        query = "update examinee set status='" & "CLOSED" & "',datetaken='" & Date.Now.ToShortDateString & "',startime='" & timelimit & "',timeend='" & tspn.Minutes.ToString + ":" + tspn.Seconds.ToString & "' where examid='" & examineeexamid & "' AND studentid='" & Globaluserid & "'"
         COMMAND = New MySqlCommand(query, MysqlConn)
         READER = COMMAND.ExecuteReader
         MysqlConn.Close()
@@ -135,12 +135,14 @@ Public Class FrmTakeExamMultipleChoice
 
 
     End Sub
-
+    Dim correctanswer As String
     Sub getExamQuestion()
 
 
+        query = "Select  COUNT(*) as totalcount from  (examsubject inner join examquestion on examquestion.examsubjectid = examsubject.id) WHERE examquestion.examsubjectid='" & examid & "'"
+        'query = "Select  COUNT(*) as totalcount from  examquestion WHERE examsubjectid='" & examineeexamid & "' AND examid='" & examid & "'"
 
-        query = "Select  COUNT(*) as totalcount from  (examsubject inner join examquestion on examquestion.examsubjectid = examsubject.id) WHERE examquestion.examid='" & examid & "'"
+        MsgBox(examid)
         runServer()
         MysqlConn.Open()
         COMMAND = New MySqlCommand(query, MysqlConn)
@@ -167,7 +169,7 @@ Public Class FrmTakeExamMultipleChoice
         Dim num As Integer
         num = 0
 
-        query = "Select * from examquestion where examsubjectid='" & subjectid & "' AND examid='" & examid & "' AND num='" & questnum & "'"
+        query = "Select * from examquestion where examsubjectid='" & examid & "' AND num='" & questnum & "'"
         runServer()
         MysqlConn.Open()
         COMMAND = New MySqlCommand(query, MysqlConn)
@@ -181,7 +183,7 @@ Public Class FrmTakeExamMultipleChoice
             opt2 = READER("option2").ToString
             opt3 = READER("option3").ToString
             opt4 = READER("option4").ToString
-
+            correctanswer = READER("answer").ToString
         End While
         READER.Close()
         MysqlConn.Close()
@@ -301,28 +303,28 @@ Public Class FrmTakeExamMultipleChoice
             Case RadioButton1.Checked
                 runServer()
                 MysqlConn.Open()
-                query = "update exam_answer_multiplechoice set answer='" & "A" & "',answerdescription='" & RadioButton1.Text & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "'"
+                query = "update exam_answer_multiplechoice set answer='" & "A" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' AND Correct='" & correctanswer & "' "
                 COMMAND = New MySqlCommand(query, MysqlConn)
                 READER = COMMAND.ExecuteReader
                 MysqlConn.Close()
             Case RadioButton2.Checked
                 runServer()
                 MysqlConn.Open()
-                query = "update exam_answer_multiplechoice set answer='" & "B" & "',answerdescription='" & RadioButton2.Text & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "'"
+                query = "update exam_answer_multiplechoice set answer='" & "B" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "'  AND Correct='" & correctanswer & "' "
                 COMMAND = New MySqlCommand(query, MysqlConn)
                 READER = COMMAND.ExecuteReader
                 MysqlConn.Close()
             Case RadioButton3.Checked
                 runServer()
                 MysqlConn.Open()
-                query = "update exam_answer_multiplechoice set answer='" & "C" & "',answerdescription='" & RadioButton3.Text & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "'"
+                query = "update exam_answer_multiplechoice set answer='" & "C" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' AND Correct='" & correctanswer & "' "
                 COMMAND = New MySqlCommand(query, MysqlConn)
                 READER = COMMAND.ExecuteReader
                 MysqlConn.Close()
             Case RadioButton4.Checked
                 runServer()
                 MysqlConn.Open()
-                query = "update exam_answer_multiplechoice set answer='" & "D" & "',answerdescription='" & RadioButton4.Text & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "'"
+                query = "update exam_answer_multiplechoice set answer='" & "D" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "'  AND Correct='" & correctanswer & "' "
                 COMMAND = New MySqlCommand(query, MysqlConn)
                 READER = COMMAND.ExecuteReader
                 MysqlConn.Close()
@@ -334,7 +336,7 @@ Public Class FrmTakeExamMultipleChoice
     End Sub
 
 
-    Private Sub btnsubmit_Click(sender As Object, e As EventArgs) Handles btnsubmit.Click
+    Private Sub btnsubmit_Click(sender As Object, e As EventArgs) Handles btnsubmits.Click
 
 
         If examtype = "Multiple Choice" Then
@@ -360,8 +362,9 @@ Public Class FrmTakeExamMultipleChoice
         If questnum > totalquestions Then
             questnum -= 1
             MsgBox("NO MORE QUESTION")
-            MsgBox(" Examination Assessment Recorded", MsgBoxStyle.Information)
             UpdateExamRecordToClose()
+            MsgBox(" Examination Assessment Recorded", MsgBoxStyle.Information)
+
             Me.Close()
             MyExam.ExamList()
         End If

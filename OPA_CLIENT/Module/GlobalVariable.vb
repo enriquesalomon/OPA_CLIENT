@@ -11,6 +11,7 @@ Module GlobalVariable
     Public examcode, examid, subjectid, examtype, subject As String
     Public examtotalquestion As Integer
     Public timelimit As String
+    Public examineeexamid As String
 
     Public mycommand As New MySqlCommand
     Public myadapter As New MySqlDataAdapter

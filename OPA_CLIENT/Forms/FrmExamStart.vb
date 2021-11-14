@@ -26,7 +26,7 @@ Public Class FrmExamStart
             End If
             'FrmTakeExam.Timer1.Enabled = True
             FrmTakeExamMultipleChoice.btnBack.Enabled = True
-            FrmTakeExamMultipleChoice.btnsubmit.Enabled = True
+            FrmTakeExamMultipleChoice.btnsubmits.Enabled = True
             FrmTakeExamMultipleChoice.getAnswersTable()
             FrmTakeExamMultipleChoice.getExamQuestion()
             FrmTakeExamMultipleChoice.GroupBox1.Visible = True
