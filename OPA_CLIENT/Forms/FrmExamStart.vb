@@ -16,7 +16,7 @@ Public Class FrmExamStart
         'ExamQuestion()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnStart.Click
         If examtype = "Multiple Choice" Then
             If IsNumeric(timelimit) AndAlso CInt(timelimit) > 0 Then
                 FrmTakeExamMultipleChoice.tspn = New TimeSpan(0, CInt(timelimit), 0)

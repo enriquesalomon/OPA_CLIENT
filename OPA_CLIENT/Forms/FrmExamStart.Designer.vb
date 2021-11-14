@@ -22,24 +22,24 @@ Partial Class FrmExamStart
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnStart = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'Button1
+        'btnStart
         '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(43, Byte), Integer))
-        Me.Button1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(0, 0)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(332, 174)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "START"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.btnStart.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(43, Byte), Integer))
+        Me.btnStart.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnStart.FlatAppearance.BorderSize = 0
+        Me.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnStart.ForeColor = System.Drawing.Color.White
+        Me.btnStart.Location = New System.Drawing.Point(0, 0)
+        Me.btnStart.Name = "btnStart"
+        Me.btnStart.Size = New System.Drawing.Size(332, 174)
+        Me.btnStart.TabIndex = 0
+        Me.btnStart.Text = "START"
+        Me.btnStart.UseVisualStyleBackColor = False
         '
         'Button2
         '
@@ -63,7 +63,7 @@ Partial Class FrmExamStart
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(76, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(663, 174)
         Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btnStart)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "FrmExamStart"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -72,6 +72,6 @@ Partial Class FrmExamStart
 
     End Sub
 
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnStart As Button
     Friend WithEvents Button2 As Button
 End Class
