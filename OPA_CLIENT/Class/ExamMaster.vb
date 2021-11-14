@@ -256,7 +256,7 @@ Public Class ExamMaster
 
         FrmExamMaster.dtgList.RowsDefaultCellStyle.BackColor = Color.White
         FrmExamMaster.dtgList.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
-        FrmExamMaster.dtgList.ColumnCount = 6
+        FrmExamMaster.dtgList.ColumnCount = 7
         FrmExamMaster.dtgList.Columns(0).HeaderText = "ID"
         FrmExamMaster.dtgList.Columns(0).Width = 90
         FrmExamMaster.dtgList.Columns(0).Name = "id"
@@ -283,6 +283,10 @@ Public Class ExamMaster
         FrmExamMaster.dtgList.Columns(5).HeaderText = "STATUS"
         FrmExamMaster.dtgList.Columns(5).Width = 100
         FrmExamMaster.dtgList.Columns(5).Name = "status"
+
+        FrmExamMaster.dtgList.Columns(6).HeaderText = ""
+        FrmExamMaster.dtgList.Columns(6).Width = 0
+        FrmExamMaster.dtgList.Columns(6).Name = "examineeid"
 
         Dim btn As New DataGridViewButtonColumn()
         FrmExamMaster.dtgList.Columns.Add(btn)
@@ -385,7 +389,7 @@ Public Class ExamMaster
                 End If
 
 
-                Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, examstatus.ToString}
+                Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, examstatus.ToString, mrow("examid").ToString}
                 FrmExamMaster.dtgList.Rows.Add(row)
             Next
 
