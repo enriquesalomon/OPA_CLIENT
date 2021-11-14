@@ -301,6 +301,7 @@ Public Class FrmTakeExamMultipleChoice
     Dim answerpoints, wrongpoints As String
     Sub UpdateAnswer_multiplechoices()
         Dim questioncorrectanswer As String = ""
+        Dim questionid As String = ""
         Dim rightmark As String = ""
         xdataTable.Rows.Clear()
         xdataset.Clear()
@@ -317,6 +318,7 @@ Public Class FrmTakeExamMultipleChoice
                 questioncorrectanswer = str("answer").ToString
                 answerpoints = str("rightmark").ToString
                 wrongpoints = str("wrongmark").ToString
+                questionid = str("id").ToString
             Next
         End If
         xdataTable.Rows.Clear()
@@ -331,10 +333,18 @@ Public Class FrmTakeExamMultipleChoice
                 Else
                     myanwerpoints = wrongpoints
                 End If
-                query = "update exam_answer_multiplechoice set answer='" & "A" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' AND Correct='" & myanwerpoints & "' "
+                query = "update exam_answer_multiplechoice set examquestionid='" & questionid & "', Correct='" & myanwerpoints & "', answer='" & "A" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
                 COMMAND = New MySqlCommand(query, MysqlConn)
                 READER = COMMAND.ExecuteReader
                 MysqlConn.Close()
+
+                'runServer()
+                'MysqlConn.Open()
+                'query = "update exam_answer_multiplechoice set answer='" & "asdasdasd" & "' where id='32' "
+                'COMMAND = New MySqlCommand(query, MysqlConn)
+                'READER = COMMAND.ExecuteReader
+                'MysqlConn.Close()
+
             Case RadioButton2.Checked
                 If questioncorrectanswer = "2" Then
                     myanwerpoints = answerpoints
@@ -343,7 +353,7 @@ Public Class FrmTakeExamMultipleChoice
                 End If
                 runServer()
                 MysqlConn.Open()
-                query = "update exam_answer_multiplechoice set answer='" & "B" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "'  AND Correct='" & myanwerpoints & "' "
+                query = "update exam_answer_multiplechoice set examquestionid='" & questionid & "', Correct='" & myanwerpoints & "', answer='" & "B" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
                 COMMAND = New MySqlCommand(query, MysqlConn)
                 READER = COMMAND.ExecuteReader
                 MysqlConn.Close()
@@ -355,7 +365,7 @@ Public Class FrmTakeExamMultipleChoice
                 End If
                 runServer()
                 MysqlConn.Open()
-                query = "update exam_answer_multiplechoice set answer='" & "C" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' AND Correct='" & myanwerpoints & "' "
+                query = "update exam_answer_multiplechoice set examquestionid='" & questionid & "',Correct='" & myanwerpoints & "', answer='" & "C" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
                 COMMAND = New MySqlCommand(query, MysqlConn)
                 READER = COMMAND.ExecuteReader
                 MysqlConn.Close()
@@ -367,7 +377,7 @@ Public Class FrmTakeExamMultipleChoice
                 End If
                 runServer()
                 MysqlConn.Open()
-                query = "update exam_answer_multiplechoice set answer='" & "D" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "'  AND Correct='" & myanwerpoints & "' "
+                query = "update exam_answer_multiplechoice set examquestionid='" & questionid & "',Correct='" & myanwerpoints & "',answer='" & "D" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "'"
                 COMMAND = New MySqlCommand(query, MysqlConn)
                 READER = COMMAND.ExecuteReader
                 MysqlConn.Close()
@@ -406,6 +416,7 @@ Public Class FrmTakeExamMultipleChoice
             questnum -= 1
             MsgBox("NO MORE QUESTION")
             UpdateExamRecordToClose()
+            Timer1.Enabled = False
             MsgBox(" Examination Assessment Recorded", MsgBoxStyle.Information)
 
             Me.Close()
@@ -420,7 +431,7 @@ Public Class FrmTakeExamMultipleChoice
         Dim num As Integer
         num = 0
 
-        query = "Select * from examquestion where examsubjectid='" & subjectid & "' AND examid='" & examid & "' AND num='" & questnum & "'"
+        query = "Select * from examquestion where examsubjectid='" & examid & "' AND examid='" & examineeexamid & "' AND num='" & questnum & "'"
         runServer()
         MysqlConn.Open()
         COMMAND = New MySqlCommand(query, MysqlConn)

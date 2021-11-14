@@ -48,6 +48,7 @@ Public Class FrmExamMaster
 
         Dim num As Integer = 0
         query = "Select  COUNT(*) as totalcount from  (examsubject inner join examquestion on examquestion.examsubjectid = examsubject.id) WHERE examquestion.examid='" & examid & "'"
+
         runServer()
         MysqlConn.Open()
         COMMAND = New MySqlCommand(query, MysqlConn)
