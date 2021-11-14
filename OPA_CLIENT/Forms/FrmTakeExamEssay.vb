@@ -66,9 +66,9 @@ Public Class FrmTakeExamEssay
     Dim opt4 As String = ""
     Sub getExamQuestion()
 
+        query = "Select  COUNT(*) as totalcount from  (examsubject_essay inner join examquestion_essay on examquestion_essay.examsubjectid = examsubject_essay.id) WHERE examquestion_essay.examsubjectid='" & examid & "'"
 
-
-        query = "Select  COUNT(*) as totalcount from  (examsubject inner join examquestion_essay on examquestion_essay.examsubjectid = examsubject.id) WHERE examquestion_essay.examid='" & examid & "'"
+        'query = "Select  COUNT(*) as totalcount from  (examsubject inner join examquestion_essay on examquestion_essay.examsubjectid = examsubject.id) WHERE examquestion_essay.examsubjectid='" & examid & "'"
         runServer()
         MysqlConn.Open()
         COMMAND = New MySqlCommand(query, MysqlConn)
@@ -95,8 +95,8 @@ Public Class FrmTakeExamEssay
 
         Dim num As Integer
         num = 0
-
-        query = "Select * from examquestion_essay where examsubjectid='" & subjectid & "' AND examid='" & examid & "' AND num='" & questnum & "'"
+        query = "Select * from examquestion_essay where examsubjectid='" & examid & "' AND num='" & questnum & "'"
+        'query = "Select * from examquestion_essay where examsubjectid='" & subjectid & "' AND examid='" & examid & "' AND num='" & questnum & "'"
         runServer()
         MysqlConn.Open()
         COMMAND = New MySqlCommand(query, MysqlConn)
