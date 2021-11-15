@@ -285,7 +285,7 @@ Public Class ExamMaster
         FrmExamMaster.dtgList.Columns(5).Name = "status"
 
         FrmExamMaster.dtgList.Columns(6).HeaderText = ""
-        FrmExamMaster.dtgList.Columns(6).Width = 0
+        FrmExamMaster.dtgList.Columns(6).Width = 50
         FrmExamMaster.dtgList.Columns(6).Name = "examineeid"
 
         Dim btn As New DataGridViewButtonColumn()
@@ -383,9 +383,10 @@ Public Class ExamMaster
                 xdataset.Clear()
 
                 If examstatus = "" Then
-                    examstatus = "CLOSED"
-                Else
                     examstatus = "OPEN"
+
+                Else
+                    examstatus = "CLOSED"
                 End If
 
 

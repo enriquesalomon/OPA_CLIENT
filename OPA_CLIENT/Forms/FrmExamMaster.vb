@@ -306,7 +306,7 @@ Public Class FrmExamMaster
                 While questnum <= totalquestion
                     runServer()
                     MysqlConn.Open()
-                    query = "insert into exam_answer_essay (studentid,studentno,examid,examsubjectid,questionnum,answer,answerdescription) values ('" & Globaluserid & "','" & studentno & "','" & examid & "','" & subjectid & "','" & questnum & "','" & "" & "','" & "" & "')"
+                    query = "insert into exam_answer_essay (studentid,studentno,examid,examsubjectid,questionnum,answer,answerdescription,points) values ('" & Globaluserid & "','" & studentno & "','" & examid & "','" & subjectid & "','" & questnum & "','" & "" & "','" & "" & "','" & "" & "')"
                     COMMAND = New MySqlCommand(query, MysqlConn)
                     READER = COMMAND.ExecuteReader
                     MysqlConn.Close()

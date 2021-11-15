@@ -20,7 +20,7 @@ Public Class FrmExamStart
         If examtype = "Multiple Choice" Then
             If IsNumeric(timelimit) AndAlso CInt(timelimit) > 0 Then
                 FrmTakeExamMultipleChoice.tspn = New TimeSpan(0, CInt(timelimit), 0)
-                FrmTakeExamMultipleChoice.Timer1.Enabled = True
+
             Else
                 MessageBox.Show("Please enter a numeric value in the text box", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
