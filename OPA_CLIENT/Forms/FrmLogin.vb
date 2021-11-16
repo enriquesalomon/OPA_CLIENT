@@ -20,4 +20,9 @@ Public Class FrmLogin
             MyLogin.verifyUser()
         End If
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+        Me.Hide()
+        FormTestKey.Show()
+    End Sub
 End Class
