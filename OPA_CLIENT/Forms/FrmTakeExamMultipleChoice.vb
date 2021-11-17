@@ -142,7 +142,7 @@ Public Class FrmTakeExamMultipleChoice
         query = "Select  COUNT(*) as totalcount from  (examsubject inner join examquestion on examquestion.examsubjectid = examsubject.id) WHERE examquestion.examsubjectid='" & examid & "'"
         'query = "Select  COUNT(*) as totalcount from  examquestion WHERE examsubjectid='" & examineeexamid & "' AND examid='" & examid & "'"
 
-        MsgBox(examid)
+
         runServer()
         MysqlConn.Open()
         COMMAND = New MySqlCommand(query, MysqlConn)
@@ -414,6 +414,7 @@ Public Class FrmTakeExamMultipleChoice
         questnum += 1
         If questnum > totalquestions Then
             questnum -= 1
+            GroupBox1.Visible = False
             MsgBox("NO MORE QUESTION")
             UpdateExamRecordToClose()
             Timer1.Enabled = False

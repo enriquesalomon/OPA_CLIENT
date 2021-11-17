@@ -21,7 +21,15 @@ Public Class FrmTakeExamEssay
 
         If tspn.Minutes = 0 AndAlso tspn.Seconds = 0 Then
             Timer1.Stop()
-            MessageBox.Show("Time Ended")
+
+
+            If MessageBox.Show("YOUR TIME IS UP", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information) = Windows.Forms.DialogResult.OK Then
+                UpdateExamRecordToClose()
+                MsgBox(" Examination Assessment Recorded", MsgBoxStyle.Information)
+                Me.Close()
+                MyExam.ExamList()
+            End If
+
 
         End If
 
@@ -163,12 +171,16 @@ Public Class FrmTakeExamEssay
             Exit Sub
         End If
         If txtAnswerEssay.Text = "" Then
+
             MessageBox.Show("No Answer Inputed, Please input your Answer to Proceed to the next question.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Exit Sub
+        Else
+            txtAnswerEssay.Text = ""
         End If
         questnum += 1
         If questnum > totalquestions Then
             questnum -= 1
+            GroupBox2.Visible = False
             MsgBox("NO MORE QUESTION")
             UpdateExamRecordToClose()
             Timer1.Enabled = False

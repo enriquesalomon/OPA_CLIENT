@@ -24,7 +24,7 @@ Public Class FrmExamStart
             Else
                 MessageBox.Show("Please enter a numeric value in the text box", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
-            'FrmTakeExam.Timer1.Enabled = True
+            FrmTakeExamMultipleChoice.Timer1.Enabled = True
             FrmTakeExamMultipleChoice.btnBack.Enabled = True
             FrmTakeExamMultipleChoice.btnsubmits.Enabled = True
             FrmTakeExamMultipleChoice.getAnswersTable()
@@ -41,7 +41,7 @@ Public Class FrmExamStart
             Else
                 MessageBox.Show("Please enter a numeric value in the text box", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
-            'FrmTakeExam.Timer1.Enabled = True
+            FrmTakeExamEssay.Timer1.Enabled = True
             FrmTakeExamEssay.btnBack.Enabled = True
             FrmTakeExamEssay.btnsubmit.Enabled = True
             'FrmTakeExamEssay.getAnswersTable()
