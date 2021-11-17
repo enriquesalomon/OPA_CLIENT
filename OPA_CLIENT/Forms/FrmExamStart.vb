@@ -50,6 +50,23 @@ Public Class FrmExamStart
             Me.Close()
 
         End If
+
+        If examtype = "True or False" Then
+            If IsNumeric(timelimit) AndAlso CInt(timelimit) > 0 Then
+                FrmTakeExamTrueFalse.tspn = New TimeSpan(0, CInt(timelimit), 0)
+                FrmTakeExamTrueFalse.Timer1.Enabled = True
+            Else
+                MessageBox.Show("Please enter a numeric value in the text box", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+            FrmTakeExamTrueFalse.Timer1.Enabled = True
+            FrmTakeExamTrueFalse.btnBack.Enabled = True
+            FrmTakeExamTrueFalse.btnsubmit.Enabled = True
+            'FrmTakeExamTrueFalse.getAnswersTable()
+            FrmTakeExamTrueFalse.getExamQuestion()
+            FrmTakeExamTrueFalse.GroupBox1.Visible = True
+            Me.Close()
+
+        End If
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click

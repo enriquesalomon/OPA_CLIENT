@@ -154,6 +154,7 @@ Public Class FrmExamMaster
                     Dim hasquestionsnuymber As Integer = 0
 
                     query = "Select  COUNT(*) as totalcount from  (examsubject_essay inner join examquestion_essay on examquestion_essay.examsubjectid = examsubject_essay.id) WHERE examquestion_essay.examsubjectid='" & examid & "'"
+
                     runServer()
                     MysqlConn.Open()
                     COMMAND = New MySqlCommand(query, MysqlConn)
@@ -193,7 +194,9 @@ Public Class FrmExamMaster
                     ''CHECK IF THERE IS A QUESTIONS
                     Dim hasquestionsnuymber As Integer = 0
 
-                    query = "Select COUNT(*) as totalcount from  (examsubject inner join examquestion_truefalse on examquestion_truefalse.examsubjectid = examsubject.id) WHERE examquestion_truefalse.examsubjectid='" & examid & "'"
+                    'query = "Select COUNT(*) as totalcount from  (examsubject inner join examquestion_truefalse on examquestion_truefalse.examsubjectid = examsubject.id) WHERE examquestion_truefalse.examsubjectid='" & examid & "'"
+                    query = "Select  COUNT(*) as totalcount from  (examsubject_truefalse inner join examquestion_truefalse on examquestion_truefalse.examsubjectid = examsubject_truefalse.id ) WHERE examquestion_truefalse.examsubjectid='" & examid & "'"
+
                     runServer()
                     MysqlConn.Open()
                     COMMAND = New MySqlCommand(query, MysqlConn)
