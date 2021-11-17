@@ -81,6 +81,16 @@ Public Class FrmMain
                     ' Disabling Ctrl + Esc keys
                     Return CType(1, IntPtr)
                 End If
+                If objKeyInfo.key = Keys.Alt Then
+                    ' Disabling Ctrl + Esc keys
+                    MsgBox("Locked")
+                    Return CType(1, IntPtr)
+                End If
+                If objKeyInfo.key = Keys.Delete Then
+                    ' Disabling Ctrl + Esc keys
+                    MsgBox("Locked")
+                    Return CType(1, IntPtr)
+                End If
             End If
             Return CallNextHookEx(ptrHook, nCode, wp, lp)
         Catch ex As Exception
