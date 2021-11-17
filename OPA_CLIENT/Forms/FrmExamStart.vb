@@ -61,7 +61,7 @@ Public Class FrmExamStart
             FrmTakeExamTrueFalse.Timer1.Enabled = True
             FrmTakeExamTrueFalse.btnBack.Enabled = True
             FrmTakeExamTrueFalse.btnsubmit.Enabled = True
-            'FrmTakeExamTrueFalse.getAnswersTable()
+            FrmTakeExamTrueFalse.getAnswersTable()
             FrmTakeExamTrueFalse.getExamQuestion()
             FrmTakeExamTrueFalse.GroupBox1.Visible = True
             Me.Close()

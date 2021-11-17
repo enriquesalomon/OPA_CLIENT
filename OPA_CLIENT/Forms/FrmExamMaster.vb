@@ -217,7 +217,7 @@ Public Class FrmExamMaster
                         If MessageBox.Show("Are you sure you want to proceed? " & vbNewLine & " " & vbNewLine & "", " Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = Windows.Forms.DialogResult.Yes Then
                             generateExamAnswerDb()
 
-                            FrmTakeExamMultipleChoice.ShowDialog()
+                            FrmTakeExamTrueFalse.ShowDialog()
                         End If
                     End If
                 End If

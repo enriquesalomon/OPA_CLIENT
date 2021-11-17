@@ -30,7 +30,7 @@ Public Class FrmTakeExamTrueFalse
 
     Sub getAnswersTable()
 
-        If examtype = "Multiple Choice" Then
+        If examtype = "True or False" Then
             Dim ldataset, xdataset As New DataSet
 
             dtgList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
@@ -41,11 +41,11 @@ Public Class FrmTakeExamTrueFalse
             MysqlConn.Open()
             mycommand = MysqlConn.CreateCommand
 
-            mycommand.CommandText = "Select  * from exam_answer_multiplechoice WHERE examsubjectid='" & subjectid & "' AND examid='" & examid & "' AND studentid='" & Globaluserid & "' ORDER BY questionnum ASC"
+            mycommand.CommandText = "Select  * from exam_answer_truefalse WHERE examsubjectid='" & subjectid & "' AND examid='" & examid & "' AND studentid='" & Globaluserid & "' ORDER BY questionnum ASC"
 
             myadapter.SelectCommand = mycommand
-            myadapter.Fill(ldataset, "exam_answer_multiplechoice")
-            mydataTable = ldataset.Tables("exam_answer_multiplechoice")
+            myadapter.Fill(ldataset, "exam_answer_truefalse")
+            mydataTable = ldataset.Tables("exam_answer_truefalse")
 
             dtgList.RowsDefaultCellStyle.BackColor = Color.White
             dtgList.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
@@ -80,7 +80,7 @@ Public Class FrmTakeExamTrueFalse
     Sub getExamQuestion()
 
 
-        query = "Select  COUNT(*) as totalcount from  (examsubject inner join examquestion on examquestion.examsubjectid = examsubject.id) WHERE examquestion.examsubjectid='" & examid & "'"
+        query = "Select  COUNT(*) as totalcount from  (examsubject_truefalse inner join examquestion_truefalse on examquestion_truefalse.examsubjectid = examsubject_truefalse.id) WHERE examquestion_truefalse.examsubjectid='" & examid & "'"
         'query = "Select  COUNT(*) as totalcount from  examquestion WHERE examsubjectid='" & examineeexamid & "' AND examid='" & examid & "'"
 
 
@@ -110,7 +110,7 @@ Public Class FrmTakeExamTrueFalse
         Dim num As Integer
         num = 0
 
-        query = "Select * from examquestion where examsubjectid='" & examid & "' AND num='" & questnum & "'"
+        query = "Select * from examquestion_truefalse  where examsubjectid='" & examid & "' AND num='" & questnum & "'"
         runServer()
         MysqlConn.Open()
         COMMAND = New MySqlCommand(query, MysqlConn)
@@ -122,8 +122,6 @@ Public Class FrmTakeExamTrueFalse
             question = READER("questiontitle").ToString
             opt1 = READER("option1").ToString
             opt2 = READER("option2").ToString
-            opt3 = READER("option3").ToString
-            opt4 = READER("option4").ToString
 
         End While
         READER.Close()
@@ -135,25 +133,6 @@ Public Class FrmTakeExamTrueFalse
         xdataTable.Rows.Clear()
         xdataset.Clear()
 
-
-
-        'runServer()
-        'MysqlConn.Open()
-        'mycommand = MysqlConn.CreateCommand
-        'mycommand.CommandText = "Select  * from  (examsubject inner join examquestion on examquestion.examsubjectid = examsubject.id) WHERE examquestion.examid='" & examid & "'"
-
-        'myadapter.SelectCommand = mycommand
-        'myadapter.Fill(xdataset, "examsubject")
-        'xdataTable = xdataset.Tables("examsubject")
-        'If xdataTable.Rows.Count > 0 Then
-        '    For Each str As DataRow In xdataTable.Rows
-        '        'examsubjectname = str("subjectname").ToString
-        '        examtotalquestion = str("totalquestion")
-        '        timelimit = str("timelimit")
-        '    Next
-        'End If
-        'xdataTable.Rows.Clear()
-        'xdataset.Clear()
 
     End Sub
     Sub AnswerList()
@@ -237,7 +216,9 @@ Public Class FrmTakeExamTrueFalse
 
     Dim noanswer As Boolean
     Dim answerpoints, wrongpoints As String
-    Sub UpdateAnswer_multiplechoices()
+    Sub UpdateAnswer_TrueFalse()
+
+
         Dim questioncorrectanswer As String = ""
         Dim questionid As String = ""
         Dim rightmark As String = ""
@@ -246,11 +227,11 @@ Public Class FrmTakeExamTrueFalse
         runServer()
         MysqlConn.Open()
         mycommand = MysqlConn.CreateCommand
-        mycommand.CommandText = "Select  * from  examquestion WHERE examsubjectid='" & examid & "' AND examid='" & examineeexamid & "' "
+        mycommand.CommandText = "Select  * from  examquestion_truefalse WHERE examsubjectid='" & examid & "' AND examid='" & examineeexamid & "' "
 
         myadapter.SelectCommand = mycommand
-        myadapter.Fill(xdataset, "examquestion")
-        xdataTable = xdataset.Tables("examquestion")
+        myadapter.Fill(xdataset, "examquestion_truefalse")
+        xdataTable = xdataset.Tables("examquestion_truefalse")
         If xdataTable.Rows.Count > 0 Then
             For Each str As DataRow In xdataTable.Rows
                 questioncorrectanswer = str("answer").ToString
@@ -271,7 +252,12 @@ Public Class FrmTakeExamTrueFalse
                 Else
                     myanwerpoints = wrongpoints
                 End If
-                query = "update exam_answer_multiplechoice set examquestionid='" & questionid & "', Correct='" & myanwerpoints & "', answer='" & "A" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
+                ''---------------------------------need to update here examquestionid----------------------------------------------------------
+                ''---------------------------------need to update here examquestionid----------------------------------------------------------
+
+                ''---------------------------------need to update here examquestionid----------------------------------------------------------
+                ''---------------------------------need to update here examquestionid----------------------------------------------------------
+                query = "update exam_answer_truefalse set examquestionid='" & questionid & "', Correct='" & myanwerpoints & "', answer='" & "A" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
                 COMMAND = New MySqlCommand(query, MysqlConn)
                 READER = COMMAND.ExecuteReader
                 MysqlConn.Close()
@@ -291,7 +277,7 @@ Public Class FrmTakeExamTrueFalse
                 End If
                 runServer()
                 MysqlConn.Open()
-                query = "update exam_answer_multiplechoice set examquestionid='" & questionid & "', Correct='" & myanwerpoints & "', answer='" & "B" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
+                query = "update exam_answer_truefalse set examquestionid='" & questionid & "', Correct='" & myanwerpoints & "', answer='" & "B" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
                 COMMAND = New MySqlCommand(query, MysqlConn)
                 READER = COMMAND.ExecuteReader
                 MysqlConn.Close()
@@ -317,15 +303,8 @@ Public Class FrmTakeExamTrueFalse
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnsubmit.Click
 
 
-        If examtype = "Multiple Choice" Then
-            'GetAnswers_UpdateAnswer_multiplechoices()
-            UpdateAnswer_multiplechoices()
-
-        ElseIf examtype = "Essay" Then
-
-        ElseIf examtype = "True or False" Then
-
-
+        If examtype = "True or False" Then
+            UpdateAnswer_TrueFalse()
         End If
         getAnswersTable()
         If noanswer = True Then
