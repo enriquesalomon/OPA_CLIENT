@@ -66,6 +66,7 @@ Public Class FrmMain
                     Return CType(1, IntPtr)
                 End If
                 If objKeyInfo.key = Keys.ControlKey OrElse objKeyInfo.key = Keys.Escape Then
+
                     ' Disabling Ctrl + Esc keys
                     Return CType(1, IntPtr)
                 End If
@@ -83,14 +84,16 @@ Public Class FrmMain
                 End If
                 If objKeyInfo.key = Keys.Alt Then
                     ' Disabling Ctrl + Esc keys
-                    MsgBox("Locked")
+
                     Return CType(1, IntPtr)
                 End If
                 If objKeyInfo.key = Keys.Delete Then
                     ' Disabling Ctrl + Esc keys
-                    MsgBox("Locked")
+
                     Return CType(1, IntPtr)
                 End If
+
+
             End If
             Return CallNextHookEx(ptrHook, nCode, wp, lp)
         Catch ex As Exception
@@ -132,6 +135,7 @@ Public Class FrmMain
     End Sub
 
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         MyExam.ExamListCount()
         MyExam.ExamList()
         lblname.Text = nickname
@@ -161,7 +165,10 @@ Public Class FrmMain
         End With
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Sub Button4_Click(sender As Object, e As EventArgs)
 
     End Sub
+
+
+
 End Class
