@@ -247,7 +247,7 @@ Public Class FrmTakeExamTrueFalse
             Case RadioButton1.Checked
                 runServer()
                 MysqlConn.Open()
-                If questioncorrectanswer = "1" Then
+                If questioncorrectanswer = "TRUE" Then
                     myanwerpoints = answerpoints
                 Else
                     myanwerpoints = wrongpoints
@@ -270,7 +270,7 @@ Public Class FrmTakeExamTrueFalse
                 'MysqlConn.Close()
 
             Case RadioButton2.Checked
-                If questioncorrectanswer = "2" Then
+                If questioncorrectanswer = "FALSE" Then
                     myanwerpoints = answerpoints
                 Else
                     myanwerpoints = wrongpoints
