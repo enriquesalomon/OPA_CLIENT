@@ -144,16 +144,51 @@ Public Class FrmTakeExamEssay
         MyExam.ExamList()
     End Sub
     Dim noanswer As Boolean
+    Dim answerpoints, wrongpoints As String
+
     Sub UpdateAnswer_Essay()
+        Dim questioncorrectanswer As String = ""
+        Dim questionid As String = ""
+        Dim rightmark As String = ""
+        xdataTable.Rows.Clear()
+        xdataset.Clear()
         runServer()
         MysqlConn.Open()
-        query = "update exam_answer_essay set answer='" & txtAnswerEssay.Text & "',answerdescription='" & "" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
+        mycommand = MysqlConn.CreateCommand
+        mycommand.CommandText = "Select  * from  examquestion_essay WHERE examsubjectid='" & examid & "' AND examid='" & examineeexamid & "' "
+
+        myadapter.SelectCommand = mycommand
+        myadapter.Fill(xdataset, "examquestion_essay")
+        xdataTable = xdataset.Tables("examquestion_essay")
+        If xdataTable.Rows.Count > 0 Then
+            For Each str As DataRow In xdataTable.Rows
+                answerpoints = str("highestmark").ToString
+                questionid = str("id").ToString
+            Next
+        End If
+        xdataTable.Rows.Clear()
+        xdataset.Clear()
+
+
+        query = "update exam_answer_essay set examquestionid='" & questionid & "', Correct='" & answerpoints & "', answer='" & txtAnswerEssay.Text.ToString & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
         COMMAND = New MySqlCommand(query, MysqlConn)
-        READER = COMMAND.ExecuteReader
-        MysqlConn.Close()
+                READER = COMMAND.ExecuteReader
+                MysqlConn.Close()
+
 
 
     End Sub
+
+    'Sub UpdateAnswer_Essay()
+    '    runServer()
+    '    MysqlConn.Open()
+    '    query = "update exam_answer_essay set answer='" & txtAnswerEssay.Text & "',answerdescription='" & "" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
+    '    COMMAND = New MySqlCommand(query, MysqlConn)
+    '    READER = COMMAND.ExecuteReader
+    '    MysqlConn.Close()
+
+
+    'End Sub
     Sub UpdateExamRecordToClose()
         runServer()
         MysqlConn.Open()

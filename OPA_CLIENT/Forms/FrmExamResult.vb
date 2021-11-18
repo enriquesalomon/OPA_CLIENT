@@ -69,39 +69,39 @@
 
 
 
-        'If mydataTable.Rows.Count > 0 Then
-        '    For Each mrow As DataRow In mydataTable.Rows
+        If mydataTable.Rows.Count > 0 Then
+            For Each mrow As DataRow In mydataTable.Rows
 
 
-        '        Dim examsubjectname As String = ""
-        '        xdataTable.Rows.Clear()
-        '        xdataset.Clear()
-        '        runServer()
-        '        MysqlConn.Open()
-        '        mycommand = MysqlConn.CreateCommand
-        '        mycommand.CommandText = "Select  * from  (subjects inner join exammaster on subjects.id = exammaster.subjectid) WHERE exammaster.id='" & mrow("id").ToString & "'"
+                Dim examsubjectname As String = ""
+                xdataTable.Rows.Clear()
+                xdataset.Clear()
+                runServer()
+                MysqlConn.Open()
+                mycommand = MysqlConn.CreateCommand
+                mycommand.CommandText = "Select  * from  (subjects inner join exammaster on subjects.id = exammaster.subjectid) WHERE exammaster.id='" & mrow("id").ToString & "'"
 
-        '        myadapter.SelectCommand = mycommand
-        '        myadapter.Fill(xdataset, "exammaster")
-        '        xdataTable = xdataset.Tables("exammaster")
-        '        If xdataTable.Rows.Count > 0 Then
-        '            For Each str As DataRow In xdataTable.Rows
-        '                examsubjectname = str("subjectname").ToString
-        '                subjectid = str("subjectid").ToString
-
-
-        '            Next
-        '        End If
-        '        xdataTable.Rows.Clear()
-        '        xdataset.Clear()
+                myadapter.SelectCommand = mycommand
+                myadapter.Fill(xdataset, "exammaster")
+                xdataTable = xdataset.Tables("exammaster")
+                If xdataTable.Rows.Count > 0 Then
+                    For Each str As DataRow In xdataTable.Rows
+                        examsubjectname = str("subjectname").ToString
+                        subjectid = str("subjectid").ToString
 
 
+                    Next
+                End If
+                xdataTable.Rows.Clear()
+                xdataset.Clear()
 
-        '        Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, "OPEN", mrow("examid").ToString}
-        '        FrmExamMaster.dtgList.Rows.Add(row)
-        '    Next
 
-        'End If
+
+                Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, "OPEN", mrow("examid").ToString}
+                FrmExamMaster.dtgList.Rows.Add(row)
+            Next
+
+        End If
     End Sub
     Sub cmbLoaddataExam()
         Try
