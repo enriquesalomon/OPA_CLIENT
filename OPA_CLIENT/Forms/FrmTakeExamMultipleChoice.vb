@@ -396,10 +396,6 @@ Public Class FrmTakeExamMultipleChoice
             'GetAnswers_UpdateAnswer_multiplechoices()
             UpdateAnswer_multiplechoices()
 
-        ElseIf examtype = "Essay" Then
-
-        ElseIf examtype = "True or False" Then
-
 
         End If
         getAnswersTable()
