@@ -31,6 +31,8 @@ Partial Class FrmChangeAccessCode
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button3
@@ -55,7 +57,7 @@ Partial Class FrmChangeAccessCode
         Me.txtOldAccessCode.BackColor = System.Drawing.Color.White
         Me.txtOldAccessCode.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtOldAccessCode.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.txtOldAccessCode.Location = New System.Drawing.Point(262, 130)
+        Me.txtOldAccessCode.Location = New System.Drawing.Point(37, 49)
         Me.txtOldAccessCode.MinimumSize = New System.Drawing.Size(229, 22)
         Me.txtOldAccessCode.Name = "txtOldAccessCode"
         Me.txtOldAccessCode.Size = New System.Drawing.Size(254, 22)
@@ -68,7 +70,7 @@ Partial Class FrmChangeAccessCode
         Me.txtNewAccessCode.BackColor = System.Drawing.Color.White
         Me.txtNewAccessCode.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNewAccessCode.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.txtNewAccessCode.Location = New System.Drawing.Point(261, 175)
+        Me.txtNewAccessCode.Location = New System.Drawing.Point(36, 94)
         Me.txtNewAccessCode.Name = "txtNewAccessCode"
         Me.txtNewAccessCode.Size = New System.Drawing.Size(254, 22)
         Me.txtNewAccessCode.TabIndex = 221
@@ -80,7 +82,7 @@ Partial Class FrmChangeAccessCode
         Me.txtRetypeNewAccessCode.BackColor = System.Drawing.Color.White
         Me.txtRetypeNewAccessCode.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtRetypeNewAccessCode.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.txtRetypeNewAccessCode.Location = New System.Drawing.Point(261, 221)
+        Me.txtRetypeNewAccessCode.Location = New System.Drawing.Point(36, 140)
         Me.txtRetypeNewAccessCode.Name = "txtRetypeNewAccessCode"
         Me.txtRetypeNewAccessCode.Size = New System.Drawing.Size(254, 22)
         Me.txtRetypeNewAccessCode.TabIndex = 222
@@ -95,7 +97,7 @@ Partial Class FrmChangeAccessCode
         Me.btnUpdateAccessCode.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnUpdateAccessCode.ForeColor = System.Drawing.SystemColors.ButtonFace
         Me.btnUpdateAccessCode.ImageKey = "Check_16x16.png"
-        Me.btnUpdateAccessCode.Location = New System.Drawing.Point(261, 249)
+        Me.btnUpdateAccessCode.Location = New System.Drawing.Point(36, 168)
         Me.btnUpdateAccessCode.Name = "btnUpdateAccessCode"
         Me.btnUpdateAccessCode.Size = New System.Drawing.Size(253, 39)
         Me.btnUpdateAccessCode.TabIndex = 225
@@ -107,7 +109,7 @@ Partial Class FrmChangeAccessCode
         '
         Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(340, 114)
+        Me.Label1.Location = New System.Drawing.Point(115, 33)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(87, 13)
         Me.Label1.TabIndex = 226
@@ -117,7 +119,7 @@ Partial Class FrmChangeAccessCode
         '
         Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(330, 158)
+        Me.Label2.Location = New System.Drawing.Point(105, 77)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(118, 13)
         Me.Label2.TabIndex = 227
@@ -127,31 +129,44 @@ Partial Class FrmChangeAccessCode
         '
         Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(323, 205)
+        Me.Label3.Location = New System.Drawing.Point(98, 124)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(128, 13)
         Me.Label3.TabIndex = 228
         Me.Label3.Text = "Retype new access code"
         '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.Controls.Add(Me.Label3)
+        Me.Panel1.Controls.Add(Me.Label2)
+        Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.btnUpdateAccessCode)
+        Me.Panel1.Controls.Add(Me.txtOldAccessCode)
+        Me.Panel1.Controls.Add(Me.txtRetypeNewAccessCode)
+        Me.Panel1.Controls.Add(Me.txtNewAccessCode)
+        Me.Panel1.Location = New System.Drawing.Point(234, 92)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(328, 263)
+        Me.Panel1.TabIndex = 229
+        '
         'FrmChangeAccessCode
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.btnUpdateAccessCode)
         Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.txtOldAccessCode)
-        Me.Controls.Add(Me.txtRetypeNewAccessCode)
-        Me.Controls.Add(Me.txtNewAccessCode)
+        Me.Controls.Add(Me.Panel1)
+        Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "FrmChangeAccessCode"
         Me.Text = "FrmChangeAccessCode"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -163,4 +178,5 @@ Partial Class FrmChangeAccessCode
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
+    Friend WithEvents Panel1 As Panel
 End Class

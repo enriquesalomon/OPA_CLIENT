@@ -22,6 +22,7 @@ Partial Class FrmDashboard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmDashboard))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -40,6 +41,7 @@ Partial Class FrmDashboard
         '
         'Panel1
         '
+        Me.Panel1.BackColor = System.Drawing.Color.White
         Me.Panel1.Controls.Add(Me.Panel4)
         Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.Panel2)
@@ -53,7 +55,7 @@ Partial Class FrmDashboard
         Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(219, Byte), Integer))
         Me.Panel4.Controls.Add(Me.Label6)
         Me.Panel4.Controls.Add(Me.Label3)
-        Me.Panel4.Location = New System.Drawing.Point(724, 20)
+        Me.Panel4.Location = New System.Drawing.Point(733, 20)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(303, 142)
         Me.Panel4.TabIndex = 2
@@ -85,7 +87,7 @@ Partial Class FrmDashboard
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(76, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.Panel3.Controls.Add(Me.Label5)
         Me.Panel3.Controls.Add(Me.Label2)
-        Me.Panel3.Location = New System.Drawing.Point(360, 20)
+        Me.Panel3.Location = New System.Drawing.Point(369, 20)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(303, 142)
         Me.Panel3.TabIndex = 1
@@ -117,7 +119,7 @@ Partial Class FrmDashboard
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(156, Byte), Integer), CType(CType(18, Byte), Integer))
         Me.Panel2.Controls.Add(Me.lblexamcount)
         Me.Panel2.Controls.Add(Me.Label1)
-        Me.Panel2.Location = New System.Drawing.Point(2, 20)
+        Me.Panel2.Location = New System.Drawing.Point(11, 20)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(303, 142)
         Me.Panel2.TabIndex = 0
@@ -148,8 +150,11 @@ Partial Class FrmDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.ClientSize = New System.Drawing.Size(1048, 450)
         Me.Controls.Add(Me.Panel1)
+        Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "FrmDashboard"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized

@@ -1,7 +1,8 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class FrmChangeAccessCode
     Private Sub FrmChangeAccessCode_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        Me.Panel1.Location = New Point(Convert.ToInt32(Me.ClientSize.Width / 2 - Me.Panel1.Width / 2),
+                                 Convert.ToInt32(Me.ClientSize.Height / 2 - Me.Panel1.Height / 2))
     End Sub
 
     Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click

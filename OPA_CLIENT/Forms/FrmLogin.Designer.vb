@@ -142,7 +142,8 @@ Partial Class FrmLogin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(411, 139)
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.ClientSize = New System.Drawing.Size(402, 147)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnLogin)
         Me.Controls.Add(Me.txtpassword)
@@ -151,6 +152,7 @@ Partial Class FrmLogin
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.txtusername)
         Me.Controls.Add(Me.Label10)
+        Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "FrmLogin"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
