@@ -29,8 +29,10 @@ Public Class FrmTakeExamTrueFalse
 
 
     Sub getAnswersTable()
+        Try
 
-        If examtype = "True or False" Then
+
+            If examtype = "True or False" Then
             Dim ldataset, xdataset As New DataSet
 
             dtgList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
@@ -73,14 +75,18 @@ Public Class FrmTakeExamTrueFalse
         End If
 
 
+        Catch ex As Exception
+
+        End Try
 
     End Sub
 
     Dim myanwerpoints As String
     Sub getExamQuestion()
 
+        Try
 
-        query = "Select  COUNT(*) as totalcount from  (examsubject_truefalse inner join examquestion_truefalse on examquestion_truefalse.examsubjectid = examsubject_truefalse.id) WHERE examquestion_truefalse.examsubjectid='" & examid & "'"
+            query = "Select  COUNT(*) as totalcount from  (examsubject_truefalse inner join examquestion_truefalse on examquestion_truefalse.examsubjectid = examsubject_truefalse.id) WHERE examquestion_truefalse.examsubjectid='" & examid & "'"
         'query = "Select  COUNT(*) as totalcount from  examquestion WHERE examsubjectid='" & examineeexamid & "' AND examid='" & examid & "'"
 
 
@@ -134,6 +140,10 @@ Public Class FrmTakeExamTrueFalse
         xdataset.Clear()
 
 
+        Catch ex As Exception
+
+        End Try
+
     End Sub
     Sub AnswerList()
 
@@ -169,14 +179,6 @@ Public Class FrmTakeExamTrueFalse
 
 
 
-            'If mydataTable.Rows.Count > 0 Then
-            '    For Each mrow As DataRow In mydataTable.Rows
-
-            '        Dim row As String() = New String() {mrow("id").ToString, mrow("sy").ToString + " " + mrow("examcategoryname").ToString, mrow("examtype").ToString, mrow("status").ToString}
-            '        FrmExamMaster.dtgList.Rows.Add(row)
-            '    Next
-
-            'End If
 
         Catch ex As Exception
             MsgBox("Error: " & ex.Source & ": " & ex.Message, MsgBoxStyle.OkOnly, "Data Error !!")
@@ -188,7 +190,10 @@ Public Class FrmTakeExamTrueFalse
         RadioButton2.Checked = False
     End Sub
     Sub GetAnswers_UpdateAnswer_multiplechoices()
-        Dim answer As String = ""
+
+        Try
+
+            Dim answer As String = ""
         query = "Select * from exam_answer_multiplechoice where studentid= '" & Globaluserid & "' and examid= '" & examid & "' and examsubjectid= '" & subjectid & "'"
         runServer()
         MysqlConn.Open()
@@ -212,13 +217,21 @@ Public Class FrmTakeExamTrueFalse
 
         End Select
 
+
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Dim noanswer As Boolean
     Dim answerpoints, wrongpoints As String
     Sub UpdateAnswer_TrueFalse()
 
-        Dim totalitems As String = ""
+
+        Try
+
+            Dim totalitems As String = ""
         Dim questioncorrectanswer As String = ""
         Dim questionid As String = ""
         Dim rightmark As String = ""
@@ -287,6 +300,9 @@ Public Class FrmTakeExamTrueFalse
                 Exit Sub
         End Select
 
+        Catch ex As Exception
+
+        End Try
     End Sub
     Dim questionid As String = ""
 
@@ -304,7 +320,10 @@ Public Class FrmTakeExamTrueFalse
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnsubmit.Click
 
 
-        If examtype = "True or False" Then
+        Try
+
+
+            If examtype = "True or False" Then
             UpdateAnswer_TrueFalse()
         End If
         getAnswersTable()
@@ -360,7 +379,12 @@ Public Class FrmTakeExamTrueFalse
         RadioButton2.Text = opt2
 
         xdataTable.Rows.Clear()
-        xdataset.Clear()
+            xdataset.Clear()
+
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 
 

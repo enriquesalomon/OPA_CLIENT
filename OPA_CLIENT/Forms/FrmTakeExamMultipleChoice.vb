@@ -64,16 +64,6 @@ Public Class FrmTakeExamMultipleChoice
 
 
 
-
-            'If mydataTable.Rows.Count > 0 Then
-            '    For Each mrow As DataRow In mydataTable.Rows
-
-            '        Dim row As String() = New String() {mrow("id").ToString, mrow("sy").ToString + " " + mrow("examcategoryname").ToString, mrow("examtype").ToString, mrow("status").ToString}
-            '        FrmExamMaster.dtgList.Rows.Add(row)
-            '    Next
-
-            'End If
-
         Catch ex As Exception
             MsgBox("Error: " & ex.Source & ": " & ex.Message, MsgBoxStyle.OkOnly, "Data Error !!")
         End Try
@@ -90,7 +80,10 @@ Public Class FrmTakeExamMultipleChoice
 
     Sub getAnswersTable()
 
-        If examtype = "Multiple Choice" Then
+        Try
+
+
+            If examtype = "Multiple Choice" Then
             Dim ldataset, xdataset As New DataSet
 
             dtgList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
@@ -133,13 +126,18 @@ Public Class FrmTakeExamMultipleChoice
         End If
 
 
+        Catch ex As Exception
+
+        End Try
 
     End Sub
     Dim myanwerpoints As String
     Sub getExamQuestion()
 
+        Try
 
-        query = "Select  COUNT(*) as totalcount from  (examsubject inner join examquestion on examquestion.examsubjectid = examsubject.id) WHERE examquestion.examsubjectid='" & examid & "'"
+
+            query = "Select  COUNT(*) as totalcount from  (examsubject inner join examquestion on examquestion.examsubjectid = examsubject.id) WHERE examquestion.examsubjectid='" & examid & "'"
         'query = "Select  COUNT(*) as totalcount from  examquestion WHERE examsubjectid='" & examineeexamid & "' AND examid='" & examid & "'"
 
 
@@ -197,46 +195,13 @@ Public Class FrmTakeExamMultipleChoice
         xdataset.Clear()
 
 
+        Catch ex As Exception
 
-        'runServer()
-        'MysqlConn.Open()
-        'mycommand = MysqlConn.CreateCommand
-        'mycommand.CommandText = "Select  * from  (examsubject inner join examquestion on examquestion.examsubjectid = examsubject.id) WHERE examquestion.examid='" & examid & "'"
-
-        'myadapter.SelectCommand = mycommand
-        'myadapter.Fill(xdataset, "examsubject")
-        'xdataTable = xdataset.Tables("examsubject")
-        'If xdataTable.Rows.Count > 0 Then
-        '    For Each str As DataRow In xdataTable.Rows
-        '        'examsubjectname = str("subjectname").ToString
-        '        examtotalquestion = str("totalquestion")
-        '        timelimit = str("timelimit")
-        '    Next
-        'End If
-        'xdataTable.Rows.Clear()
-        'xdataset.Clear()
-
+        End Try
     End Sub
 
 
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
-        'If RadioButton1.Checked = False Then
-        '    RadioButton1.Checked = True
-        'End If
-        'If RadioButton2.Checked = True Then
-        '    RadioButton2.Checked = False
-        'End If
-        'If RadioButton3.Checked = True Then
-        '    RadioButton3.Checked = False
-        'End If
-        'If RadioButton4.Checked = True Then
-        '    RadioButton4.Checked = False
-        'End If
-
-
-
-
-
 
 
 
@@ -268,7 +233,10 @@ Public Class FrmTakeExamMultipleChoice
         RadioButton4.Checked = False
     End Sub
     Sub GetAnswers_UpdateAnswer_multiplechoices()
-        Dim answer As String = ""
+
+        Try
+
+            Dim answer As String = ""
         query = "Select * from exam_answer_multiplechoice where studentid= '" & Globaluserid & "' and examid= '" & examid & "' and examsubjectid= '" & subjectid & "'"
         runServer()
         MysqlConn.Open()
@@ -283,24 +251,32 @@ Public Class FrmTakeExamMultipleChoice
         READER.Close()
         MysqlConn.Close()
 
-        Select Case answer
-            Case "A"
-                RadioButton1.Checked = True
-            Case "B"
-                RadioButton2.Checked = True
-            Case "C"
-                RadioButton3.Checked = True
-            Case "D"
-                RadioButton4.Checked = True
-            Case Else
+            Select Case answer
+                Case "A"
+                    RadioButton1.Checked = True
+                Case "B"
+                    RadioButton2.Checked = True
+                Case "C"
+                    RadioButton3.Checked = True
+                Case "D"
+                    RadioButton4.Checked = True
+                Case Else
 
-        End Select
+            End Select
+
+
+        Catch ex As Exception
+
+        End Try
 
     End Sub
     Dim noanswer As Boolean
     Dim answerpoints, wrongpoints As String
     Sub UpdateAnswer_multiplechoices()
-        Dim totalitems As String = ""
+
+        Try
+
+            Dim totalitems As String = ""
         Dim questioncorrectanswer As String = ""
         Dim questionid As String = ""
         Dim rightmark As String = ""
@@ -326,19 +302,19 @@ Public Class FrmTakeExamMultipleChoice
         xdataTable.Rows.Clear()
         xdataset.Clear()
 
-        Select Case True
-            Case RadioButton1.Checked
-                runServer()
-                MysqlConn.Open()
-                If questioncorrectanswer = "1" Then
-                    myanwerpoints = answerpoints
-                Else
-                    myanwerpoints = wrongpoints
-                End If
-                query = "update exam_answer_multiplechoice set examquestionid='" & questionid & "', Correct='" & myanwerpoints & "', answer='" & "A" & "' , totalitems='" & totalitems & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
-                COMMAND = New MySqlCommand(query, MysqlConn)
-                READER = COMMAND.ExecuteReader
-                MysqlConn.Close()
+            Select Case True
+                Case RadioButton1.Checked
+                    runServer()
+                    MysqlConn.Open()
+                    If questioncorrectanswer = "1" Then
+                        myanwerpoints = answerpoints
+                    Else
+                        myanwerpoints = wrongpoints
+                    End If
+                    query = "update exam_answer_multiplechoice set examquestionid='" & questionid & "', Correct='" & myanwerpoints & "', answer='" & "A" & "' , totalitems='" & totalitems & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
+                    COMMAND = New MySqlCommand(query, MysqlConn)
+                    READER = COMMAND.ExecuteReader
+                    MysqlConn.Close()
 
                 'runServer()
                 'MysqlConn.Open()
@@ -347,54 +323,60 @@ Public Class FrmTakeExamMultipleChoice
                 'READER = COMMAND.ExecuteReader
                 'MysqlConn.Close()
 
-            Case RadioButton2.Checked
-                If questioncorrectanswer = "2" Then
-                    myanwerpoints = answerpoints
-                Else
-                    myanwerpoints = wrongpoints
-                End If
-                runServer()
-                MysqlConn.Open()
-                query = "update exam_answer_multiplechoice set examquestionid='" & questionid & "', Correct='" & myanwerpoints & "', answer='" & "B" & "', totalitems='" & totalitems & "'  where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
-                COMMAND = New MySqlCommand(query, MysqlConn)
-                READER = COMMAND.ExecuteReader
-                MysqlConn.Close()
-            Case RadioButton3.Checked
-                If questioncorrectanswer = "3" Then
-                    myanwerpoints = answerpoints
-                Else
-                    myanwerpoints = wrongpoints
-                End If
-                runServer()
-                MysqlConn.Open()
-                query = "update exam_answer_multiplechoice set examquestionid='" & questionid & "',Correct='" & myanwerpoints & "', answer='" & "C" & "' , totalitems='" & totalitems & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
-                COMMAND = New MySqlCommand(query, MysqlConn)
-                READER = COMMAND.ExecuteReader
-                MysqlConn.Close()
-            Case RadioButton4.Checked
-                If questioncorrectanswer = "4" Then
-                    myanwerpoints = answerpoints
-                Else
-                    myanwerpoints = wrongpoints
-                End If
-                runServer()
-                MysqlConn.Open()
-                query = "update exam_answer_multiplechoice set examquestionid='" & questionid & "',Correct='" & myanwerpoints & "',answer='" & "D" & "', totalitems='" & totalitems & "'  where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "'"
-                COMMAND = New MySqlCommand(query, MysqlConn)
-                READER = COMMAND.ExecuteReader
-                MysqlConn.Close()
-            Case Else
+                Case RadioButton2.Checked
+                    If questioncorrectanswer = "2" Then
+                        myanwerpoints = answerpoints
+                    Else
+                        myanwerpoints = wrongpoints
+                    End If
+                    runServer()
+                    MysqlConn.Open()
+                    query = "update exam_answer_multiplechoice set examquestionid='" & questionid & "', Correct='" & myanwerpoints & "', answer='" & "B" & "', totalitems='" & totalitems & "'  where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
+                    COMMAND = New MySqlCommand(query, MysqlConn)
+                    READER = COMMAND.ExecuteReader
+                    MysqlConn.Close()
+                Case RadioButton3.Checked
+                    If questioncorrectanswer = "3" Then
+                        myanwerpoints = answerpoints
+                    Else
+                        myanwerpoints = wrongpoints
+                    End If
+                    runServer()
+                    MysqlConn.Open()
+                    query = "update exam_answer_multiplechoice set examquestionid='" & questionid & "',Correct='" & myanwerpoints & "', answer='" & "C" & "' , totalitems='" & totalitems & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
+                    COMMAND = New MySqlCommand(query, MysqlConn)
+                    READER = COMMAND.ExecuteReader
+                    MysqlConn.Close()
+                Case RadioButton4.Checked
+                    If questioncorrectanswer = "4" Then
+                        myanwerpoints = answerpoints
+                    Else
+                        myanwerpoints = wrongpoints
+                    End If
+                    runServer()
+                    MysqlConn.Open()
+                    query = "update exam_answer_multiplechoice set examquestionid='" & questionid & "',Correct='" & myanwerpoints & "',answer='" & "D" & "', totalitems='" & totalitems & "'  where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "'"
+                    COMMAND = New MySqlCommand(query, MysqlConn)
+                    READER = COMMAND.ExecuteReader
+                    MysqlConn.Close()
+                Case Else
 
-                Exit Sub
-        End Select
+                    Exit Sub
+            End Select
+
+
+        Catch ex As Exception
+
+        End Try
 
     End Sub
 
     Dim questionid As String = ""
     Private Sub btnsubmit_Click(sender As Object, e As EventArgs) Handles btnsubmits.Click
+        Try
 
 
-        If examtype = "Multiple Choice" Then
+            If examtype = "Multiple Choice" Then
             'GetAnswers_UpdateAnswer_multiplechoices()
             UpdateAnswer_multiplechoices()
 
@@ -455,22 +437,17 @@ Public Class FrmTakeExamMultipleChoice
         RadioButton4.Text = opt4
 
         xdataTable.Rows.Clear()
-        xdataset.Clear()
+            xdataset.Clear()
+
+
+        Catch ex As Exception
+
+        End Try
 
     End Sub
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
 
-        'If examtype = "Multiple Choice" Then
-        '    GetAnswers_UpdateAnswer_multiplechoices()
-        '    UpdateAnswer_multiplechoices()
-
-        'ElseIf examtype = "Essay" Then
-
-        'ElseIf examtype = "True or False" Then
-
-
-        'End If
 
         deselectradtionbutton()
         questnum -= 1

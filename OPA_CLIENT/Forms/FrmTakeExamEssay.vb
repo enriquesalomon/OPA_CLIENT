@@ -33,34 +33,6 @@ Public Class FrmTakeExamEssay
 
         End If
 
-        'ok---------------------------
-        'lbltimer.Text = Format(stringServer, "00:") & Format(timelimit, "00:") & Format(vv, "00")
-        'vv = vv + 1
-        'If vv > 59 Then
-        '    vv = 0
-        '    tt = tt + 1
-        'End If
-        'If tt = CInt(timelimit) Then
-        '    vv = 0
-        '    tt = 0
-        '    lbltimer.Text = "00:00:00"
-
-        '    MessageBox.Show("Time Ended")
-        '    lbltimer.Enabled = False
-        '    lbltimer.Text = "00:00:00"
-        '    Me.Dispose()
-        'End If
-
-        'Current = Current - 1
-        'lbltimer.Text = Current.ToString
-
-        'If lbltimer.Text = "0" Then
-
-        '    Timer1.Stop()
-
-        '    MessageBox.Show("Countdown Finished")
-
-        'End If
 
 
     End Sub
@@ -73,8 +45,10 @@ Public Class FrmTakeExamEssay
     Dim opt3 As String = ""
     Dim opt4 As String = ""
     Sub getExamQuestion()
+        Try
 
-        query = "Select  COUNT(*) as totalcount from  (examsubject_essay inner join examquestion_essay on examquestion_essay.examsubjectid = examsubject_essay.id) WHERE examquestion_essay.examsubjectid='" & examid & "'"
+
+            query = "Select  COUNT(*) as totalcount from  (examsubject_essay inner join examquestion_essay on examquestion_essay.examsubjectid = examsubject_essay.id) WHERE examquestion_essay.examsubjectid='" & examid & "'"
 
         'query = "Select  COUNT(*) as totalcount from  (examsubject inner join examquestion_essay on examquestion_essay.examsubjectid = examsubject.id) WHERE examquestion_essay.examsubjectid='" & examid & "'"
         runServer()
@@ -126,6 +100,9 @@ Public Class FrmTakeExamEssay
 
 
 
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -147,7 +124,9 @@ Public Class FrmTakeExamEssay
     Dim answerpoints, wrongpoints As String
 
     Sub UpdateAnswer_Essay()
-        Dim totalitems As String = ""
+        Try
+
+            Dim totalitems As String = ""
         Dim questioncorrectanswer As String = ""
         Dim questionid As String = ""
         Dim rightmark As String = ""
@@ -178,31 +157,33 @@ Public Class FrmTakeExamEssay
         MysqlConn.Close()
 
 
+        Catch ex As Exception
+
+        End Try
 
     End Sub
 
-    'Sub UpdateAnswer_Essay()
-    '    runServer()
-    '    MysqlConn.Open()
-    '    query = "update exam_answer_essay set answer='" & txtAnswerEssay.Text & "',answerdescription='" & "" & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
-    '    COMMAND = New MySqlCommand(query, MysqlConn)
-    '    READER = COMMAND.ExecuteReader
-    '    MysqlConn.Close()
 
-
-    'End Sub
     Sub UpdateExamRecordToClose()
-        runServer()
+        Try
+
+            runServer()
         MysqlConn.Open()
         'query = "insert into exam_answer_multiplechoice (studentid,studentno,examid,examsubjectid,questionnum,answer,answerdescription) values ('" & Globaluserid & "','" & studentno & "','" & examid & "','" & subjectid & "','" & questnum & "','" & "" & "','" & "" & "')"
         query = "update examinee set status='" & "CLOSED" & "',datetaken='" & Date.Now.ToShortDateString & "',startime='" & timelimit & "',timeend='" & tspn.Minutes.ToString + ":" + tspn.Seconds.ToString & "' where examid='" & examineeexamid & "' AND studentid='" & Globaluserid & "'"
 
         COMMAND = New MySqlCommand(query, MysqlConn)
         READER = COMMAND.ExecuteReader
-        MysqlConn.Close()
+            MysqlConn.Close()
+
+        Catch ex As Exception
+
+        End Try
     End Sub
     Private Sub btnsubmit_Click(sender As Object, e As EventArgs) Handles btnsubmit.Click
-        UpdateAnswer_Essay()
+        Try
+
+            UpdateAnswer_Essay()
 
         If noanswer = True Then
             Exit Sub
@@ -252,6 +233,10 @@ Public Class FrmTakeExamEssay
 
 
         xdataTable.Rows.Clear()
-        xdataset.Clear()
+            xdataset.Clear()
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

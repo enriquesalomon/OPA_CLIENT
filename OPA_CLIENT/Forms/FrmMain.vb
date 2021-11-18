@@ -137,7 +137,10 @@ Public Class FrmMain
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         MyExam.ExamListCount()
+        FrmExamResult.loadScoreExam()
         MyExam.ExamList()
+        MyExam.counttotalquestion()
+
         lblname.Text = nickname
         With FrmDashboard
             .TopLevel = False
