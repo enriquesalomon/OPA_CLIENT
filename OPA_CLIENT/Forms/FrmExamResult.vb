@@ -14,10 +14,10 @@ Public Class FrmExamResult
 
     Public Sub loadScoreExam()
         Dim ldataset, xdataset As New DataSet
-        Try
+        'Try
 
-            'FrmExamMaster.DataGridView1.Font = New Font("Arial", 16, FontStyle.Regular)
-            DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        'FrmExamMaster.DataGridView1.Font = New Font("Arial", 16, FontStyle.Regular)
+        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         DataGridView1.Rows.Clear()
         mydataTable.Rows.Clear()
         ldataset.Clear()
@@ -27,7 +27,7 @@ Public Class FrmExamResult
 
         'mycommand.CommandText = "Select  * from  (exam inner join examcategory on exam.examcategoryid = examcategory.id)"
 
-        mycommand.CommandText = "SELECT e.id as id,e.examid as examid,e.subjectid as subjectid,ec.examcategoryname as examcategoryname,e.examtype as examtype FROM exammaster e INNER JOIN examcategory ec ON e.examcategoryid=ec.id INNER JOIN examinee ex ON ex.examid=e.examid WHERE ex.studentid='" & Globaluserid & "'"
+        mycommand.CommandText = "SELECT e.id as id,e.examid as examid,e.subjectid as subjectid,ec.examcategoryname as examcategoryname,e.examtype as examtype FROM exammaster e INNER JOIN examcategory ec ON e.examcategoryid=ec.id INNER JOIN examinee ex ON ex.examid=e.examid WHERE ex.studentid='" & Globaluserid & "' and e.published='YES'"
 
 
         myadapter.SelectCommand = mycommand
@@ -213,9 +213,9 @@ Public Class FrmExamResult
             End If
 
 
-        Catch ex As Exception
+        'Catch ex As Exception
 
-        End Try
+        'End Try
     End Sub
     Sub cmbLoaddataExam()
         Try
