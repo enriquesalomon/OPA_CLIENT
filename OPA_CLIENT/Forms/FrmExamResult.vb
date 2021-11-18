@@ -108,7 +108,14 @@ Public Class FrmExamResult
                         bSource.DataSource = dbDataset
                         READER = COMMAND.ExecuteReader
                         While READER.Read()
-                            TotalPoints += CDbl(READER("Correct"))
+                            Dim a As Double = 0
+                            If READER("totalitems") = "" Then
+                                a = 0
+                            Else
+                                a = READER("totalitems")
+                            End If
+
+                            TotalPoints +=(CDbl(a))
                             Items += 1
                         End While
                         READER.Close()
@@ -128,7 +135,14 @@ Public Class FrmExamResult
                         bSource.DataSource = dbDataset
                         READER = COMMAND.ExecuteReader
                         While READER.Read()
-                            TotalPoints += CDbl(READER("Correct"))
+                            Dim a As Double = 0
+                            If READER("totalitems") = "" Then
+                                a = 0
+                            Else
+                                a = READER("totalitems")
+                            End If
+
+                            TotalPoints += (CDbl(a))
                             Items += 1
                         End While
                         READER.Close()
@@ -147,7 +161,14 @@ Public Class FrmExamResult
                         bSource.DataSource = dbDataset
                         READER = COMMAND.ExecuteReader
                         While READER.Read()
-                            TotalPoints += CDbl(READER("Correct"))
+                            Dim a As Double = 0
+                            If READER("totalitems") = "" Then
+                                a = 0
+                            Else
+                                a = READER("totalitems")
+                            End If
+
+                            TotalPoints += (CDbl(a))
                             Items += 1
                         End While
                         READER.Close()
