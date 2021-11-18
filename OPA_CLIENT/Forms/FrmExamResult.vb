@@ -111,6 +111,14 @@ Public Class FrmExamResult
                         READER.Close()
                         MysqlConn.Close()
 
+
+                    ElseIf mrow("examtype") = "Essay" Then
+
+                        TotalPoints = 0
+                    ElseIf mrow("examtype") = "True or False" Then
+
+                        TotalPoints = 0
+
                     End If
                 Else
                     Exit Sub
