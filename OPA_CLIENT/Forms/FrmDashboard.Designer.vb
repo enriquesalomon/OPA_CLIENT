@@ -68,6 +68,7 @@ Partial Class FrmDashboard
         Me.Label6.TabIndex = 3
         Me.Label6.Text = "0"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Label6.Visible = False
         '
         'Label3
         '
@@ -100,6 +101,7 @@ Partial Class FrmDashboard
         Me.Label5.TabIndex = 2
         Me.Label5.Text = "0"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Label5.Visible = False
         '
         'Label2
         '
@@ -132,6 +134,7 @@ Partial Class FrmDashboard
         Me.lblexamcount.TabIndex = 1
         Me.lblexamcount.Text = "0"
         Me.lblexamcount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lblexamcount.Visible = False
         '
         'Label1
         '

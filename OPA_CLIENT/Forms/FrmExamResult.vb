@@ -1,4 +1,5 @@
-﻿Public Class FrmExamResult
+﻿Imports MySql.Data.MySqlClient
+Public Class FrmExamResult
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         With Me
             Dispose()
@@ -12,28 +13,29 @@
     End Sub
 
     Sub loadScoreExam()
-        'Dim ldataset, xdataset As New DataSet
-        ''Try
-        ''FrmExamMaster.DataGridView1.Font = New Font("Arial", 16, FontStyle.Regular)
-        'FrmExamMaster.dtgList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        'FrmExamMaster.dtgList.Rows.Clear()
-        'mydataTable.Rows.Clear()
-        'ldataset.Clear()
-        'runServer()
-        'MysqlConn.Open()
-        'mycommand = MysqlConn.CreateCommand
+        Dim ldataset, xdataset As New DataSet
+        'Try
+        'FrmExamMaster.DataGridView1.Font = New Font("Arial", 16, FontStyle.Regular)
+        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        DataGridView1.Rows.Clear()
+        mydataTable.Rows.Clear()
+        ldataset.Clear()
+        runServer()
+        MysqlConn.Open()
+        mycommand = MysqlConn.CreateCommand
 
-        ''mycommand.CommandText = "Select  * from  (exam inner join examcategory on exam.examcategoryid = examcategory.id)"
-        'mycommand.CommandText = "SELECT *  exam_answer_multiplechoice WHERE ex.studentid='" & Globaluserid & "'"
+        'mycommand.CommandText = "Select  * from  (exam inner join examcategory on exam.examcategoryid = examcategory.id)"
+
+        mycommand.CommandText = "SELECT e.id as id,e.examid as examid,e.subjectid as subjectid,ec.examcategoryname as examcategoryname,e.examtype as examtype FROM exammaster e INNER JOIN examcategory ec ON e.examcategoryid=ec.id INNER JOIN examinee ex ON ex.examid=e.examid WHERE ex.studentid='" & Globaluserid & "'"
 
 
-        'myadapter.SelectCommand = mycommand
-        'myadapter.Fill(ldataset, "exam")
-        'mydataTable = ldataset.Tables("exam")
+        myadapter.SelectCommand = mycommand
+        myadapter.Fill(ldataset, "exam")
+        mydataTable = ldataset.Tables("exam")
 
         DataGridView1.RowsDefaultCellStyle.BackColor = Color.White
         DataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
-        DataGridView1.ColumnCount = 7
+        DataGridView1.ColumnCount = 6
         DataGridView1.Columns(0).HeaderText = "EXAMINATION CODE"
         DataGridView1.Columns(0).Width = 90
         DataGridView1.Columns(0).Name = "examcode"
@@ -47,32 +49,28 @@
         DataGridView1.Columns(2).Name = "examtype"
 
 
-        DataGridView1.Columns(3).HeaderText = "TYPE"
+        DataGridView1.Columns(3).HeaderText = "SCORE"
         DataGridView1.Columns(3).Width = 100
-        DataGridView1.Columns(3).Name = "type"
+        DataGridView1.Columns(3).Name = "score"
 
 
-        DataGridView1.Columns(4).HeaderText = "SCORE"
+        DataGridView1.Columns(4).HeaderText = "ITEMS"
         DataGridView1.Columns(4).Width = 100
-        DataGridView1.Columns(4).Name = "score"
+        DataGridView1.Columns(4).Name = "items"
 
 
-        DataGridView1.Columns(5).HeaderText = "ITEMS"
+        DataGridView1.Columns(5).HeaderText = "DATE"
         DataGridView1.Columns(5).Width = 100
-        DataGridView1.Columns(5).Name = "items"
-
-
-        DataGridView1.Columns(6).HeaderText = "DATE"
-        DataGridView1.Columns(6).Width = 100
-        DataGridView1.Columns(6).Name = "date"
+        DataGridView1.Columns(5).Name = "date"
 
 
 
-
+        Dim TotalPoints As Integer
+        TotalPoints = 0
         If mydataTable.Rows.Count > 0 Then
             For Each mrow As DataRow In mydataTable.Rows
 
-
+                Dim examsubjectid As String = ""
                 Dim examsubjectname As String = ""
                 xdataTable.Rows.Clear()
                 xdataset.Clear()
@@ -81,24 +79,48 @@
                 mycommand = MysqlConn.CreateCommand
                 mycommand.CommandText = "Select  * from  (subjects inner join exammaster on subjects.id = exammaster.subjectid) WHERE exammaster.id='" & mrow("id").ToString & "'"
 
+
                 myadapter.SelectCommand = mycommand
                 myadapter.Fill(xdataset, "exammaster")
                 xdataTable = xdataset.Tables("exammaster")
                 If xdataTable.Rows.Count > 0 Then
                     For Each str As DataRow In xdataTable.Rows
+                        examsubjectid = str("id").ToString
                         examsubjectname = str("subjectname").ToString
-                        subjectid = str("subjectid").ToString
-
-
+                        subjectid = str("examcategoryid").ToString
                     Next
                 End If
                 xdataTable.Rows.Clear()
                 xdataset.Clear()
 
+                If mrow("examtype") <> "" Then
+                    If mrow("examtype") = "Multiple Choice" Then
+
+                        'Globaluserid = ""
+                        query = "Select * from exam_answer_multiplechoice WHERE examid='" & mrow("id").ToString & "' and studentid='" & Globaluserid & "' and examsubjectid='" & examsubjectid & "'"
+                        runServer()
+                        MysqlConn.Open()
+                        COMMAND = New MySqlCommand(query, MysqlConn)
+                        SDA.SelectCommand = COMMAND
+                        SDA.Fill(dbDataset)
+                        bSource.DataSource = dbDataset
+                        READER = COMMAND.ExecuteReader
+                        While READER.Read()
+                            TotalPoints += CDbl(READER("Correct"))
+                        End While
+                        READER.Close()
+                        MysqlConn.Close()
+
+                    End If
+                Else
+                    Exit Sub
+                End If
 
 
-                Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, "OPEN", mrow("examid").ToString}
-                FrmExamMaster.dtgList.Rows.Add(row)
+
+                Dim row As String() = New String() {mrow("examcategoryname").ToString, examsubjectname.ToString, mrow("examtype").ToString, TotalPoints, "", ""}
+                'Dim row As String() = New String() {mrow("examid").ToString, mrow("examtype").ToString}
+                DataGridView1.Rows.Add(row)
             Next
 
         End If
