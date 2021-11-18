@@ -147,6 +147,7 @@ Public Class FrmTakeExamEssay
     Dim answerpoints, wrongpoints As String
 
     Sub UpdateAnswer_Essay()
+        Dim totalitems As String = ""
         Dim questioncorrectanswer As String = ""
         Dim questionid As String = ""
         Dim rightmark As String = ""
@@ -164,16 +165,17 @@ Public Class FrmTakeExamEssay
             For Each str As DataRow In xdataTable.Rows
                 answerpoints = str("highestmark").ToString
                 questionid = str("id").ToString
+                totalitems = answerpoints
             Next
         End If
         xdataTable.Rows.Clear()
         xdataset.Clear()
 
 
-        query = "update exam_answer_essay set examquestionid='" & questionid & "', Correct='" & answerpoints & "', answer='" & txtAnswerEssay.Text.ToString & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
+        query = "update exam_answer_essay set examquestionid='" & questionid & "', Correct='" & answerpoints & "', answer='" & txtAnswerEssay.Text.ToString & "', totalitems='" & totalitems & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
         COMMAND = New MySqlCommand(query, MysqlConn)
-                READER = COMMAND.ExecuteReader
-                MysqlConn.Close()
+        READER = COMMAND.ExecuteReader
+        MysqlConn.Close()
 
 
 
