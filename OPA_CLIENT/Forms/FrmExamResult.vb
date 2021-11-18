@@ -164,8 +164,8 @@ Public Class FrmExamResult
                 runServer()
                 MysqlConn.Open()
                 mycommand = MysqlConn.CreateCommand
-                mycommand.CommandText = "SELECT ex.datetaken as datetaken FROM exammaster e INNER JOIN examcategory ec ON e.examcategoryid=ec.id INNER JOIN examinee ex ON ex.examid=e.examid WHERE ex.studentid='" & Globaluserid & "' and ex.examid='" & mrow("id").ToString & "'"
-
+                'mycommand.CommandText = "SELECT * FROM examinee WHERE examid='" & mrow("examid").ToString & "' and studentid='" & mrow("studentid").ToString & "'"
+                mycommand.CommandText = "SELECT * FROM examinee WHERE examid='" & mrow("examid").ToString & "' "
                 myadapter.SelectCommand = mycommand
                 myadapter.Fill(xdataset, "examinee")
                 xdataTable = xdataset.Tables("examinee")
