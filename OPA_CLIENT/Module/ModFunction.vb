@@ -4,7 +4,7 @@ Module ModFunction
 
     Public MysqlConn As MySqlConnection
     Public COMMAND As MySqlCommand
-    Public stringServer = "server=localhost;userid=root;password=;database=ope;pooling=false;SslMode=none;"
+    Public stringServer = "server=localhost;userid=root;password=;database=ope;pooling=false;SslMode=none;Convert Zero Datetime=True;"
     ';database=sakila
     Public READER As MySqlDataReader
     Public SDA As New MySqlDataAdapter

@@ -135,8 +135,8 @@ Public Class FrmMain
     End Sub
 
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Button4.Text = Format(Date.Now, "General Date")
-        Timer1.Enabled = True
+        'Button4.Text = Format(Date.Now, "General Date")
+
         MyExam.ExamListCount()
         FrmExamResult.loadScoreExam()
         MyExam.ExamList()
@@ -173,7 +173,7 @@ Public Class FrmMain
 
     End Sub
 
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs)
 
     End Sub
 End Class

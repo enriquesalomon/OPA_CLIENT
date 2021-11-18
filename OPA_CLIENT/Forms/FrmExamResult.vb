@@ -27,7 +27,7 @@ Public Class FrmExamResult
 
         'mycommand.CommandText = "Select  * from  (exam inner join examcategory on exam.examcategoryid = examcategory.id)"
 
-        mycommand.CommandText = "SELECT e.id as id,e.examid as examid,e.subjectid as subjectid,ec.examcategoryname as examcategoryname,e.examtype as examtype FROM exammaster e INNER JOIN examcategory ec ON e.examcategoryid=ec.id INNER JOIN examinee ex ON ex.examid=e.examid WHERE ex.studentid='" & Globaluserid & "' and e.published='YES'"
+        mycommand.CommandText = "SELECT e.id as id,e.examid as examid,e.subjectid as subjectid,ec.examcategoryname as examcategoryname,e.examtype as examtype FROM exammaster e INNER JOIN examcategory ec ON e.examcategoryid=ec.id INNER JOIN examinee ex ON ex.examid=e.examid WHERE ex.studentid='" & Globaluserid & "'"
 
 
         myadapter.SelectCommand = mycommand
@@ -36,7 +36,7 @@ Public Class FrmExamResult
 
         DataGridView1.RowsDefaultCellStyle.BackColor = Color.White
         DataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
-        DataGridView1.ColumnCount = 6
+        DataGridView1.ColumnCount = 5
         DataGridView1.Columns(0).HeaderText = "EXAMINATION CODE"
         DataGridView1.Columns(0).Width = 300
         DataGridView1.Columns(0).Name = "examcode"
@@ -60,9 +60,9 @@ Public Class FrmExamResult
         DataGridView1.Columns(4).Name = "items"
 
 
-        DataGridView1.Columns(5).HeaderText = "DATE TAKEN"
-        DataGridView1.Columns(5).Width = 200
-        DataGridView1.Columns(5).Name = "date"
+        'DataGridView1.Columns(5).HeaderText = "DATE TAKEN"
+        'DataGridView1.Columns(5).Width = 200
+        'DataGridView1.Columns(5).Name = "date"
 
 
 
@@ -202,9 +202,9 @@ Public Class FrmExamResult
                     xdataset.Clear()
 
 
-                    Dim row As String() = New String() {mrow("examcategoryname").ToString, examsubjectname.ToString, mrow("examtype").ToString, TotalPoints, Items, datetaken}
-                    'Dim row As String() = New String() {mrow("examid").ToString, mrow("examtype").ToString}
-                    DataGridView1.Rows.Add(row)
+                Dim row As String() = New String() {mrow("examcategoryname").ToString, examsubjectname.ToString, mrow("examtype").ToString, TotalPoints, Items}
+                'Dim row As String() = New String() {mrow("examid").ToString, mrow("examtype").ToString}
+                DataGridView1.Rows.Add(row)
 
 
                 Next

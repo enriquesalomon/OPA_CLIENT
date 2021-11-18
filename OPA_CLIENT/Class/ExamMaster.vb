@@ -9,167 +9,167 @@ Public Class ExamMaster
             'FrmExamMaster.DataGridView1.Font = New Font("Arial", 16, FontStyle.Regular)
             FrmExamMaster.dtgList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             FrmExamMaster.dtgList.Rows.Clear()
-        mydataTable.Rows.Clear()
-        ldataset.Clear()
-        runServer()
-        MysqlConn.Open()
-        mycommand = MysqlConn.CreateCommand
+            mydataTable.Rows.Clear()
+            ldataset.Clear()
+            runServer()
+            MysqlConn.Open()
+            mycommand = MysqlConn.CreateCommand
 
-        'mycommand.CommandText = "Select  * from  (exam inner join examcategory on exam.examcategoryid = examcategory.id)"
-        mycommand.CommandText = "SELECT e.id as id,e.examid as examid,e.subjectid as subjectid,ec.examcategoryname as examcategoryname,e.examtype as examtype FROM exammaster e INNER JOIN examcategory ec ON e.examcategoryid=ec.id INNER JOIN examinee ex ON ex.examid=e.examid WHERE ex.studentid='" & Globaluserid & "'"
-
-
-        myadapter.SelectCommand = mycommand
-        myadapter.Fill(ldataset, "exam")
-        mydataTable = ldataset.Tables("exam")
-
-        FrmExamMaster.dtgList.RowsDefaultCellStyle.BackColor = Color.White
-        FrmExamMaster.dtgList.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
-        FrmExamMaster.dtgList.ColumnCount = 7
-        FrmExamMaster.dtgList.Columns(0).HeaderText = "ID"
-        FrmExamMaster.dtgList.Columns(0).Width = 90
-        FrmExamMaster.dtgList.Columns(0).Name = "id"
-
-        FrmExamMaster.dtgList.Columns(1).HeaderText = "EXAMINATION CODE"
-        FrmExamMaster.dtgList.Columns(1).Width = 300
-        FrmExamMaster.dtgList.Columns(1).Name = "examcode"
-
-        FrmExamMaster.dtgList.Columns(2).HeaderText = "SUBJECT"
-        FrmExamMaster.dtgList.Columns(2).Width = 200
-        FrmExamMaster.dtgList.Columns(2).Name = "subject"
+            'mycommand.CommandText = "Select  * from  (exam inner join examcategory on exam.examcategoryid = examcategory.id)"
+            mycommand.CommandText = "SELECT e.id as id,e.examid as examid,e.subjectid as subjectid,ec.examcategoryname as examcategoryname,e.examtype as examtype FROM exammaster e INNER JOIN examcategory ec ON e.examcategoryid=ec.id INNER JOIN examinee ex ON ex.examid=e.examid WHERE ex.studentid='" & Globaluserid & "'"
 
 
-        FrmExamMaster.dtgList.Columns(3).HeaderText = "TYPE"
-        FrmExamMaster.dtgList.Columns(3).Width = 100
-        FrmExamMaster.dtgList.Columns(3).Name = "type"
+            myadapter.SelectCommand = mycommand
+            myadapter.Fill(ldataset, "exam")
+            mydataTable = ldataset.Tables("exam")
+
+            FrmExamMaster.dtgList.RowsDefaultCellStyle.BackColor = Color.White
+            FrmExamMaster.dtgList.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
+            FrmExamMaster.dtgList.ColumnCount = 7
+            FrmExamMaster.dtgList.Columns(0).HeaderText = "ID"
+            FrmExamMaster.dtgList.Columns(0).Width = 90
+            FrmExamMaster.dtgList.Columns(0).Name = "id"
+
+            FrmExamMaster.dtgList.Columns(1).HeaderText = "EXAMINATION CODE"
+            FrmExamMaster.dtgList.Columns(1).Width = 300
+            FrmExamMaster.dtgList.Columns(1).Name = "examcode"
+
+            FrmExamMaster.dtgList.Columns(2).HeaderText = "SUBJECT"
+            FrmExamMaster.dtgList.Columns(2).Width = 200
+            FrmExamMaster.dtgList.Columns(2).Name = "subject"
 
 
-        FrmExamMaster.dtgList.Columns(4).HeaderText = "TIMI LIMIT(Mins)"
-        FrmExamMaster.dtgList.Columns(4).Width = 100
-        FrmExamMaster.dtgList.Columns(4).Name = "timelimit"
+            FrmExamMaster.dtgList.Columns(3).HeaderText = "TYPE"
+            FrmExamMaster.dtgList.Columns(3).Width = 100
+            FrmExamMaster.dtgList.Columns(3).Name = "type"
 
 
-        FrmExamMaster.dtgList.Columns(5).HeaderText = "STATUS"
-        FrmExamMaster.dtgList.Columns(5).Width = 100
-        FrmExamMaster.dtgList.Columns(5).Name = "status"
-
-        FrmExamMaster.dtgList.Columns(6).HeaderText = ""
-        FrmExamMaster.dtgList.Columns(6).Width = 0
-        FrmExamMaster.dtgList.Columns(6).Name = "examineeid"
-
-        Dim btn As New DataGridViewButtonColumn()
-        FrmExamMaster.dtgList.Columns.Add(btn)
-        btn.HeaderText = "ACTION"
-        btn.Text = "TAKE"
-        btn.Name = "btn"
-        btn.UseColumnTextForButtonValue = True
-        btn.FlatStyle = FlatStyle.Flat
+            FrmExamMaster.dtgList.Columns(4).HeaderText = "TIMI LIMIT(Mins)"
+            FrmExamMaster.dtgList.Columns(4).Width = 100
+            FrmExamMaster.dtgList.Columns(4).Name = "timelimit"
 
 
-        If mydataTable.Rows.Count > 0 Then
-            For Each mrow As DataRow In mydataTable.Rows
+            FrmExamMaster.dtgList.Columns(5).HeaderText = "STATUS"
+            FrmExamMaster.dtgList.Columns(5).Width = 100
+            FrmExamMaster.dtgList.Columns(5).Name = "status"
+
+            FrmExamMaster.dtgList.Columns(6).HeaderText = ""
+            FrmExamMaster.dtgList.Columns(6).Width = 0
+            FrmExamMaster.dtgList.Columns(6).Name = "examineeid"
+
+            Dim btn As New DataGridViewButtonColumn()
+            FrmExamMaster.dtgList.Columns.Add(btn)
+            btn.HeaderText = "ACTION"
+            btn.Text = "TAKE"
+            btn.Name = "btn"
+            btn.UseColumnTextForButtonValue = True
+            btn.FlatStyle = FlatStyle.Flat
 
 
-                Dim examsubjectname As String = ""
-                xdataTable.Rows.Clear()
-                xdataset.Clear()
-                runServer()
-                MysqlConn.Open()
-                mycommand = MysqlConn.CreateCommand
-                mycommand.CommandText = "Select  * from  (subjects inner join exammaster on subjects.id = exammaster.subjectid) WHERE exammaster.id='" & mrow("id").ToString & "'"
-
-                myadapter.SelectCommand = mycommand
-                myadapter.Fill(xdataset, "exammaster")
-                xdataTable = xdataset.Tables("exammaster")
-                If xdataTable.Rows.Count > 0 Then
-                    For Each str As DataRow In xdataTable.Rows
-                        examsubjectname = str("subjectname").ToString
-                        subjectid = str("subjectid").ToString
+            If mydataTable.Rows.Count > 0 Then
+                For Each mrow As DataRow In mydataTable.Rows
 
 
-                    Next
-                End If
-                xdataTable.Rows.Clear()
-                xdataset.Clear()
-
-                If mrow("examtype").ToString = "Essay" Then
+                    Dim examsubjectname As String = ""
                     xdataTable.Rows.Clear()
                     xdataset.Clear()
                     runServer()
                     MysqlConn.Open()
                     mycommand = MysqlConn.CreateCommand
-                    mycommand.CommandText = "Select  * from  examsubject_essay WHERE id='" & mrow("id").ToString & "'"
+                    mycommand.CommandText = "Select  * from  (subjects inner join exammaster on subjects.id = exammaster.subjectid) WHERE exammaster.id='" & mrow("id").ToString & "'"
 
                     myadapter.SelectCommand = mycommand
-                    myadapter.Fill(xdataset, "examsubject")
-                    xdataTable = xdataset.Tables("examsubject")
+                    myadapter.Fill(xdataset, "exammaster")
+                    xdataTable = xdataset.Tables("exammaster")
                     If xdataTable.Rows.Count > 0 Then
                         For Each str As DataRow In xdataTable.Rows
-                            timelimit = str("timelimit").ToString
+                            examsubjectname = str("subjectname").ToString
+                            subjectid = str("subjectid").ToString
+
+
                         Next
                     End If
                     xdataTable.Rows.Clear()
                     xdataset.Clear()
 
-                ElseIf mrow("examtype").ToString = "Multiple Choice" Then
+                    If mrow("examtype").ToString = "Essay" Then
+                        xdataTable.Rows.Clear()
+                        xdataset.Clear()
+                        runServer()
+                        MysqlConn.Open()
+                        mycommand = MysqlConn.CreateCommand
+                        mycommand.CommandText = "Select  * from  examsubject_essay WHERE id='" & mrow("id").ToString & "'"
 
+                        myadapter.SelectCommand = mycommand
+                        myadapter.Fill(xdataset, "examsubject")
+                        xdataTable = xdataset.Tables("examsubject")
+                        If xdataTable.Rows.Count > 0 Then
+                            For Each str As DataRow In xdataTable.Rows
+                                timelimit = str("timelimit").ToString
+                            Next
+                        End If
+                        xdataTable.Rows.Clear()
+                        xdataset.Clear()
+
+                    ElseIf mrow("examtype").ToString = "Multiple Choice" Then
+
+                        xdataTable.Rows.Clear()
+                        xdataset.Clear()
+                        runServer()
+                        MysqlConn.Open()
+                        mycommand = MysqlConn.CreateCommand
+                        mycommand.CommandText = "Select  * from  examsubject WHERE id='" & mrow("id").ToString & "'"
+
+                        myadapter.SelectCommand = mycommand
+                        myadapter.Fill(xdataset, "examsubject")
+                        xdataTable = xdataset.Tables("examsubject")
+                        If xdataTable.Rows.Count > 0 Then
+                            For Each str As DataRow In xdataTable.Rows
+                                timelimit = str("timelimit").ToString
+                            Next
+                        End If
+                        xdataTable.Rows.Clear()
+                        xdataset.Clear()
+                    End If
+
+                    Dim examstatus As String = ""
                     xdataTable.Rows.Clear()
                     xdataset.Clear()
                     runServer()
                     MysqlConn.Open()
                     mycommand = MysqlConn.CreateCommand
-                    mycommand.CommandText = "Select  * from  examsubject WHERE id='" & mrow("id").ToString & "'"
+                    mycommand.CommandText = "Select  * from  examinee WHERE examid='" & mrow("examid").ToString & "' and studentid='" & Globaluserid & "'"
 
                     myadapter.SelectCommand = mycommand
-                    myadapter.Fill(xdataset, "examsubject")
-                    xdataTable = xdataset.Tables("examsubject")
+                    myadapter.Fill(xdataset, "examinee")
+                    xdataTable = xdataset.Tables("examinee")
                     If xdataTable.Rows.Count > 0 Then
                         For Each str As DataRow In xdataTable.Rows
-                            timelimit = str("timelimit").ToString
+                            examstatus = str("status").ToString
                         Next
                     End If
                     xdataTable.Rows.Clear()
                     xdataset.Clear()
-                End If
 
-                Dim examstatus As String = ""
-                xdataTable.Rows.Clear()
-                xdataset.Clear()
-                runServer()
-                MysqlConn.Open()
-                mycommand = MysqlConn.CreateCommand
-                mycommand.CommandText = "Select  * from  examinee WHERE examid='" & mrow("examid").ToString & "' and studentid='" & Globaluserid & "'"
+                    If examstatus = "" Then
+                        examstatus = "OPEN"
 
-                myadapter.SelectCommand = mycommand
-                myadapter.Fill(xdataset, "examinee")
-                xdataTable = xdataset.Tables("examinee")
-                If xdataTable.Rows.Count > 0 Then
-                    For Each str As DataRow In xdataTable.Rows
-                        examstatus = str("status").ToString
-                    Next
-                End If
-                xdataTable.Rows.Clear()
-                xdataset.Clear()
-
-                If examstatus = "" Then
-                    examstatus = "OPEN"
-
-                Else
-                    examstatus = "CLOSED"
-                End If
+                    Else
+                        examstatus = "CLOSED"
+                    End If
 
 
                     'Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, "OPEN", mrow("examid").ToString}
 
                     Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, examstatus.ToString, mrow("examid").ToString}
                     FrmExamMaster.dtgList.Rows.Add(row)
-            Next
+                Next
 
 
-        End If
+            End If
             FrmExamMaster.Label1.Text = "TOTAL COUNT: " & FrmExamMaster.dtgList.Rows.Count()
         Catch ex As Exception
-        MsgBox("Error: " & ex.Source & ": " & ex.Message, MsgBoxStyle.OkOnly, "Data Error !!")
+            MsgBox("Error DRI: " & ex.Source & ": " & ex.Message, MsgBoxStyle.OkOnly, "Data Error !!")
         End Try
     End Sub
 
