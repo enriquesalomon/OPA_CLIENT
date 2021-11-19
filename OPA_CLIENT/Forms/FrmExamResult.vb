@@ -2,6 +2,7 @@
 Public Class FrmExamResult
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         With Me
+            loadScoreExam()
             Dispose()
         End With
     End Sub
@@ -36,33 +37,33 @@ Public Class FrmExamResult
 
         DataGridView1.RowsDefaultCellStyle.BackColor = Color.White
         DataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
-        DataGridView1.ColumnCount = 5
+        DataGridView1.ColumnCount = 6
         DataGridView1.Columns(0).HeaderText = "EXAMINATION CODE"
         DataGridView1.Columns(0).Width = 300
         DataGridView1.Columns(0).Name = "examcode"
 
-        DataGridView1.Columns(1).HeaderText = "SUBJECT"
+        DataGridView1.Columns(1).HeaderText = "DESCRIPTION"
         DataGridView1.Columns(1).Width = 100
-        DataGridView1.Columns(1).Name = "subject"
+        DataGridView1.Columns(1).Name = "descr"
 
-        DataGridView1.Columns(2).HeaderText = "EXAM TYPE"
+        DataGridView1.Columns(2).HeaderText = "SUBJECT"
         DataGridView1.Columns(2).Width = 200
-        DataGridView1.Columns(2).Name = "examtype"
+        DataGridView1.Columns(2).Name = "subject"
 
 
-        DataGridView1.Columns(3).HeaderText = "SCORE"
+        DataGridView1.Columns(3).HeaderText = "EXAM TYPE"
         DataGridView1.Columns(3).Width = 100
-        DataGridView1.Columns(3).Name = "score"
+        DataGridView1.Columns(3).Name = "examtype"
 
 
-        DataGridView1.Columns(4).HeaderText = "ITEMS"
+        DataGridView1.Columns(4).HeaderText = "SCORE"
         DataGridView1.Columns(4).Width = 100
-        DataGridView1.Columns(4).Name = "items"
+        DataGridView1.Columns(4).Name = "score"
 
 
-        'DataGridView1.Columns(5).HeaderText = "DATE TAKEN"
-        'DataGridView1.Columns(5).Width = 200
-        'DataGridView1.Columns(5).Name = "date"
+        DataGridView1.Columns(5).HeaderText = "ITEMS"
+        DataGridView1.Columns(5).Width = 100
+        DataGridView1.Columns(5).Name = "items"
 
 
 
@@ -117,8 +118,8 @@ Public Class FrmExamResult
                                 End If
 
                                 TotalPoints += (CDbl(a))
-                                Items += 1
-                            End While
+                            Items += CDbl(READER("totalitems"))
+                        End While
                             READER.Close()
                             MysqlConn.Close()
 
@@ -143,9 +144,10 @@ Public Class FrmExamResult
                                     a = READER("totalitems")
                                 End If
 
-                                TotalPoints += (CDbl(a))
-                                Items += 1
-                            End While
+
+                            TotalPoints += (CDbl(a))
+                            Items += CDbl(READER("totalitems"))
+                        End While
                             READER.Close()
                             MysqlConn.Close()
 
@@ -169,9 +171,9 @@ Public Class FrmExamResult
                                     a = READER("totalitems")
                                 End If
 
-                                TotalPoints += (CDbl(a))
-                                Items += 1
-                            End While
+                            TotalPoints += (CDbl(a))
+                            Items += CDbl(READER("totalitems"))
+                        End While
                             READER.Close()
                             MysqlConn.Close()
 
@@ -193,16 +195,37 @@ Public Class FrmExamResult
                     xdataTable = xdataset.Tables("examinee")
                     If xdataTable.Rows.Count > 0 Then
                         For Each str As DataRow In xdataTable.Rows
-                            'Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, "OPEN", mrow("examid").ToString}
+                        'Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, "OPEN", mrow("examid").ToString}
 
-                            datetaken = str("datetaken").ToString
-                        Next
+                        datetaken = str("datetaken").ToString
+
+                    Next
                     End If
                     xdataTable.Rows.Clear()
                     xdataset.Clear()
+                Dim examdescription As String = ""
+                xdataTable.Rows.Clear()
+                xdataset.Clear()
+                runServer()
+                MysqlConn.Open()
+                mycommand = MysqlConn.CreateCommand
+                'mycommand.CommandText = "SELECT * FROM examinee WHERE examid='" & mrow("examid").ToString & "' and studentid='" & mrow("studentid").ToString & "'"
+                mycommand.CommandText = "SELECT * FROM exam WHERE id='" & mrow("examid").ToString & "' "
+                myadapter.SelectCommand = mycommand
+                myadapter.Fill(xdataset, "examinee")
+                xdataTable = xdataset.Tables("examinee")
+                If xdataTable.Rows.Count > 0 Then
+                    For Each str As DataRow In xdataTable.Rows
+                        'Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, "OPEN", mrow("examid").ToString}
 
+                        examdescription = str("examdescription").ToString
 
-                Dim row As String() = New String() {mrow("examcategoryname").ToString, examsubjectname.ToString, mrow("examtype").ToString, TotalPoints, Items}
+                    Next
+                End If
+                xdataTable.Rows.Clear()
+                xdataset.Clear()
+
+                Dim row As String() = New String() {mrow("examcategoryname").ToString, examdescription.ToString, examsubjectname.ToString, mrow("examtype").ToString, TotalPoints, Items}
                 'Dim row As String() = New String() {mrow("examid").ToString, mrow("examtype").ToString}
                 DataGridView1.Rows.Add(row)
 

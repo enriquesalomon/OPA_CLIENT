@@ -124,42 +124,44 @@ Public Class FrmTakeExamEssay
     Dim answerpoints, wrongpoints As String
 
     Sub UpdateAnswer_Essay()
-        Try
+        'Try
 
-            Dim totalitems As String = ""
-        Dim questioncorrectanswer As String = ""
-        Dim questionid As String = ""
-        Dim rightmark As String = ""
-        xdataTable.Rows.Clear()
-        xdataset.Clear()
-        runServer()
-        MysqlConn.Open()
-        mycommand = MysqlConn.CreateCommand
-        mycommand.CommandText = "Select  * from  examquestion_essay WHERE examsubjectid='" & examid & "' AND examid='" & examineeexamid & "' "
+        Dim totalitems As String = ""
+            Dim questioncorrectanswer As String = ""
+            Dim questionid As String = ""
+            Dim rightmark As String = ""
+            xdataTable.Rows.Clear()
+            xdataset.Clear()
+            runServer()
+            MysqlConn.Open()
+            mycommand = MysqlConn.CreateCommand
+            mycommand.CommandText = "Select  * from  examquestion_essay WHERE examsubjectid='" & examid & "' AND examid='" & examineeexamid & "' "
 
-        myadapter.SelectCommand = mycommand
-        myadapter.Fill(xdataset, "examquestion_essay")
-        xdataTable = xdataset.Tables("examquestion_essay")
-        If xdataTable.Rows.Count > 0 Then
-            For Each str As DataRow In xdataTable.Rows
-                answerpoints = str("highestmark").ToString
-                questionid = str("id").ToString
-                totalitems = answerpoints
-            Next
-        End If
-        xdataTable.Rows.Clear()
-        xdataset.Clear()
+            myadapter.SelectCommand = mycommand
+            myadapter.Fill(xdataset, "examquestion_essay")
+            xdataTable = xdataset.Tables("examquestion_essay")
+            If xdataTable.Rows.Count > 0 Then
+                For Each str As DataRow In xdataTable.Rows
+                    answerpoints = str("highestmark").ToString
+                    questionid = str("id").ToString
+                    totalitems = answerpoints
+                Next
+            End If
+            xdataTable.Rows.Clear()
+            xdataset.Clear()
 
 
         query = "update exam_answer_essay set examquestionid='" & questionid & "', Correct='" & answerpoints & "', answer='" & txtAnswerEssay.Text.ToString & "', totalitems='" & totalitems & "' where studentid='" & Globaluserid & "' AND examid='" & examid & "' AND examsubjectid='" & subjectid & "' AND questionnum='" & questnum & "' "
+        'query = "insert into exam_answer_essay (studentid,studentno,examid,examsubjectid,questionnum,answer,Correct,examquestionid,totalitems) values ('" & Globaluserid & "','" & studentno & "','" & examid & "','" & subjectid & "','" & questnum & "','" & txtAnswerEssay.Text & "','" & answerpoints & "','" & questionid & "','" & totalitems & "')"
+
         COMMAND = New MySqlCommand(query, MysqlConn)
-        READER = COMMAND.ExecuteReader
-        MysqlConn.Close()
+            READER = COMMAND.ExecuteReader
+            MysqlConn.Close()
 
 
-        Catch ex As Exception
+        'Catch ex As Exception
 
-        End Try
+        'End Try
 
     End Sub
 
@@ -185,7 +187,7 @@ Public Class FrmTakeExamEssay
 
             UpdateAnswer_Essay()
 
-        If noanswer = True Then
+            If noanswer = True Then
             Exit Sub
         End If
         If txtAnswerEssay.Text = "" Then
@@ -195,8 +197,8 @@ Public Class FrmTakeExamEssay
         Else
             txtAnswerEssay.Text = ""
         End If
-        questnum += 1
-        If questnum > totalquestions Then
+            questnum += 1
+            If questnum > totalquestions Then
             questnum -= 1
             GroupBox2.Visible = False
             MsgBox("NO MORE QUESTION")

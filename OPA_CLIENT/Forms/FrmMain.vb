@@ -153,6 +153,7 @@ Public Class FrmMain
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         With FrmExamResult
+            FrmExamResult.loadScoreExam()
             .TopLevel = False
             Panel5.Controls.Add(FrmExamResult)
             .BringToFront()

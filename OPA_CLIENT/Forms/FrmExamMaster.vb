@@ -8,6 +8,7 @@ Public Class FrmExamMaster
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         With Me
+            MyExam.ExamList()
             Dispose()
         End With
     End Sub
@@ -209,9 +210,9 @@ Public Class FrmExamMaster
 
     Sub generateExamAnswerDb()
 
-        Try
+        'Try
 
-            If examtype = "Multiple Choice" Then
+        If examtype = "Multiple Choice" Then
             Dim correctanswer As String = ""
             Dim num As Integer = 0
             query = "Select COUNT(*) as num from exam_answer_multiplechoice where studentid= '" & Globaluserid & "' and examid= '" & examid & "' and examsubjectid= '" & subjectid & "'"
@@ -258,8 +259,8 @@ Public Class FrmExamMaster
 
                     runServer()
                     MysqlConn.Open()
-                    query = "insert into exam_answer_multiplechoice (studentid,studentno,examid,examsubjectid,questionnum,Correct,examquestionid) values ('" & Globaluserid & "','" & studentno & "','" & examid & "','" & subjectid & "','" & questnum & "','" & "" & "','" & "" & "')"
-                    COMMAND = New MySqlCommand(query, MysqlConn)
+                        query = "insert into exam_answer_multiplechoice (studentid,studentno,examid,examsubjectid,questionnum,answer,Correct,examquestionid) values ('" & Globaluserid & "','" & studentno & "','" & examid & "','" & subjectid & "','" & questnum & "','" & "" & "','" & "" & "','" & "" & "')"
+                        COMMAND = New MySqlCommand(query, MysqlConn)
                     READER = COMMAND.ExecuteReader
                     MysqlConn.Close()
                     questnum += 1
@@ -290,8 +291,8 @@ Public Class FrmExamMaster
                 While questnum <= totalquestion
                     runServer()
                     MysqlConn.Open()
-                    query = "insert into exam_answer_essay (studentid,studentno,examid,examsubjectid,questionnum,answer,answerdescription,points) values ('" & Globaluserid & "','" & studentno & "','" & examid & "','" & subjectid & "','" & questnum & "','" & "" & "','" & "" & "','" & "" & "')"
-                    COMMAND = New MySqlCommand(query, MysqlConn)
+                        query = "insert into exam_answer_essay (studentid,studentno,examid,examsubjectid,questionnum,answer,Correct,examquestionid) values ('" & Globaluserid & "','" & studentno & "','" & examid & "','" & subjectid & "','" & questnum & "','" & "" & "','" & "" & "','" & "" & "')"
+                        COMMAND = New MySqlCommand(query, MysqlConn)
                     READER = COMMAND.ExecuteReader
                     MysqlConn.Close()
                     questnum += 1
@@ -320,8 +321,8 @@ Public Class FrmExamMaster
                 While questnum <= totalquestion
                     runServer()
                     MysqlConn.Open()
-                    query = "insert into exam_answer_truefalse (studentid,studentno,examid,examsubjectid,questionnum,answer,answerdescription) values ('" & Globaluserid & "','" & studentno & "','" & examid & "','" & subjectid & "','" & questnum & "','" & "" & "','" & "" & "')"
-                    COMMAND = New MySqlCommand(query, MysqlConn)
+                        query = "insert into exam_answer_truefalse (studentid,studentno,examid,examsubjectid,questionnum,answer,Correct,examquestionid) values ('" & Globaluserid & "','" & studentno & "','" & examid & "','" & subjectid & "','" & questnum & "','" & "" & "','" & "" & "','" & "" & "')"
+                        COMMAND = New MySqlCommand(query, MysqlConn)
                     READER = COMMAND.ExecuteReader
                     MysqlConn.Close()
                     questnum += 1
@@ -332,9 +333,9 @@ Public Class FrmExamMaster
 
 
 
-        Catch ex As Exception
+        'Catch ex As Exception
 
-        End Try
+        'End Try
 
 
 
