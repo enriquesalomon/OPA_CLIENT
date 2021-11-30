@@ -114,8 +114,8 @@ Public Class FrmExamResult
                                 If READER("totalitems") = "" Then
                                     a = 0
                                 Else
-                                    a = READER("totalitems")
-                                End If
+                                a = READER("Correct")
+                            End If
 
                                 TotalPoints += (CDbl(a))
                             Items += CDbl(READER("totalitems"))
@@ -141,8 +141,8 @@ Public Class FrmExamResult
                                 If READER("totalitems") = "" Then
                                     a = 0
                                 Else
-                                    a = READER("totalitems")
-                                End If
+                                a = READER("Correct")
+                            End If
 
 
                             TotalPoints += (CDbl(a))
@@ -168,8 +168,8 @@ Public Class FrmExamResult
                                 If READER("totalitems") = "" Then
                                     a = 0
                                 Else
-                                    a = READER("totalitems")
-                                End If
+                                a = READER("Correct")
+                            End If
 
                             TotalPoints += (CDbl(a))
                             Items += CDbl(READER("totalitems"))
