@@ -15,11 +15,11 @@ Public Class FrmExamResult
 
     Public Sub loadScoreExam()
         Dim ldataset, xdataset As New DataSet
-        'Try
+        Try
 
-        'FrmExamMaster.DataGridView1.Font = New Font("Arial", 16, FontStyle.Regular)
-        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        DataGridView1.Rows.Clear()
+            'FrmExamMaster.DataGridView1.Font = New Font("Arial", 16, FontStyle.Regular)
+            DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            DataGridView1.Rows.Clear()
         mydataTable.Rows.Clear()
         ldataset.Clear()
         runServer()
@@ -236,9 +236,9 @@ Public Class FrmExamResult
             End If
 
 
-        'Catch ex As Exception
+        Catch ex As Exception
 
-        'End Try
+        End Try
     End Sub
     Sub cmbLoaddataExam()
         Try
