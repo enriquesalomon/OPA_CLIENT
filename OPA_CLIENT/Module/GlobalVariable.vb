@@ -21,4 +21,8 @@ Module GlobalVariable
 
     Public adataset, xdataset, pdataset, cdataset As New DataSet
     Public xdataTable, atable, pdatatable, cdatable As New DataTable
+
+    Public xYdataTable As New DataTable
+    Public xYdataset As New DataSet
+
 End Module
