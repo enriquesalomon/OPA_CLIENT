@@ -151,10 +151,9 @@ Public Class ExamMaster
                                 MysqlConn.Open()
                                 mycommand = MysqlConn.CreateCommand
                                 mycommand.CommandText = "Select  Count(*) as num from  exam_answer_multiplechoice WHERE examid='" & mrow("id").ToString & "' and studentid='" & Globaluserid & "' and examsubjectid='" & subjectid & "'  "
-
                                 myadapter.SelectCommand = mycommand
-                                myadapter.Fill(xYdataset, "exam_answer_essay")
-                                xYdataTable = xYdataset.Tables("exam_answer_essay")
+                                myadapter.Fill(xYdataset, "exam_answer_multiplechoice")
+                                xYdataTable = xYdataset.Tables("exam_answer_multiplechoice")
                                 If xYdataTable.Rows.Count > 0 Then
                                     For Each strS As DataRow In xYdataTable.Rows
                                         examstatus = strS("num").ToString
@@ -216,175 +215,10 @@ Public Class ExamMaster
                     xdataset.Clear()
 
 
-
-                    'If mrow("examtype").ToString = "Essay" Then
-                    '    xdataTable.Rows.Clear()
-                    '    xdataset.Clear()
-                    '    runServer()
-                    '    MysqlConn.Open()
-                    '    mycommand = MysqlConn.CreateCommand
-                    '    mycommand.CommandText = "Select  * from  examsubject_essay WHERE id='" & mrow("id").ToString & "'"
-
-                    '    myadapter.SelectCommand = mycommand
-                    '    myadapter.Fill(xdataset, "examsubject")
-                    '    xdataTable = xdataset.Tables("examsubject")
-                    '    If xdataTable.Rows.Count > 0 Then
-                    '        For Each str As DataRow In xdataTable.Rows
-                    '            timelimit = str("timelimit").ToString
-                    '        Next
-                    '    End If
-                    '    xdataTable.Rows.Clear()
-                    '    xdataset.Clear()
-
-                    '    xdataTable.Rows.Clear()
-                    '    xdataset.Clear()
-                    '    runServer()
-                    '    MysqlConn.Open()
-                    '    mycommand = MysqlConn.CreateCommand
-                    '    mycommand.CommandText = "Select  Count(*) as num from  exam_answer_essay WHERE examid='" & mrow("examid").ToString & "' and studentid='" & Globaluserid & "' and examsubjectid='" & subjectid & "'  "
-
-                    '    myadapter.SelectCommand = mycommand
-                    '    myadapter.Fill(xdataset, "exam_answer_essay")
-                    '    xdataTable = xdataset.Tables("exam_answer_essay")
-                    '    If xdataTable.Rows.Count > 0 Then
-                    '        For Each str As DataRow In xdataTable.Rows
-                    '            examstatus = str("num").ToString
-                    '        Next
-                    '    End If
-                    '    xdataTable.Rows.Clear()
-                    '    xdataset.Clear()
-
-                    'ElseIf mrow("examtype").ToString = "Multiple Choice" Then
-
-                    '    xdataTable.Rows.Clear()
-                    '    xdataset.Clear()
-                    '    runServer()
-                    '    MysqlConn.Open()
-                    '    mycommand = MysqlConn.CreateCommand
-                    '    mycommand.CommandText = "Select  * from  examsubject WHERE id='" & mrow("id").ToString & "'"
-
-                    '    myadapter.SelectCommand = mycommand
-                    '    myadapter.Fill(xdataset, "examsubject")
-                    '    xdataTable = xdataset.Tables("examsubject")
-                    '    If xdataTable.Rows.Count > 0 Then
-                    '        For Each str As DataRow In xdataTable.Rows
-                    '            timelimit = str("timelimit").ToString
-                    '        Next
-                    '    End If
-                    '    xdataTable.Rows.Clear()
-                    '    xdataset.Clear()
-
-                    '    xdataTable.Rows.Clear()
-                    '    xdataset.Clear()
-                    '    runServer()
-                    '    MysqlConn.Open()
-                    '    mycommand = MysqlConn.CreateCommand
-                    '    mycommand.CommandText = "Select   Count(*) as num  from  exam_answer_multiplechoice WHERE examid='" & mrow("examid").ToString & "' and studentid='" & Globaluserid & "' and examsubjectid='" & subjectid & "'  "
-
-                    '    myadapter.SelectCommand = mycommand
-                    '    myadapter.Fill(xdataset, "exam_answer_multiplechoice")
-                    '    xdataTable = xdataset.Tables("exam_answer_multiplechoice")
-                    '    If xdataTable.Rows.Count > 0 Then
-                    '        For Each str As DataRow In xdataTable.Rows
-                    '            examstatus = str("num").ToString
-                    '        Next
-                    '    End If
-                    '    xdataTable.Rows.Clear()
-                    '    xdataset.Clear()
-
-                    'ElseIf mrow("examtype").ToString = "True or False" Then
-
-                    '    xdataTable.Rows.Clear()
-                    '    xdataset.Clear()
-                    '    runServer()
-                    '    MysqlConn.Open()
-                    '    mycommand = MysqlConn.CreateCommand
-                    '    mycommand.CommandText = "Select  * from  examsubject_truefalse WHERE id='" & mrow("id").ToString & "'"
-
-                    '    myadapter.SelectCommand = mycommand
-                    '    myadapter.Fill(xdataset, "examsubject_truefalse")
-                    '    xdataTable = xdataset.Tables("examsubject_truefalse")
-                    '    If xdataTable.Rows.Count > 0 Then
-                    '        For Each str As DataRow In xdataTable.Rows
-                    '            timelimit = str("timelimit").ToString
-                    '        Next
-                    '    End If
-                    '    xdataTable.Rows.Clear()
-                    '    xdataset.Clear()
-
-
-                    '    xdataTable.Rows.Clear()
-                    '    xdataset.Clear()
-                    '    runServer()
-                    '    MysqlConn.Open()
-                    '    mycommand = MysqlConn.CreateCommand
-                    '    mycommand.CommandText = "Select   Count(*) as num from  exam_answer_truefalse WHERE examid='" & mrow("examid").ToString & "' and studentid='" & Globaluserid & "' and examsubjectid='" & subjectid & "'  "
-
-                    '    myadapter.SelectCommand = mycommand
-                    '    myadapter.Fill(xdataset, "exam_answer_truefalse")
-                    '    xdataTable = xdataset.Tables("exam_answer_truefalse")
-                    '    If xdataTable.Rows.Count > 0 Then
-                    '        For Each str As DataRow In xdataTable.Rows
-                    '            examstatus = str("num").ToString
-                    '        Next
-                    '    End If
-                    '    xdataTable.Rows.Clear()
-                    '    xdataset.Clear()
-
-                    'End If
-
-
-                    'MsgBox(mrow("examid").ToString)
-                    '''Getting the status of subject exams
-                    'Dim examstatus As String = ""
-                    'If mrow("examtype").ToString = "Essay" Then
-
-
-                    'ElseIf mrow("examtype").ToString = "Multiple Choice" Then
-
-                    'ElseIf mrow("examtype").ToString = "True or False" Then
-
-                    'End If
-                    'MsgBox(examstatus.ToString)
-                    'If examstatus = "" Then
-                    '    examstatus = "OPEN"
-
-                    'Else
-                    '    examstatus = "CLOSED"
-                    'End If
-
-                    'Dim examstatus As String = ""
-                    'xdataTable.Rows.Clear()
-                    'xdataset.Clear()
-                    'runServer()
-                    'MysqlConn.Open()
-                    'mycommand = MysqlConn.CreateCommand
-                    'mycommand.CommandText = "Select  * from  examinee WHERE examid='" & mrow("examid").ToString & "' and studentid='" & Globaluserid & "'  "
-
-                    'myadapter.SelectCommand = mycommand
-                    'myadapter.Fill(xdataset, "examinee")
-                    'xdataTable = xdataset.Tables("examinee")
-                    'If xdataTable.Rows.Count > 0 Then
-                    '    For Each str As DataRow In xdataTable.Rows
-                    '        examstatus = str("status").ToString
-                    '    Next
-                    'End If
-                    'xdataTable.Rows.Clear()
-                    'xdataset.Clear()
-
-                    'If examstatus = "" Then
-                    '    examstatus = "OPEN"
-
-                    'Else
-                    '    examstatus = "CLOSED"
-                    'End If
-
-                    'Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, "OPEN", mrow("examid").ToString}
-                    MsgBox(examstatus.ToString)
                     If examstatus = "0" Then
                         examstatus = "OPEN"
 
-                    ElseIf examstatus = "1" Then
+                    Else
                         examstatus = "CLOSED"
                     End If
                     Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, examstatus.ToString, mrow("examid").ToString}

@@ -77,6 +77,29 @@ Public Class FrmExamMaster
                     MsgBox("Cannot Proceed to Exam, No time limit has been set")
                     Exit Sub
                 End If
+
+                xdataTable.Rows.Clear()
+                xdataset.Clear()
+                runServer()
+                MysqlConn.Open()
+                mycommand = MysqlConn.CreateCommand
+                mycommand.CommandText = "Select  * from  (subjects inner join exammaster on subjects.id = exammaster.subjectid) WHERE exammaster.id='" & examid & "'"
+
+                myadapter.SelectCommand = mycommand
+                myadapter.Fill(xdataset, "exammaster")
+                xdataTable = xdataset.Tables("exammaster")
+                If xdataTable.Rows.Count > 0 Then
+                    For Each str As DataRow In xdataTable.Rows
+                        subjectid = str("subjectid").ToString
+                    Next
+                End If
+
+
+
+                xdataTable.Rows.Clear()
+                xdataset.Clear()
+
+
                 If examtype = "Multiple Choice" Then
 
 

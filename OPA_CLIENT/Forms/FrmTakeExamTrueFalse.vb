@@ -229,9 +229,9 @@ Public Class FrmTakeExamTrueFalse
     Sub UpdateAnswer_TrueFalse()
 
 
-        Try
+        'Try
 
-            Dim totalitems As String = ""
+        Dim totalitems As String = ""
         Dim questioncorrectanswer As String = ""
         Dim questionid As String = ""
         Dim rightmark As String = ""
@@ -300,9 +300,9 @@ Public Class FrmTakeExamTrueFalse
                 Exit Sub
         End Select
 
-        Catch ex As Exception
+        'Catch ex As Exception
 
-        End Try
+        'End Try
     End Sub
     Dim questionid As String = ""
 
