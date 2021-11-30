@@ -500,10 +500,17 @@ Public Class FrmTakeExamMultipleChoice
 
         If tspn.Minutes = 0 AndAlso tspn.Seconds = 0 Then
             Timer1.Stop()
-            MessageBox.Show("Time Ended")
+
+
+            If MessageBox.Show("YOUR TIME IS UP", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information) = Windows.Forms.DialogResult.OK Then
+                UpdateExamRecordToClose()
+                MsgBox(" Examination Assessment Recorded", MsgBoxStyle.Information)
+                Me.Close()
+                MyExam.ExamList()
+            End If
+
 
         End If
-
         'ok---------------------------
         'lbltimer.Text = Format(stringServer, "00:") & Format(timelimit, "00:") & Format(vv, "00")
         'vv = vv + 1
