@@ -27,11 +27,14 @@ Public Class ExamMaster
             FrmExamMaster.dtgList.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
             FrmExamMaster.dtgList.ColumnCount = 7
             FrmExamMaster.dtgList.Columns(0).HeaderText = "ID"
-            FrmExamMaster.dtgList.Columns(0).Width = 90
+            FrmExamMaster.dtgList.Columns(0).Width = 50
             FrmExamMaster.dtgList.Columns(0).Name = "id"
 
+
+
+
             FrmExamMaster.dtgList.Columns(1).HeaderText = "EXAMINATION CODE"
-            FrmExamMaster.dtgList.Columns(1).Width = 300
+            FrmExamMaster.dtgList.Columns(1).Width = 250
             FrmExamMaster.dtgList.Columns(1).Name = "examcode"
 
             FrmExamMaster.dtgList.Columns(2).HeaderText = "SUBJECT"
@@ -56,6 +59,7 @@ Public Class ExamMaster
             FrmExamMaster.dtgList.Columns(6).HeaderText = ""
             FrmExamMaster.dtgList.Columns(6).Width = 0
             FrmExamMaster.dtgList.Columns(6).Name = "examineeid"
+
 
             Dim btn As New DataGridViewButtonColumn()
             FrmExamMaster.dtgList.Columns.Add(btn)
@@ -100,6 +104,7 @@ Public Class ExamMaster
                                 If xYdataTable.Rows.Count > 0 Then
                                     For Each strS As DataRow In xYdataTable.Rows
                                         timelimit = strS("timelimit").ToString
+                                        examdate = strS("examdatetime").ToString
                                     Next
                                 End If
                                 xYdataTable.Rows.Clear()
@@ -118,6 +123,7 @@ Public Class ExamMaster
                                 If xYdataTable.Rows.Count > 0 Then
                                     For Each strS As DataRow In xYdataTable.Rows
                                         examstatus = strS("num").ToString
+
                                     Next
                                 End If
                                 xYdataTable.Rows.Clear()
@@ -140,6 +146,7 @@ Public Class ExamMaster
                                 If xYdataTable.Rows.Count > 0 Then
                                     For Each strS As DataRow In xYdataTable.Rows
                                         timelimit = strS("timelimit").ToString
+                                        examdate = strS("examdatetime").ToString
                                     Next
                                 End If
                                 xYdataTable.Rows.Clear()
@@ -157,6 +164,7 @@ Public Class ExamMaster
                                 If xYdataTable.Rows.Count > 0 Then
                                     For Each strS As DataRow In xYdataTable.Rows
                                         examstatus = strS("num").ToString
+
                                     Next
                                 End If
                                 xYdataTable.Rows.Clear()
@@ -179,6 +187,7 @@ Public Class ExamMaster
                                 If xYdataTable.Rows.Count > 0 Then
                                     For Each strS As DataRow In xYdataTable.Rows
                                         timelimit = strS("timelimit").ToString
+                                        examdate = strS("examdatetime").ToString
                                     Next
                                 End If
                                 xYdataTable.Rows.Clear()
@@ -208,8 +217,12 @@ Public Class ExamMaster
 
                         Next
                     End If
-
-
+                    Dim tagmins As String = ""
+                    If CDbl(timelimit) > 1 Then
+                        tagmins = "mins"
+                    Else
+                        tagmins = "min"
+                    End If
 
                     xdataTable.Rows.Clear()
                     xdataset.Clear()
@@ -221,7 +234,7 @@ Public Class ExamMaster
                     Else
                         examstatus = "CLOSED"
                     End If
-                    Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString, examstatus.ToString, mrow("examid").ToString}
+                    Dim row As String() = New String() {mrow("id").ToString, mrow("examcategoryname").ToString, examsubjectname.ToString, mrow("examtype").ToString, timelimit.ToString + " " + tagmins.ToString, examstatus.ToString, mrow("examid").ToString}
                     FrmExamMaster.dtgList.Rows.Add(row)
                 Next
 

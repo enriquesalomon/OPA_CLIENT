@@ -12,7 +12,7 @@ Module GlobalVariable
     Public examtotalquestion As Integer
     Public timelimit As String
     Public examineeexamid As String
-
+    Public examdate As String
     Public mycommand As New MySqlCommand
     Public myadapter As New MySqlDataAdapter
     Public mysqlreader As MySqlDataReader
