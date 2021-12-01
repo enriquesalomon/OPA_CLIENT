@@ -37,8 +37,8 @@ Public Class FrmExamResult
 
         DataGridView1.RowsDefaultCellStyle.BackColor = Color.White
         DataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
-        DataGridView1.ColumnCount = 6
-        DataGridView1.Columns(0).HeaderText = "EXAMINATION CODE"
+            DataGridView1.ColumnCount = 5
+            DataGridView1.Columns(0).HeaderText = "EXAMINATION CODE"
         DataGridView1.Columns(0).Width = 300
         DataGridView1.Columns(0).Name = "examcode"
 
@@ -61,13 +61,10 @@ Public Class FrmExamResult
         DataGridView1.Columns(4).Name = "score"
 
 
-        DataGridView1.Columns(5).HeaderText = "ITEMS"
-        DataGridView1.Columns(5).Width = 100
-        DataGridView1.Columns(5).Name = "items"
 
 
 
-        Dim TotalPoints, Items As Integer
+            Dim TotalPoints, Items As Integer
         TotalPoints = 0
             If mydataTable.Rows.Count > 0 Then
                 For Each mrow As DataRow In mydataTable.Rows
@@ -225,9 +222,9 @@ Public Class FrmExamResult
                 xdataTable.Rows.Clear()
                 xdataset.Clear()
 
-                Dim row As String() = New String() {mrow("examcategoryname").ToString, examdescription.ToString, examsubjectname.ToString, mrow("examtype").ToString, TotalPoints, Items}
-                'Dim row As String() = New String() {mrow("examid").ToString, mrow("examtype").ToString}
-                DataGridView1.Rows.Add(row)
+                    Dim row As String() = New String() {mrow("examcategoryname").ToString, examdescription.ToString, examsubjectname.ToString, mrow("examtype").ToString, TotalPoints}
+                    'Dim row As String() = New String() {mrow("examid").ToString, mrow("examtype").ToString}
+                    DataGridView1.Rows.Add(row)
 
 
                 Next
